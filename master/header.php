@@ -60,13 +60,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="index.php?id=users">
                   <span data-feather="users"></span>
                   Users
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="index.php?id=server">
                   <span data-feather="bar-chart-2"></span>
                   Server Resources
                 </a>
