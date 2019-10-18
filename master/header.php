@@ -54,7 +54,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="index.php?id=crud">
                   <span data-feather="file"></span>
                   Items
                 </a>
@@ -68,12 +68,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
                   Server Resources
                 </a>
               </li>
@@ -85,32 +79,23 @@
                 <span data-feather="plus-circle"></span>
               </a>
             </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Current month
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Last quarter
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Social engagement
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="file-text"></span>
-                  Year-end sale
-                </a>
-              </li>
-            </ul>
+
+            <ul class="nav flex-column mb-2"><?php
+              $vowels = array("Classic Report", "-", ".sql"); //TODO: replace item check
+              if ($handle = opendir('./reports')) {
+                  while (false !== ($entry = readdir($handle))) {
+                      if ($entry != "." && $entry != ".." && $entry != "filters") {
+                          echo '<li class="nav-item">
+                          <a class="nav-link" href="index.php?id=superlitesql&entry=' . $entry . '">
+                            <span data-feather="file-text"></span>
+                            ' . $entry . '
+                          </a>
+                        </li>';
+                      }
+                  }
+                  closedir($handle);
+              }
+            ?></ul>
           </div>
         </nav>
 

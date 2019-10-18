@@ -2,7 +2,7 @@
 abstract class SuperLiteSql {
     // Function to create tables from queries
     static function createTable_from_sql_select_query($sql_link, $query) {
-  
+
         $result=mysqli_query($sql_link, $query);
   
         if ($result->num_rows > 0) 
@@ -52,8 +52,7 @@ abstract class SuperLiteSql {
     // This function creates an HTML form from SQL table
     static function GenerateFormFromTable($table_name, $conn, $values) {
 
-        $form ='<div class="modal fade ' . ((isset($values) || isset($_GET['new'] )) ? 'show-modal' : '') . '" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+        $form ='<div class="modal' . ((isset($values) || isset($_GET['new'] )) ? ' show' : '') . '" id="basicExampleModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-body">';
@@ -76,55 +75,46 @@ abstract class SuperLiteSql {
                     $form .= "<div class=\"form-group\">";
 
                     $type = $row['Type'];
-                    $type = substr($type, 0, strpos($type, "("));
+                    if (strpos($type, "(") > 0)
+                        $type = substr($type, 0, strpos($type, "("));
 
                     switch ($type){
                         case "varchar":
-                            $form .= "<div class=\"md-form\">";
-                            $form .= "<input class=\"form-control\" type='text' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "</div>";
+                            $form .= "<input class=\"form-control\" type='text' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break;
                         case "int":
-                            $form .= "<div class=\"md-form\">";
-                            $form .= "<input class=\"form-control\" type='number' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "</div>";
+                            $form .= "<input class=\"form-control\" type='number' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break; 
                         case "bigint":
-                            $form .= "<div class=\"md-form\">";
-                            $form .= "<input class=\"form-control\" type='number' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "</div>";
+                            $form .= "<input class=\"form-control\" type='number' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break; 
                         case "tinyint":
-                            $form .= "<div class=\"md-form\">";
-                            $form .= "<input class=\"form-control\" type='number' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "</div>";
+                            $form .= "<input class=\"form-control\" type='number' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break; 
                         case "decimal":
-                            $form .= "<div class=\"md-form\">";
-                            $form .= "<input class=\"form-control\" type='number'  step='0.01' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "</div>";
+                            $form .= "<input class=\"form-control\" type='number'  step='0.01' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
+                            break;
+                        case "datetime":
+                            $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
+                            $form .= "<input class=\"form-control\" type='datetime-local' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break;
                         case "bit":
                             // echo "here " . $row["Field"] . ": " . $values[$row["Field"]]; exit; // Debug
-                            $form .= "<div class=\"form-check\">";
                             $form .= '
-                                <input class="form-check-input" type="checkbox" name="' . $row["Field"] . '" value="' . ( $values[$row["Field"]] == '0' ? 'false' : 'true' ) . '">
                                 <label class="form-check-label" for="' . $row["Field"] . '">
                                 ' . $row["Field"] . '
                                 </label>
+                                <input class="form-check-input" type="checkbox" name="' . $row["Field"] . '" value="' . ( $values[$row["Field"]] == '0' ? 'false' : 'true' ) . '">
                             ';
-                            $form .= "</div>";
                             break;
                         default :
-                            $form .= "<div class=\"md-form\">";
-                            $form .= "<input class=\"form-control\" type='text' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "</div>";
+                            $form .= "<input class=\"form-control\" type='text' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                     }
 
                     $form .= "</div>";

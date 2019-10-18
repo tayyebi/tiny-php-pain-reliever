@@ -40,6 +40,7 @@ include ('master/header.php');
 
 // Container
 $_GET['id'] = isset($_GET['id']) ? $_GET['id'] : 'welcome';
+
 // includes the page content
 include ('pages/' . $_GET['id'] . '.php');
 

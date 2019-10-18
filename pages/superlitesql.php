@@ -16,7 +16,7 @@ require_once 'lib.php';
 // If any report was selected
 if (isset($_GET['entry']))
 {
-    $_POST['the_query'] = file_get_contents("scripts/" . $_GET['entry']);
+    $_POST['the_query'] = file_get_contents("reports/" . $_GET['entry']);
     echo '
     <div class="alert alert-primary" role="alert">
         <strong class="bq-title">Info! </strong> ' . $_GET['entry'] . '
@@ -30,7 +30,7 @@ if (isset($_GET['entry']))
     // with @, with its related value.
 
     // Read CSV to array
-    $csvFile = @file('scripts/filters/' . $_GET['entry'] . '.csv');
+    $csvFile = @file('reports/filters/' . $_GET['entry'] . '.csv');
     $csvData = [];
     if ($csvFile)
         foreach ($csvFile as $line) {
