@@ -1,2 +1,7 @@
 GIFs are made using FFMPEG and command below
-$ ffmpeg -ss 00:00:03 -t 00:00:06 -i video.mp4 video.gif -hide_banner
+
+$ ffmpeg -ss 00:00:03 -t 00:00:06 -i video.mp4 video.gif -hide_banner -type Palette
+
+or
+
+$ ffmpeg -ss 00:00:00 -t 00:10:40 -i video.mp4 -filter_complex 'fps=10,scale=720:-1:flags=lanczos,split [o1] [o2];[o1] palettegen [p]; [o2] fifo [o3];[o3] [p] paletteuse' crud.gif -hide_banner
