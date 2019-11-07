@@ -17,7 +17,7 @@
 
         <div class="profile-image">
 
-            <img src="https://raw.githubusercontent.com/Pressz/Sariab/master/logo/Icon.png" alt="Sariab Logo">
+            <img width="150" src="https://github.com/Pressz/Sariab-V2/blob/master/logo/Icon.png?raw=true" alt="Sariab Logo">
 
         </div>
 
