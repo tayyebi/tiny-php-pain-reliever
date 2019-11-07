@@ -104,11 +104,9 @@ abstract class SuperLiteSql {
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
                             $form .= "<input class=\"form-control\" type='number'  step='0.01' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break;
-                        case "datetime":
-                            if (isset($values[$row["Field"]]))
-                                $values[$row["Field"]] = date('Y-m-d\TH:i');
+                        case "datetime":                          
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "<input class=\"form-control\" type='datetime-local' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
+                            $form .= "<input class=\"form-control\" type='datetime-local' name='" . $row["Field"] . "' value='" . date('Y-m-d\TH:i') . "' >";
                             break;
                         case "bit":
                             // echo "here " . $row["Field"] . ": " . $values[$row["Field"]]; exit; // Debug

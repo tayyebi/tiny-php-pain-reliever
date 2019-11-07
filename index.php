@@ -25,7 +25,7 @@
 
             <h1 class="profile-user-name">sariabbloggers</h1>
 
-            <!-- <button class="btn profile-edit-btn">Edit Profile</button> -->
+            <a class="btn profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال محتوی</a>
 
             <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
@@ -79,7 +79,7 @@
         ?>
 
 
-        <a class="gallery-item" tabindex="0" href="<?php echo $row['Link'] ?>">
+        <a class="gallery-item" tabindex="0" href="<?php echo $row['Canonical'] ?>">
 
             <img src="image-generator.php?id=<? echo $row['Id'] ?>" class="gallery-image" alt="<?php echo $row['Title'] ?>">
 

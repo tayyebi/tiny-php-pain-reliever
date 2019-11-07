@@ -11,6 +11,7 @@
     $table_id = 'Id';
     $select_query = 'SELECT
     CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+    CONCAT(\'<a class="btn btn-sm btn-default" href="view.php?id=\', id , \'">\', \'View\', \'</a>\') as View,
     Id
     , Submit
     ,`Title`
