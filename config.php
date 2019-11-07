@@ -2,7 +2,7 @@
 
 // Configuration
 $servername = "localhost";
-$dbname = "sariab-v2";
+$dbname = "sariab_data";
 
 // This web app, uses MySQL server users
 // If it can connect to MySQL, then user pass
@@ -14,6 +14,6 @@ $conn = @new mysqli($servername
     , $dbname);
 
 // Set database charset to support persian.
-mysqli_set_charset($conn,"utf8");
+// mysqli_set_charset($conn,"utf8");
 
 ?>

@@ -41,7 +41,7 @@ imagefill($im, 0, 0, $backgroundColor);
 
 $box = new Box($im);
 
-$box->setFontFace('../Sariab-V2/static/fonts/Vazir-Bold.ttf'); // http://www.dafont.com/franchise.font
+$box->setFontFace('static/fonts/Vazir-Bold.ttf'); // http://www.dafont.com/franchise.font
 $box->setFontColor(new Color(255, 75, 140));
 $box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);
 $box->setFontSize(12);
@@ -64,9 +64,4 @@ $box->draw($text);
 
 header("Content-type: image/png");
 imagepng($im);
-
-
-
-
-
 ?>

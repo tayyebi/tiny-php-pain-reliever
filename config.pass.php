@@ -1,6 +1,6 @@
 <?php
 
-$_SERVER['PHP_AUTH_USER'] = "root";
-$_SERVER['PHP_AUTH_PW'] = "123";
+$dbuser = "sariab_data";
+$dbpass = "123";
 
 ?>
