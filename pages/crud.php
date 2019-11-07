@@ -7,14 +7,15 @@
 
     // Defined table, id, and default table select query
     // TODO: Dynamically generate the data below
-    $table_name = 'todo';
+    $table_name = 'Posts';
     $table_id = 'Id';
     $select_query = 'SELECT
-    CONCAT(\'<a class="btn btn-sm btn-default" href="index.php?id=crud&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+    CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
     Id
     , Submit
-    ,`Value`
-    FROM `todo`';
+    ,`Title`
+    ,`Publisher`
+    FROM `Posts`';
 
     // If data was posted
     if (isset($_POST['update']))
@@ -23,7 +24,7 @@
         $update_query_key_values = '';
 
         // Get table structure
-        // In this case: todo table
+        // In this case: Potodosts table
         $result = $conn->query("DESCRIBE " . $table_name);
 
         // output data of each row
@@ -44,6 +45,8 @@
                 $symbol = '';
                 if ($type == "varchar"
                 or $type == "datetime"
+                or $type == "text"
+                or $type == "longtext"
                 or $type == "char" ) {
                     $symbol = '\'';
                 }
@@ -98,6 +101,8 @@
                 $symbol = '';
                 if ($type == "varchar"
                 or $type == "datetime"
+                or $type == "text"
+                or $type == "longtext"
                 or $type == "char" ) {
                     $symbol = '\'';
                 }
@@ -160,7 +165,7 @@
 
 
     // Modal Trigger
-    // href="index.php?id=crud&new"
+    // href="admin.php?id=crud&new"
     echo '<button class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
         New *
     </button>

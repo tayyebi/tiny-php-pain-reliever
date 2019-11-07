@@ -57,7 +57,7 @@ abstract class SuperLiteSql {
         <div class="modal-content">
         <div class="modal-body">';
         
-        $form .= "<form action=\"index.php?id=crud\"
+        $form .= "<form action=\"admin.php?id=crud\"
         class=\"gordarg-form\"
         method=\"post\">";
         
@@ -79,6 +79,11 @@ abstract class SuperLiteSql {
                         $type = substr($type, 0, strpos($type, "("));
 
                     switch ($type){
+                        case "longtext":
+                            $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
+                            $form .= "<textarea class=\"form-control\" name='" . $row["Field"] . "'>" . $values[$row["Field"]] . "</textarea>";
+                            break;
+                        case "text":
                         case "varchar":
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
                             $form .= "<input class=\"form-control\" type='text' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
@@ -100,6 +105,8 @@ abstract class SuperLiteSql {
                             $form .= "<input class=\"form-control\" type='number'  step='0.01' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break;
                         case "datetime":
+                            if (isset($values[$row["Field"]]))
+                                $values[$row["Field"]] = date('Y-m-d\TH:i');
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
                             $form .= "<input class=\"form-control\" type='datetime-local' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break;
@@ -130,7 +137,7 @@ abstract class SuperLiteSql {
             {
                 $form .= "<input name='update' type='submit' value='Update' class='btn btn-warning btn-sm m-4'>";
                 $form .= "<input name='delete' type='submit' value='Delete' class='btn btn-danger btn-sm m-4'>";
-                $form .= "<a href=\"index.php?id=crud\" class='btn btn-default pink darken-1 btn-sm m-4'>Cancel</a>";
+                $form .= "<a href=\"admin.php?id=crud\" class='btn btn-default pink darken-1 btn-sm m-4'>Cancel</a>";
                 $form .= "</form>";                
                 $form .= "</div></div></div></div>";                
             }

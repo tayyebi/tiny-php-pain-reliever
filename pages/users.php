@@ -2,7 +2,7 @@
 // require lib to allow create dynamic tables
 require_once 'lib.php';
 
-// Note: $servername is MySQL server, passwed from index.php
+// Note: $servername is MySQL server, passwed from admin.php
 
 // If data was posted (any button clicked)
 if (isset($_POST['update'])) // update user
@@ -81,8 +81,8 @@ if (isset($_POST['update']) || isset($_POST['insert']))
 // query to select users from MySQL tables
 $query ='
 select
-CONCAT(\'<a class="btn btn-sm btn-default" href="index.php?id=users&entry=\', User , \'">\', \'Edit\', \'</a>\') as Edit,
-CONCAT(\'<a class="btn btn-sm btn-default" href="index.php?id=logmysql&entry=\', User , \'">\', \'Log\', \'</a>\') as Log,
+CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=users&entry=\', User , \'">\', \'Edit\', \'</a>\') as Edit,
+CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=logmysql&entry=\', User , \'">\', \'Log\', \'</a>\') as Log,
 Host,
 User \'Username\',
 Create_user_priv \'Permission to create users\',
@@ -100,7 +100,7 @@ SuperLiteSql::createTable_from_sql_select_query($conn, $query);
 if (!isset($_GET['new']))
 {
     echo '
-    <a class="btn btn-danger" href="index.php?id=users&new">
+    <a class="btn btn-danger" href="admin.php?id=users&new">
     New *
     </a>';
 }
@@ -127,7 +127,7 @@ $Permission_Devices = "checked";
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="index.php?id=users" class="gordarg-form" method="post">
+                <form action="admin.php?id=users" class="gordarg-form" method="post">
                     
                 <div class="form-group"><div class="md-form">
                     Username
@@ -172,7 +172,7 @@ $Permission_Devices = "checked";
                 {
                     echo "<input name='update' type='submit' value='Update' class='btn btn-warning btn-sm m-4'>";
                     echo "<input name='delete' type='submit' value='Delete' class='btn btn-danger btn-sm m-4'>";
-                    echo "<a href=\"index.php?id=users\" class='btn btn-default pink darken-1 btn-sm m-4'>Cancel</a>";                
+                    echo "<a href=\"admin.php?id=users\" class='btn btn-default pink darken-1 btn-sm m-4'>Cancel</a>";                
                 }
                 ?>
 

@@ -2,7 +2,7 @@
 require_once 'lib.php';
 ?>
 <p>
-    <a type="button" href="index.php?id=users" class="btn btn-info">
+    <a type="button" href="admin.php?id=users" class="btn btn-info">
         <i class="fas fa-arrow-left mr-2"></i>Back
     </a>
 </p>

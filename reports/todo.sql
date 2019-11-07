@@ -1,3 +1,3 @@
 select * from
-todo
+Posts
 where Id like @id

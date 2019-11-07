@@ -48,25 +48,25 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php?id=superlitesql">
+                <a class="nav-link" href="admin.php?id=superlitesql">
                   <span data-feather="code"></span>
                   SuperLiteSQL
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php?id=crud">
+                <a class="nav-link" href="admin.php?id=crud">
                   <span data-feather="file"></span>
                   Items
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php?id=users">
+                <a class="nav-link" href="admin.php?id=users">
                   <span data-feather="users"></span>
                   Users
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php?id=server">
+                <a class="nav-link" href="admin.php?id=server">
                   <span data-feather="bar-chart-2"></span>
                   Server Resources
                 </a>
@@ -86,7 +86,7 @@
                   while (false !== ($entry = readdir($handle))) {
                       if ($entry != "." && $entry != ".." && $entry != "filters") {
                           echo '<li class="nav-item">
-                          <a class="nav-link" href="index.php?id=superlitesql&entry=' . $entry . '">
+                          <a class="nav-link" href="admin.php?id=superlitesql&entry=' . $entry . '">
                             <span data-feather="file-text"></span>
                             ' . $entry . '
                           </a>
