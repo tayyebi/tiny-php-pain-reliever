@@ -11,62 +11,59 @@ if(!$_GET['id']) {
     require_once 'config.pass.php';
     require_once 'config.php';
     $result= mysqli_query($conn, 
-        "SELECT Title FROM Posts WHERE Id = " . $_GET['id'] . " LIMIT 1"
+        "SELECT Title, Publisher FROM Posts WHERE Id = " . $_GET['id'] . " LIMIT 1"
     );
     $values = $result->fetch_array();
     $string = $values['Title'];
+    $string_author = $values['Publisher'];
     
 }
 
 // The text to draw
 $text = fagd($string,'fa','vazir');
-// Replace path by your own font path
-
-// $font = dirname(__FILE__).'/Nastaligh.ttf';
+$text_author = fagd($string_author,'fa','vazir');
 $font = 'static/fonts/Vazir-Bold.ttf';
 
+include_once('gd-text/Struct/Point.php');
+include_once('gd-text/Struct/Rectangle.php');
+include_once('gd-text/Box.php');
+include_once('gd-text/Color.php');
+include_once('gd-text/HorizontalAlignment.php');
+include_once('gd-text/TextWrapping.php');
+include_once('gd-text/VerticalAlignment.php');
 
+use GDText\Box;
+use GDText\Color;
 
+$im = imagecreatetruecolor(500, 500);
+$backgroundColor = imagecolorallocate($im, 0, 18, 64);
+imagefill($im, 0, 0, $backgroundColor);
 
+$box = new Box($im);
 
+$box->setFontFace('../Sariab-V2/static/fonts/Vazir-Bold.ttf'); // http://www.dafont.com/franchise.font
+$box->setFontColor(new Color(255, 75, 140));
+$box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);
+$box->setFontSize(12);
+$box->setLineHeight(1.5);
+// $box->enableDebug();
+$box->setBox(20, 20, 460, 460);
+$box->setTextAlign('right', 'bottom');
+$box->draw($text_author);
 
-
-
-
-
-
+$box->setFontColor(new Color(255, 75, 140));
+$box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);
+$box->setFontSize(40);
+$box->setStrokeColor(new Color(255, 75, 140)); // Set stroke color
+$box->setStrokeSize(3); // Stroke size in pixels
+$box->setFontColor(new Color(255, 255, 255));
+$box->setTextAlign('center', 'center');
+$box->setBox(20, 20, 460, 460);
+$box->draw($text);
 
 
 header("Content-type: image/png");
-$img_width = 800;
-$img_height = 600;
- 
-$img = imagecreatetruecolor($img_width, $img_height);
- 
-$black = imagecolorallocate($img, 0, 0, 0);
-$white = imagecolorallocate($img, 255, 255, 255);
-$red   = imagecolorallocate($img, 255, 0, 0);
-$green = imagecolorallocate($img, 0, 255, 0);
-$blue  = imagecolorallocate($img, 0, 200, 250);
-$orange = imagecolorallocate($img, 255, 200, 0);
-$brown = imagecolorallocate($img, 220, 110, 0);
- 
-imagefill($img, 0, 0, $white);
- 
-imagestringup($img, 5, $img_width*19/20, $img_height*19/20, 'http://google.com', $blue);
-imagestring($img, 5, $img_width/20, $img_height/20, 'SARIAB', $red);
-
-$fontSize = 20;
-$dimensions = imagettfbbox($fontSize, $angle, $font, $text);
-$textWidth = abs($dimensions[4] - $dimensions[0]);
-$x = imagesx($img) - $textWidth;
-imagettftext($img, 32, 0, $x, $img_height*2/10, $black, $font, $text);
-
-
-imagepng($img);
-
-
-
+imagepng($im);
 
 
 
