@@ -62,6 +62,12 @@ class Box
     protected $fontFace = null;
 
     /**
+     * @var reverse_text_lines_order
+     */
+    protected $reverse_text_lines_order = false;
+
+
+    /**
      * @var bool
      */
     protected $debug = false;
@@ -96,6 +102,15 @@ class Box
     {
         $this->fontColor = $color;
     }
+
+    /**
+     * @param bool $reverse_text_lines_order To Reverse Lines Order
+     */
+    public function setReverseTextLinesOrder($reverse_text_lines_order)
+    {
+        $this->reverse_text_lines_order = $reverse_text_lines_order;
+    }
+
 
     /**
      * @param string $path Path to the font file
@@ -358,6 +373,8 @@ class Box
             }
             $lines[] = $line;
         }
+        if ($this->reverse_text_lines_order == true)
+            $lines = array_reverse($lines);
         return $lines;
     }
 
