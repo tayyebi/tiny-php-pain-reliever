@@ -27,7 +27,7 @@ function TextFactory($input, $box)
    // $first_character = substr($input, 0*2, 1*2);
    if (preg_match('/.*[چجحخهعغفقثصضشسیبلاتنمکگوپدذرزطظژ].*/u', $input)){
        // Persian Text
-       $input = fagd($input,'fa','vazir');
+       $input = fagd($input,'fa','titr');
        $box->setReverseTextLinesOrder(true);
 
        /*
@@ -64,18 +64,20 @@ use GDText\Color;
 // Create Image
 
 $im = imagecreatetruecolor(500, 500);
-$backgroundColor = imagecolorallocate($im, 0, 18, 64);
+$backgroundColor = imagecolorallocate($im, 70, 95, 115);
 imagefill($im, 0, 0, $backgroundColor);
 
 $box = new Box($im);
 
 $text = TextFactory($string, $box);
 $text_author = TextFactory($string_author, $box);
-$font = 'static/fonts/Vazir-Bold.ttf';
+$font = 'static/fonts/B Titr Bold.ttf';
 
 $box->setFontFace($font);
-$box->setFontColor(new Color(255, 75, 140));
-$box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);
+$box->setFontColor(new Color(242, 238, 134));
+
+
+// $box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);
 $box->setFontSize(12);
 $box->setLineHeight(1.5);
 // $box->enableDebug();
@@ -83,12 +85,10 @@ $box->setBox(20, 20, 460, 460);
 $box->setTextAlign('right', 'bottom');
 $box->draw($text_author);
 
-$box->setFontColor(new Color(255, 75, 140));
-$box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);
+// $box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);
 $box->setFontSize(40);
-$box->setStrokeColor(new Color(255, 75, 140)); // Set stroke color
-$box->setStrokeSize(3); // Stroke size in pixels
-$box->setFontColor(new Color(255, 255, 255));
+$box->setStrokeColor(new Color(219, 245, 255)); // Set stroke color
+$box->setStrokeSize(0); // Stroke size in pixels
 $box->setTextAlign('center', 'center');
 $box->setBox(20, 20, 460, 460);
 $box->draw($text);
