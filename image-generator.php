@@ -4,7 +4,6 @@ ini_set("error_reporting","E_ALL & ~E_NOTICE & ~E_STRICT");
 include("fagd.php");
 // Create the image
 
-
 // Find the image info
 if(!$_GET['id']) {
 	exit; // TODO: Return 404
@@ -27,7 +26,7 @@ function TextFactory($input, $box)
    // $first_character = substr($input, 0*2, 1*2);
    if (preg_match('/.*[چجحخهعغفقثصضشسیبلاتنمکگوپدذرزطظژ].*/u', $input)){
        // Persian Text
-       $input = fagd($input,'fa','titr');
+       $input = fagd($input,'fa','vazir');
        $box->setReverseTextLinesOrder(true);
 
        /*
@@ -71,7 +70,7 @@ $box = new Box($im);
 
 $text = TextFactory($string, $box);
 $text_author = TextFactory($string_author, $box);
-$font = 'static/fonts/B Titr Bold.ttf';
+$font = 'static/fonts/Vazir-Bold.ttf';
 
 $box->setFontFace($font);
 $box->setFontColor(new Color(242, 238, 134));

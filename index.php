@@ -25,7 +25,7 @@
 
             <h1 class="profile-user-name">sariabbloggers</h1>
 
-            <a class="btn profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال محتوی</a>
+            <a class="btn profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال مطلب یا دیدگاه</a>
 
             <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
@@ -44,7 +44,8 @@
         <div class="profile-bio">
 
             <p><span class="profile-real-name">ساریاب</span>
-            ساریاب نام کوهی است که دانشگاه کوچکمان را در پناه آن ساخته اند</p>
+            گردآوری و اشتراک دانش و تجربه؛ و ایجاد انگیزه.
+            </p>
 
         </div>
 
@@ -81,7 +82,7 @@
 
         <a class="gallery-item" tabindex="0" href="<?php echo $row['Canonical'] ?>">
 
-            <img src="image-generator.php?id=<? echo $row['Id'] ?>" class="gallery-image" alt="<?php echo $row['Title'] ?>">
+            <img src="image-generator.php?id=<?php echo $row['Id'] ?>" class="gallery-image" alt="<?php echo $row['Title'] ?>">
 
             <!-- <div class="gallery-item-info">
 
