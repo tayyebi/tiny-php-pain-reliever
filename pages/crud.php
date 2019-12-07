@@ -4,19 +4,45 @@
     // to create, update, and delete rows
     // in that table.
     require_once 'lib.php';
+?>
 
+<form method="get" class="form-inline">
+    <input type="hidden" name="id" value="crud" />
+    <select name="table" class="form-control inline">
+        <option value="Posts">Posts</option>
+        <option value="Keywords">Keywords</option>
+    </select>
+    <input type="submit" value="Switch" class="btn btn-primary" />
+</form>
+
+<?php
     // Defined table, id, and default table select query
     // TODO: Dynamically generate the data below
     $table_name = 'Posts';
     $table_id = 'Id';
     $select_query = 'SELECT
-    CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+    CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Posts&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
     CONCAT(\'<a class="btn btn-sm btn-default" href="view.php?id=\', id , \'">\', \'View\', \'</a>\') as View,
     Id
     , Submit
     ,`Title`
     ,`Publisher`
     FROM `Posts`';
+    if (isset($_GET['table']))
+    {
+        $table_name  = $_GET['table'];
+        switch ($_GET['table'])
+        {
+            case "Keywords":
+                $table_id = 'Id';
+                $select_query = 'SELECT
+                CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Keywords&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+                Id
+                ,`Title`
+                FROM `Keywords`';
+                break;
+        }
+    }
 
     // If data was posted
     if (isset($_POST['update']))

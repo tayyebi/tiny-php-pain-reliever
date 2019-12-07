@@ -57,7 +57,7 @@ abstract class SuperLiteSql {
         <div class="modal-content">
         <div class="modal-body">';
         
-        $form .= "<form action=\"admin.php?id=crud\"
+        $form .= "<form action=\"admin.php?id=crud&table=$table_name\"
         class=\"gordarg-form\"
         method=\"post\">";
         
