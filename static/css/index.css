@@ -161,24 +161,44 @@ img {
     color: #fff;
     cursor: pointer;
 }
-.toolbar .searchbox input{
-
+.toolbar .searchbox input {
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    background-color: #fafafa;
+    color: black;
+    height: 4rem;
+}
+.toolbar .searchbox input[type=submit]{
+    width:4rem;
 }
 .toolbar .categories{
     flex: 2 0 22rem;
+    padding: 1.5rem;
     margin: 1rem;
     color: black;
-    align-items:center;
-    max-height: 6rem;
+    align-items: center;
+    height: 8rem;
     white-space:no-wrap;
     overflow-y: hidden;
     overflow-x: auto;
 
 }
+
 .toolbar .categories li {
-    display:inline;
+    display: inline;
     list-style-type: none;
-    text-decoration: none;    
+    text-decoration: none;
+}
+
+.toolbar .categories li a {
+    text-decoration: inherit;
+    color: inherit;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.25rem;
+    height: 4rem;
+    padding: 1rem;
+    display:inline;
     margin: 1rem;
 }
 

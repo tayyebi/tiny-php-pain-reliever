@@ -1,3 +1,8 @@
+<?php
+require_once 'config.pass.php';
+require_once 'config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,15 +36,15 @@
 
         </div>
 
-        <!-- <div class="profile-stats">
+        <div class="profile-stats">
 
             <ul>
-                <li><span class="profile-stat-count">164</span> posts</li>
-                <li><span class="profile-stat-count">188</span> followers</li>
-                <li><span class="profile-stat-count">206</span> following</li>
+                <li>ایمیل<a href="mailto:info@sariab.ir" class="profile-stat-count">info@sariab.ir</a></li>
+                <li>اینستاگرام<a href="https://instagram.com/sariabbloggers" class="profile-stat-count">@sariabblogers</a></li>
+                <!--<li>تلگرام<a href="https://t.me/sariabblogers" class="profile-stat-count">@sariabbloggers</a></li>-->
             </ul>
 
-        </div> -->
+        </div>
 
         <div class="profile-bio">
 
@@ -60,13 +65,16 @@
 <main>
 
 <div class="container">
-
+    <div class="toolbar">
+	<form class="searchbox" method="GET" action="search.php">
+		<input type="text" name="q" />
+		<input type="submit" value="🔎" />
+	</form>
+	<ul class="categories"><li><a href="#">Cat1</a></li></ul>
+    </div>
     <div class="gallery">
 
         <?php
-
-        require_once 'config.pass.php';
-        require_once 'config.php';
 
         $select_query = 'SELECT *
         FROM `Posts`
