@@ -97,6 +97,7 @@ require_once 'config.php';
         $select_posts_query = "SELECT *
         FROM `Posts`
         WHERE `Meta` LIKE '%$search_query%'
+        OR `Title` LIKE '%$search_query%'
         ORDER BY `Submit` DESC
         LIMIT 100";
 
