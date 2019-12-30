@@ -16,10 +16,6 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     src: url('../fonts/Vazir-Bold.ttf');
 }
 
-* {
-    font-family: MyFont;
-}
-
 :root {
     font-size: 10px;
 }
@@ -31,16 +27,24 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
 }
 
 body {
-    font-family: "Open Sans", Arial, sans-serif;
+    font-family: MyFont;
     min-height: 100vh;
     background-color: #fafafa;
-    color: #262626;
+    color: rgb(37, 127, 83);
     padding-bottom: 3rem;
     direction: rtl;
 }
 
 img {
     display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 
 .container {
@@ -164,52 +168,50 @@ img {
     padding-bottom: 3rem;
     flex-wrap: wrap;
 }
+
 .toolbar .searchbox {
     position: relative;
     flex: 1 0 22rem;
-    margin: 1rem;
     color: #fff;
     cursor: pointer;
 }
+
 .toolbar .searchbox input {
     border: 0.1rem solid #dbdbdb;
     border-radius: 0.25rem;
-    padding: 1rem;
     background-color: #fafafa;
     color: black;
-    height: 4rem;
+    height: 5rem;
 }
+
 .toolbar .searchbox input[type=submit]{
-    width:4rem;
+    width:6rem;
 }
+
 .toolbar .categories{
     flex: 2 0 22rem;
-    padding: 1.5rem;
     margin: 1rem;
     color: black;
     align-items: center;
-    height: 8rem;
-    white-space:no-wrap;
+    height: 6rem;
+    white-space:nowrap;
     overflow-y: hidden;
     overflow-x: auto;
-
+    list-style-type: none;
 }
 
 .toolbar .categories li {
-    display: inline;
-    list-style-type: none;
-    text-decoration: none;
+    display: inline-block;
 }
 
 .toolbar .categories li a {
+    display: block;
+    width: 100%;
     text-decoration: inherit;
     color: inherit;
     border: 0.1rem solid #dbdbdb;
     border-radius: 0.25rem;
-    height: 4rem;
     padding: 1rem;
-    display:inline;
-    margin: 1rem;
 }
 
 /* Gallery Section */

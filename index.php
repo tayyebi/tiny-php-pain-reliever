@@ -71,10 +71,19 @@ require_once 'config.php';
 		<input type="submit" value="🔎" />
 	</form>
 	<ul class="categories">
-    <li><a href="#">Cat1</a></li>
-    <li><a href="#">Cat2</a></li>
-    <li><a href="#">Cat3</a></li>
-    <li><a href="#">Cat4</a></li>
+    <?php
+    $select_keywords_query = "SELECT *
+    FROM `Keywords`
+    LIMIT 100";
+
+    $result = $conn->query($select_keywords_query);
+
+    while ($row = $result->fetch_assoc()) {
+    ?>
+    <li><a href="index.php?q=<?php echo $row['Title'] ?>"><?php echo $row['Title'] ?></a></li>
+    <?php
+    }
+    ?>
     </ul>
     </div>
     <div class="gallery">
@@ -85,13 +94,13 @@ require_once 'config.php';
         if (isset($_GET['q']))
             $search_query = $_GET['q'];
 
-        $select_query = "SELECT *
+        $select_posts_query = "SELECT *
         FROM `Posts`
         WHERE `Meta` LIKE '%$search_query%'
         ORDER BY `Submit` DESC
         LIMIT 100";
 
-        $result = $conn->query($select_query);
+        $result = $conn->query($select_posts_query);
 
         while ($row = $result->fetch_assoc()) {
 
