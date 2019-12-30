@@ -63,7 +63,7 @@ use GDText\Color;
 // Create Image
 
 $im = imagecreatetruecolor(500, 500);
-$backgroundColor = imagecolorallocate($im, 70, 95, 115);
+$backgroundColor = imagecolorallocate($im, 37, 127, 83);
 imagefill($im, 0, 0, $backgroundColor);
 
 $box = new Box($im);
@@ -73,7 +73,7 @@ $text_author = TextFactory($string_author, $box);
 $font = 'static/fonts/Vazir-Bold.ttf';
 
 $box->setFontFace($font);
-$box->setFontColor(new Color(242, 238, 134));
+$box->setFontColor(new Color(244, 233, 185));
 
 
 // $box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);

@@ -22,7 +22,7 @@ require_once 'config.php';
 
         <div class="profile-image">
 
-            <img width="150" src="https://github.com/Pressz/Sariab-V2/blob/master/logo/Icon.png?raw=true" alt="Sariab Logo">
+            <img width="150" src="https://github.com/Pressz/Sariab-V2/blob/master/logo/Icon2.png?raw=true" alt="Sariab Logo">
 
         </div>
 
@@ -39,9 +39,9 @@ require_once 'config.php';
         <div class="profile-stats">
 
             <ul>
-                <li>ایمیل<a href="mailto:info@sariab.ir" class="profile-stat-count">info@sariab.ir</a></li>
+                <!-- <li>ایمیل<a href="mailto:info@sariab.ir" class="profile-stat-count">info@sariab.ir</a></li> -->
                 <li>اینستاگرام<a href="https://instagram.com/sariabbloggers" class="profile-stat-count">@sariabblogers</a></li>
-                <!--<li>تلگرام<a href="https://t.me/sariabblogers" class="profile-stat-count">@sariabbloggers</a></li>-->
+                <li>تلگرام<a href="https://t.me/sariabblogers" class="profile-stat-count">@sariabbloggers</a></li>
             </ul>
 
         </div>
@@ -66,20 +66,30 @@ require_once 'config.php';
 
 <div class="container">
     <div class="toolbar">
-	<form class="searchbox" method="GET" action="search.php">
+	<form class="searchbox" method="GET" action="index.php">
 		<input type="text" name="q" />
 		<input type="submit" value="🔎" />
 	</form>
-	<ul class="categories"><li><a href="#">Cat1</a></li></ul>
+	<ul class="categories">
+    <li><a href="#">Cat1</a></li>
+    <li><a href="#">Cat2</a></li>
+    <li><a href="#">Cat3</a></li>
+    <li><a href="#">Cat4</a></li>
+    </ul>
     </div>
     <div class="gallery">
 
         <?php
 
-        $select_query = 'SELECT *
+        $search_query = "";
+        if (isset($_GET['q']))
+            $search_query = $_GET['q'];
+
+        $select_query = "SELECT *
         FROM `Posts`
+        WHERE `Meta` LIKE '%$search_query%'
         ORDER BY `Submit` DESC
-        LIMIT 100';
+        LIMIT 100";
 
         $result = $conn->query($select_query);
 
