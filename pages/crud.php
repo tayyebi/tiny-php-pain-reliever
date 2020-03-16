@@ -11,6 +11,7 @@
     <select name="table" class="form-control inline">
         <option value="Posts">Posts</option>
         <option value="Keywords">Keywords</option>
+        <option value="Podcasts">Podcasts</option>
     </select>
     <input type="submit" value="Switch" class="btn btn-primary" />
 </form>
@@ -35,11 +36,23 @@
         {
             case "Keywords":
                 $table_id = 'Id';
+                $table_name = 'Keywords';
                 $select_query = 'SELECT
                 CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Keywords&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
                 Id
                 ,`Title`
                 FROM `Keywords`';
+                break;
+            case "Podcasts":
+                $table_id = 'Id';
+                $table_name = 'Podcasts';
+                $select_query = 'SELECT
+                CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Podcasts&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+                Id
+                ,`Title`
+                ,`EpisodeNumber`
+                ,`PublishDate`
+                FROM `Podcasts`';
                 break;
         }
     }

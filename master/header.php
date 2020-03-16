@@ -60,6 +60,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="tinyfilemanager.php">
+                  <span data-feather="folder"></span>
+                  File Manager
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="admin.php?id=users">
                   <span data-feather="users"></span>
                   Users

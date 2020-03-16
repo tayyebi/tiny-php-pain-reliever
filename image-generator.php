@@ -61,7 +61,10 @@ use GDText\Box;
 use GDText\Color;
 
 // Create Image
-
+// Test GD installation
+$testGD = get_extension_funcs("gd");
+if (!$testGD){ echo "GD not even installed."; exit; }
+// If GD installation was OK
 $im = imagecreatetruecolor(500, 500);
 $backgroundColor = imagecolorallocate($im, 37, 127, 83);
 imagefill($im, 0, 0, $backgroundColor);

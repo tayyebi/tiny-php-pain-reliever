@@ -40,8 +40,8 @@ require_once 'config.php';
 
             <ul>
                 <!-- <li>ایمیل<a href="mailto:info@sariab.ir" class="profile-stat-count">info@sariab.ir</a></li> -->
-                <li>اینستاگرام<a href="https://instagram.com/sariabbloggers" class="profile-stat-count">@sariabblogers</a></li>
-                <li>تلگرام<a href="https://t.me/sariabblogers" class="profile-stat-count">@sariabbloggers</a></li>
+                <li>اینستاگرام<a href="https://instagram.com/sariabbloggers" class="profile-stat-count">@sariabbloggers</a></li>
+                <li>تلگرام<a href="https://t.me/sariabbloggers" class="profile-stat-count">@sariabbloggers</a></li>
             </ul>
 
         </div>
@@ -86,10 +86,34 @@ require_once 'config.php';
     ?>
     </ul>
     </div>
+
+    <div class="podcast">
+    <?php
+    $select_podcast_query = "SELECT *
+    FROM `Podcasts`
+    ORDER BY `Id` DESC
+    LIMIT 1";
+    $result = $conn->query($select_podcast_query);
+    while ($row = $result->fetch_assoc()) {
+    ?>
+    <h1><?php echo $row['Title'] ?></h1>
+    <h2><?php echo $row['PublishDate'] ?></h2>
+    <audio controls>
+        <!-- <source src="myfile.ogg" type="audio/ogg"> -->
+        <source src="<?php echo $row['FileUrl'] ?>" type="audio/mpeg">
+        مرورگر شما از پخش کننده‌ی صدا پشتیبانی نمی‌کند/
+        <a href="<?php echo $row['FileUrl'] ?>">
+        دانلود
+        </a>
+    </audio>
+    <?php
+    }
+    ?>
+    </div>
+
     <div class="gallery">
 
         <?php
-
         $search_query = "";
         if (isset($_GET['q']))
             $search_query = $_GET['q'];
