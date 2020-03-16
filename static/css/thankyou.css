@@ -1,0 +1,22 @@
+header {
+    text-align: center;
+    
+    background-image: url('../img/heart.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-attachment: scroll;
+    background-size: 3em;
+    font-size: 3em;
+    padding: 2em;;
+}
+
+.container {
+    font-size: 1.5em;
+    column-count: 2;
+}
+
+.item * {
+    display: inline-block;
+    text-align: right;
+    direction: rtl;
+}

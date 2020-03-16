@@ -1,0 +1,66 @@
+/* Base Styles */
+
+
+@font-face {
+    font-family: MyFont;
+    src: url('../fonts/Vazir-Bold.ttf');
+}
+
+:root {
+    font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: MyFont;
+    min-height: 100vh;
+    background-color: #fafafa;
+    color: rgb(37, 127, 83);
+    padding-bottom: 3rem;
+    direction: rtl;
+}
+
+img {
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 93.5rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btn {
+    display: inline-block;
+    font: inherit;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: 0.5rem auto #4d90fe;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}

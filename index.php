@@ -9,8 +9,9 @@ require_once 'config.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sariab</title>
+    <title>ساریاب</title>
 
+    <link rel="stylesheet" href="static/css/layout.css">
     <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
@@ -31,6 +32,7 @@ require_once 'config.php';
             <h1 class="profile-user-name">sariabbloggers</h1>
 
             <a class="btn profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال مطلب یا دیدگاه</a>
+            <a class="btn profile-edit-btn" href="https://github.com/Pressz/Sariab-V2">متن باز</a>
 
             <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
@@ -40,8 +42,10 @@ require_once 'config.php';
 
             <ul>
                 <!-- <li>ایمیل<a href="mailto:info@sariab.ir" class="profile-stat-count">info@sariab.ir</a></li> -->
-                <li>اینستاگرام<a href="https://instagram.com/sariabbloggers" class="profile-stat-count">@sariabbloggers</a></li>
-                <li>تلگرام<a href="https://t.me/sariabbloggers" class="profile-stat-count">@sariabbloggers</a></li>
+                <li><a href="https://instagram.com/sariabbloggers" class="profile-stat-count">اینستاگرام @sariabbloggers</a></li>
+                <li><a href="https://t.me/sariabbloggers" class="profile-stat-count">تلگرام @sariabbloggers</a></li>
+                <li><a href="http://vrgl.ir/32N6W" class="profile-stat-count">سوال‌های پرتکرار (FAQ)</a></li>
+                <li><a href="thankyou.php" class="profile-stat-count">همراهان همیشگی ما</a></li>
             </ul>
 
         </div>
@@ -116,7 +120,7 @@ require_once 'config.php';
         <?php
         $search_query = "";
         if (isset($_GET['q']))
-            $search_query = $_GET['q'];
+            $search_query = injection_prevent($_GET['q']);
 
         $select_posts_query = "SELECT *
         FROM `Posts`

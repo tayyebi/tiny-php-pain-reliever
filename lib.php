@@ -1,5 +1,13 @@
 <?php
 abstract class SuperLiteSql {
+    // Function to prevent SQL injection
+    function injection_prevent($query_input)
+    {
+        $search = array("\\", "\x00", "\n", "\r", "\'", '"', "\x1a");
+        $replace = array("\\\\","\0","\n", "\r", "\\'", '\"', "\Z");
+        return str_replace($search, $replace, $query_input);
+    }
+
     // Function to create tables from queries
     static function createTable_from_sql_select_query($sql_link, $query) {
 

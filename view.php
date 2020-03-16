@@ -28,7 +28,8 @@ if ($values == null)
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $values['Title'] ?></title>
 
-    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/layout.css">
+    <link rel="stylesheet" href="static/css/view.css">
 
     <!-- Primary Meta Tags -->
     <meta name="title" content="<?php echo $values['Title'] ?>">

@@ -12,6 +12,7 @@
         <option value="Posts">Posts</option>
         <option value="Keywords">Keywords</option>
         <option value="Podcasts">Podcasts</option>
+        <option value="Supports">Supports</option>
     </select>
     <input type="submit" value="Switch" class="btn btn-primary" />
 </form>
@@ -53,6 +54,22 @@
                 ,`EpisodeNumber`
                 ,`PublishDate`
                 FROM `Podcasts`';
+                break;
+            case "Supports":
+                $table_id = 'Id';
+                $table_name = 'Supports';
+                $select_query = 'SELECT
+                CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Supports&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+                Id
+                ,`Name`
+                ,`Url`
+                ,`IsAuthor`
+                ,`IsFan`
+                ,`IsContributer`
+                ,`IsCoach`
+                ,`IsDonater`
+                ,`IsMedia`
+                FROM `Supports`';
                 break;
         }
     }
@@ -172,6 +189,8 @@
         . ") VALUES ("
         . $insert_query_values
         . ")" ;
+
+        echo $insert_query;exit;
         
         // run the query !
         mysqli_query($conn, $insert_query);
