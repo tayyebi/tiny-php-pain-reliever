@@ -1,9 +1,4 @@
 <?php
-// Report all errors to internet.
-// DEBUG: comment following two lines on production server
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 require_once 'config.php';
 
 // Set php timezone

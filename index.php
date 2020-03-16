@@ -1,4 +1,5 @@
 <?php
+require_once 'lib.php';
 require_once 'config.pass.php';
 require_once 'config.php';
 ?>
@@ -120,7 +121,7 @@ require_once 'config.php';
         <?php
         $search_query = "";
         if (isset($_GET['q']))
-            $search_query = injection_prevent($_GET['q']);
+            $search_query = SuperLiteSql::injection_prevent($_GET['q']);
 
         $select_posts_query = "SELECT *
         FROM `Posts`

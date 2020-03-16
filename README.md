@@ -42,3 +42,31 @@ wget http://localhost/index.php
 
 - php 7.2 `sudo apt-get install php7.2-gd`
 - php 5 `apt-get update && apt-get -y install php5-gd`
+
+## Create database
+
+```
+mysql> CREATE DATABASE `sariab_data`;
+```
+
+## Execute database query
+
+From file `db.sql`
+
+## Change config file and set yout cridentials
+
+Change the lines:
+
+file: `config.pass.php`
+
+```
+$_SERVER['PHP_AUTH_USER'] = "DATABASE_USER";
+$_SERVER['PHP_AUTH_PW'] = "DATABASE_PASSWORD";
+```
+
+file: `config.php`
+
+```
+$servername = "SERVER_NAME_HERE"; // Server name her
+$dbname = "DATABASE_NAME_HERE";
+```

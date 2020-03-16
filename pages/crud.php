@@ -189,8 +189,6 @@
         . ") VALUES ("
         . $insert_query_values
         . ")" ;
-
-        echo $insert_query;exit;
         
         // run the query !
         mysqli_query($conn, $insert_query);
