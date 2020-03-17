@@ -90,4 +90,4 @@ $dbname = "DATABASE_NAME_HERE";
 
 8- Tell us your notes
 
-9- Your commits will be merged after review by 
+9- Your commits will be merged after review by developers of master branch
