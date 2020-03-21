@@ -23,8 +23,9 @@ require_once 'config.php';
     <div class="profile">
 
         <div class="profile-image">
-
-            <img width="150" src="https://github.com/Pressz/Sariab-V2/blob/master/logo/Icon2.png?raw=true" alt="Sariab Logo">
+        <a href="http://sariab.ir">
+		<img width="150" src="https://github.com/Pressz/Sariab-V2/blob/master/logo/Icon2.png?raw=true" alt="Sariab Logo">
+        </a>
 
         </div>
 
