@@ -32,6 +32,10 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
 .profile-image img {
     border-radius: 50%;
 }
+.profile-image img:hover {
+    border-radius: 50%;
+    border: 3px solid red; 
+}
 
 .profile-user-settings,
 .profile-stats,
