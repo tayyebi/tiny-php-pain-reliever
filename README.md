@@ -2,6 +2,12 @@ Project Sariab
 ===
 Based on **Pressz** guideline
 
+![Website Status](https://img.shields.io/website?url=http%3A%2F%2Fsariab.ir)
+![Build](https://img.shields.io/appveyor/build/Pressz/Sariab-V2)
+![Languages](https://img.shields.io/github/languages/count/Pressz/Sariab-V2)
+![Top Language](https://img.shields.io/github/languages/top/Pressz/Sariab-V2)
+![Issues](https://img.shields.io/codeclimate/issues/Pressz/Sariab-V2)
+
 A hub which bloggers can share their content with target audience.
 
 # Installation notes
@@ -91,3 +97,7 @@ $dbname = "DATABASE_NAME_HERE";
 8- Tell us your notes
 
 9- Your commits will be merged after review by developers of master branch
+
+# Project TODO list
+
+- [ ] Hello world
