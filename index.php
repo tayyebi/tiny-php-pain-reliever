@@ -34,7 +34,7 @@ require_once 'config.php';
             <h1 class="profile-user-name">sariabbloggers</h1>
 
             <a class="btn profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال مطلب یا دیدگاه</a>
-            <a class="btn profile-edit-btn" href="https://github.com/Pressz/Sariab-V2">متن باز</a>
+            <a class="btn profile-edit-btn" href="positions.php">همکاری با ما</a>
 
             <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
 
@@ -48,6 +48,7 @@ require_once 'config.php';
                 <li><a href="https://t.me/sariabbloggers" class="profile-stat-count">تلگرام @sariabbloggers</a></li>
                 <li><a href="http://vrgl.ir/32N6W" class="profile-stat-count">سوال‌های پرتکرار (FAQ)</a></li>
                 <li><a href="thankyou.php" class="profile-stat-count">همراهان همیشگی ما</a></li>
+                <li><a href="https://github.com/Pressz/Sariab-V2" class="profile-stat-count">متن باز</a></li>
             </ul>
 
         </div>

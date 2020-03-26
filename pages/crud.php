@@ -13,6 +13,7 @@
         <option value="Keywords">Keywords</option>
         <option value="Podcasts">Podcasts</option>
         <option value="Supports">Supports</option>
+        <option value="Positions">Positions</option>
     </select>
     <input type="submit" value="Switch" class="btn btn-primary" />
 </form>
@@ -70,6 +71,17 @@
                 ,`IsDonater`
                 ,`IsMedia`
                 FROM `Supports`';
+                break;
+            case "Positions":
+                $table_id = 'Id';
+                $table_name = 'Positions';
+                $select_query = 'SELECT
+                CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Positions&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+                Id
+                ,`Title`
+                ,`IsPaid`
+                ,`Salary`
+                FROM `Positions`';
                 break;
         }
     }

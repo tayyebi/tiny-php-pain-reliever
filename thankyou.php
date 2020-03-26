@@ -32,7 +32,7 @@ require_once 'config.php';
     ?>
     <div class="item">
         <h3><?php echo $row['Name'] ?></h3>
-        <a href="#">🔗</a>
+        <a href="<?php echo $row['Url'] ?>">🔗</a>
     </div>
     <?php
     }
