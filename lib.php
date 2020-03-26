@@ -1,7 +1,7 @@
 <?php
 abstract class SuperLiteSql {
     // Function to prevent SQL injection
-    function injection_prevent($query_input)
+    static function injection_prevent($query_input)
     {
         $search = array("\\", "\x00", "\n", "\r", "\'", '"', "\x1a");
         $replace = array("\\\\","\0","\n", "\r", "\\'", '\"', "\Z");
