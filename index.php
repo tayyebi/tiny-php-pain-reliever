@@ -75,12 +75,11 @@ require_once 'config.php';
     <div class="toolbar">
 
 
-	<form class="searchbox" >
-
-          <input  class="search-txt" type="text" name="" placeholder=" جستجو ...">
-                 <a class="search-btn" method="GET" action="index.php">
-                     <i class="fa fa-search" aria-hidden="true"></i>
-                 </a>
+	<form class="searchbox" method="GET" action="index.php" >
+        <input  class="search-txt" type="text" name="q" placeholder="جستجو...">
+        <button type="submit" class="search-btn" >
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
     </form>
     
 
