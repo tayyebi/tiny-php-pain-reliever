@@ -8,6 +8,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
 
 */
 
+
 /* Profile Section */
 
 .profile {
@@ -32,9 +33,10 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
 .profile-image img {
     border-radius: 50%;
 }
+
 .profile-image img:hover {
     border-radius: 50%;
-    border: 3px solid red; 
+    border: 3px solid red;
 }
 
 .profile-user-settings,
@@ -52,9 +54,26 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     display: inline-block;
     font-size: 3.2rem;
     font-weight: 300;
+    margin-bottom: 14px;
 }
 
-.profile-edit-btn {
+.box-with-text {
+    background-image: url(https://github.com/Pressz/Sariab-V2/blob/master/logo/Icon2.png?raw=true);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    /*-webkit-transform: translateX(-50%) translateY(-50%);*/
+    /* -ms-transform: translateX-(50%) translateY(-50%);*/
+    /* transform: translateX(-50%) translateY(-50%);*/
+    background-size: cover;
+    white-space: nowrap;
+    background-position: 50% 50%;
+    background-repeat: repeat;
+    /*text-align: center;*/
+    /*text-transform: uppercase;*/
+}
+
+
+/*.profile-edit-btn {
     text-decoration: none;
     font-size: 1.4rem;
     line-height: 1.8;
@@ -62,11 +81,65 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     border-radius: 0.3rem;
     padding: 0 2.4rem;
     margin-right: 2rem;
+}*/
+
+
+/*button */
+
+.profile-edit-btn {
+    position: relative;
+    margin-right: 2rem;
+    background: #2E7D32;
+    color: #fff;
+    border-width: 0;
+    padding: 15px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 50%;
+    outline: none;
+}
+
+.profile-edit-btn::before {
+    position: absolute;
+    content: '';
+    bottom: -110%;
+    right: 0;
+    border-right: 5rem solid #000;
+    border-top: 5rem solid transparent;
+    opacity: 0.2;
+    z-index: -1;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+}
+
+.profile-edit-btn::after {
+    position: absolute;
+    content: '';
+    top: -100%;
+    right: 0;
+    border-right: 5rem solid #fff;
+    border-bottom: 5rem solid transparent;
+    opacity: 0.2;
+    z-index: -1;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+}
+
+.profile-edit-btn:hover::before {
+    bottom: 0;
+}
+
+.profile-edit-btn:hover::after {
+    top: 0;
+}
+
+.profile-edit-btn:hover {
+    box-shadow: 0 0 4px 1px #333;
 }
 
 .profile-settings-btn {
     font-size: 2rem;
-    margin-right: 1rem;
+    margin-right: 2rem;
 }
 
 .profile-stats {
@@ -98,22 +171,116 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     font-weight: 200;
 }
 
+
+/* icon bar*/
+
+.social-button a {
+    display: inline-flex;
+    text-decoration: none;
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 8px;
+}
+
+.social-button a::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #4CAF50, #1B5E20);
+    border-radius: 50%;
+    z-index: -1;
+    transition: 0.3s ease-in;
+}
+
+.social-button a:hover::before {
+    transform: scale(0);
+}
+
+.social-button a i {
+    transition: 0.3s ease-in;
+}
+
+.social-button a:hover i {
+    background: linear-gradient(45deg, #43A047, #2E7D32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: scale(2.2);
+}
+
+
 /* Toolbar Section */
+
+
+/***/
 
 .toolbar {
     display: flex;
-    padding-bottom: 3rem;
+    /* margin: 1rem 1rem;*/
+    padding-bottom: 0.5rem;
     flex-wrap: wrap;
+    /* width: 895px;*/
 }
 
 .toolbar .searchbox {
-    position: relative;
-    flex: 1 0 22rem;
-    color: #fff;
-    cursor: pointer;
+    position: absolute;
+    /*flex: 1 0 22rem;*/
+    /*transform: translate(-50%, -50%);*/
+    background: #2E7D32;
+    /*height: 40px;*/
+    border-radius: 40px;
+    padding: 4px;
 }
 
-.toolbar .searchbox input {
+.toolbar .searchbox:hover>.search-txt {
+    width: 240px;
+    padding: 0 6px;
+}
+
+ ::-webkit-input-placeholder {
+    color: white;
+}
+
+.toolbar .searchbox:hover>.search-btn {
+    background: white;
+    color: black;
+    text-decoration: none;
+}
+
+.toolbar .search-btn {
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 50%;
+    background: #2E7D32;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.toolbar .search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: white;
+    font-size: 14px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+}
+
+
+/*.toolbar .searchbox input {
     border: 0.1rem solid #dbdbdb;
     border-radius: 0.25rem;
     background-color: #fafafa;
@@ -121,24 +288,29 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     height: 5rem;
 }
 
-.toolbar .searchbox input[type=submit]{
-    width:6rem;
-}
+.toolbar .searchbox input[type=submit] {
+    width: 6rem;
+}*/
 
-.toolbar .categories{
+.toolbar .categories {
     flex: 2 0 22rem;
     margin: 1rem;
     color: black;
     align-items: center;
-    height: 6rem;
-    white-space:nowrap;
+    height: 6.5rem;
+    white-space: nowrap;
     overflow-y: hidden;
     overflow-x: auto;
     list-style-type: none;
+    margin-left: 100px;
+    margin-right: 300px;
+    border: 3rem;
 }
 
 .toolbar .categories li {
     display: inline-block;
+    margin-left: 0.5rem;
+    padding-top: 0.7rem;
 }
 
 .toolbar .categories li a {
@@ -146,28 +318,48 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     width: 100%;
     text-decoration: inherit;
     color: inherit;
-    border: 0.1rem solid #dbdbdb;
-    border-radius: 0.25rem;
+    /*border: 0.1rem solid #dbdbdb;*/
+    /* border-radius: 0.25rem;*/
     padding: 1rem;
+    margin-left: 1rem;
+    text-align: center;
+    color: white;
+    /* margin-right: 0;*/
 }
+
 
 /* Podcast Section */
 
 .podcast {
-    border-radius: .3em;
-    border-color: #999;
-    border-style: solid;
-    border-width: .1em;
+    margin: 1rem 1rem;
+    /*  border-radius: .3em;
+        border-color: #999;
+        border-style: solid;*/
     margin-bottom: 1em;
     padding: 1em;
     text-align: center;
     color: white;
-    background-color: rgb(37, 127, 83);
+    /*width: 895px;*/
+    /*  background: 895px 150px;*/
+    background-color: #2E7D32;
     background-image: url('../img/podcast.png');
     background-position: center right;
     background-attachment: scroll;
     background-size: auto 80%;
     background-repeat: no-repeat;
+}
+
+audio:hover,
+audio:focus,
+audio:active {
+    box-shadow: 15px 15px 20px tgb(0, 0, 0, 4);
+    transform: scale(1.05);
+}
+
+audio {
+    transition: all 0.5s linear;
+    box-shadow: 2px 2px 4px 0px #2e7d32;
+    border-radius: 7px;
 }
 
 
@@ -178,6 +370,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     flex-wrap: wrap;
     margin: -1rem -1rem;
     padding-bottom: 3rem;
+    /* transform: translate(-50%, -50%);*/
 }
 
 .gallery-item {
@@ -186,6 +379,51 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     margin: 1rem;
     color: #fff;
     cursor: pointer;
+    backface-visibility: hidden;
+    transition: transform .6s linear;
+}
+
+.card {
+    cursor: pointer;
+    width: 285px;
+    height: 285px;
+}
+
+.gallery-item-front,
+.gallery-item-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    flex: 1 0 22rem;
+    margin: 1rem;
+    color: #fff;
+    cursor: pointer;
+    backface-visibility: hidden;
+    transition: transform .6s linear;
+    overflow: hidden;
+}
+
+.gallery-item-front {
+    transform: perspective(600px) rotateY(0deg);
+}
+
+.gallery-item-back {
+    transform: perspective(600px) rotateY(180deg);
+    background: #10cc7e;
+}
+
+.card:hover>.gallery-item-front {
+    transform: perspective(600px) rotateY(-180deg);
+}
+
+.card:hover>.gallery-item-back {
+    transform: perspective(600px) rotateY(0deg);
+}
+
+.gallery-item-back-content {
+    color: #2c3e50;
+    text-align: center;
+    width: 100%;
 }
 
 .gallery-item:hover .gallery-item-info,
@@ -200,7 +438,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.gallery-item-info {
+*/ .gallery-item-info {
     display: none;
 }
 
@@ -233,6 +471,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     object-fit: cover;
 }
 
+
 /* Loader */
 
 .loader {
@@ -245,6 +484,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     animation: loader 500ms linear infinite;
 }
 
+
 /* Media Query */
 
 @media screen and (max-width: 40rem) {
@@ -253,11 +493,9 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
         flex-wrap: wrap;
         padding: 4rem 0;
     }
-
     .profile::after {
         display: none;
     }
-
     .profile-image,
     .profile-user-settings,
     .profile-bio,
@@ -265,49 +503,40 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
         float: none;
         width: auto;
     }
-
     .profile-image img {
         width: 7.7rem;
     }
-
     .profile-user-settings {
         flex-basis: calc(100% - 10.7rem);
         display: flex;
         flex-wrap: wrap;
         margin-top: 1rem;
     }
-
     .profile-user-name {
         font-size: 2.2rem;
     }
-
     .profile-edit-btn {
         order: 1;
         padding: 0;
         text-align: center;
         margin-top: 1rem;
     }
-
     .profile-edit-btn {
         margin-left: 0;
     }
-
     .profile-bio {
         font-size: 1.4rem;
         margin-top: 1.5rem;
     }
-
     .profile-edit-btn,
     .profile-bio,
     .profile-stats {
         flex-basis: 100%;
     }
-
     .profile-stats {
         order: 1;
         margin-top: 1.5rem;
     }
-
     .profile-stats ul {
         display: flex;
         text-align: center;
@@ -315,17 +544,16 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
         border-top: 0.1rem solid #dadada;
         border-bottom: 0.1rem solid #dadada;
     }
-
     .profile-stats li {
         font-size: 1.4rem;
         flex: 1;
         margin: 0;
     }
-
     .profile-stat-count {
         display: block;
     }
 }
+
 
 /* Spinner Animation */
 
@@ -334,6 +562,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
         transform: rotate(360deg);
     }
 }
+
 
 /*
 
@@ -351,55 +580,52 @@ Remove or comment-out the code block below to see how the browser will fall-back
         grid-column-gap: 3rem;
         align-items: center;
     }
-
     .profile-image {
         grid-row: 1 / -1;
     }
-
     .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
         grid-gap: 2rem;
     }
-
     .profile-image,
     .profile-user-settings,
     .profile-stats,
     .profile-bio,
     .gallery-item,
-    .gallery {
+    .gallery,
+    .podcast,
+    .toolbar,
+    .searchbox,
+    .categories {
         width: auto;
         margin: 0;
     }
+}
 
-    @media (max-width: 40rem) {
-        .profile {
-            grid-template-columns: auto 1fr;
-            grid-row-gap: 1.5rem;
-        }
-
-        .profile-image {
-            grid-row: 1 / 2;
-        }
-
-        .profile-user-settings {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            grid-gap: 1rem;
-        }
-
-        .profile-edit-btn,
-        .profile-stats,
-        .profile-bio {
-            grid-column: 1 / -1;
-        }
-
-        .profile-user-settings,
-        .profile-edit-btn,
-        .profile-settings-btn,
-        .profile-bio,
-        .profile-stats {
-            margin: 0;
-        }
+@media (max-width: 40rem) {
+    .profile {
+        grid-template-columns: auto 1fr;
+        grid-row-gap: 1.5rem;
+    }
+    .profile-image {
+        grid-row: 1 / 2;
+    }
+    .profile-user-settings {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 1rem;
+    }
+    .profile-edit-btn,
+    .profile-stats,
+    .profile-bio {
+        grid-column: 1 / -1;
+    }
+    .profile-user-settings,
+    .profile-edit-btn,
+    .profile-settings-btn,
+    .profile-bio,
+    .profile-stats {
+        margin: 0;
     }
 }
