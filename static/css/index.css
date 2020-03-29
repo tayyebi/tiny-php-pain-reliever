@@ -58,7 +58,7 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
 }
 
 .box-with-text {
-    background-image: url(https://github.com/Pressz/Sariab-V2/blob/master/logo/Icon2.png?raw=true);
+    background-image: url('../../logo/Icon.svg');
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     /*-webkit-transform: translateX(-50%) translateY(-50%);*/
