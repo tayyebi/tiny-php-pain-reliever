@@ -88,7 +88,7 @@ $dbname = "DATABASE_NAME_HERE";
 
 4- Commit your changes
 
-5- **Pull** before push
+5- **Pull** before push(Notice that you have to choose **Pull From** the main project.)
 
 6- Push
 
