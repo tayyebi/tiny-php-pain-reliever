@@ -11,6 +11,9 @@
 
     <!-- Bootstrap Core JS -->
     <script src="static/js/bootstrap.js"></script>
+    
+    <!-- Tiny editor -->
+    <script src="static/js/tinyeditor.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

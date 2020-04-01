@@ -89,7 +89,8 @@ abstract class SuperLiteSql {
                     switch ($type){
                         case "longtext":
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "<textarea class=\"form-control\" name='" . $row["Field"] . "'>" . $values[$row["Field"]] . "</textarea>";
+                            $form .= '<input type="hidden" name="' . $row["Field"] . '" value="' . htmlspecialchars($values[$row["Field"]]) . '"  />';
+                            $form .= '<div id="' . $row["Field"] . '" data-tiny-editor>' . $values[$row["Field"]] . '</div>';
                             break;
                         case "text":
                         case "varchar":
