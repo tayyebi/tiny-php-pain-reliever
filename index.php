@@ -36,45 +36,51 @@ require_once 'config.php';
         <div class="profile-user-settings">
 
             <h1 class="profile-user-name box-with-text">sariabbloggers</h1>
-
-            <a class="btn profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال مطلب یا دیدگاه</a>
-            <a class="btn profile-edit-btn" href="positions.php">همکاری با ما</a>
-
-           <!-- <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>-->
-
+            <span class="profile-real-name"><strong>ساریاب</strong>
+            گردآوری و اشتراک دانش و تجربه؛ و ایجاد انگیزه.</span>
+        </div>
+        
+        <div class="searchbox-container">
+            <form class="searchbox" method="GET" action="index.php" >
+                <input  class="search-txt" type="text" name="q" placeholder="جستجو...">
+                    <button type="submit" class="search-btn" >
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+            </form>
         </div>
 
-        
-        <div class="social-button ">
+        <div class="social-button">
+
                 <a href="https://instagram.com/sariabbloggers" class="icon insta">
-                        <span>Instagram</span>
+                        <span>اینستاگرام</span>
                         <i class="fab fa-instagram"></i>
                 </a>
                 <a href="https://t.me/sariabbloggers"class="icon tel">
-                        <span>Telegram</span> 
+                        <span>تلگرام</span> 
                         <i class="fab fa-telegram"></i>
                 </a>
                 <a href="https://github.com/Pressz/Sariab-V2"class="icon git">
-                        <span>Source</span>
+                        <span>متن باز</span>
                         <i class="fab fa-github"></i>
                 </a>
                 <a href="http://vrgl.ir/32N6W"class="icon faq">
-                        <span>FAQ</span>
+                        <span>سوالات پرتکرار (FAQ)</span>
                         <i class="fa fa-question"></i>
                 </a>
                 <a href="thankyou.php"class="icon heart">
-                        <span>heart</span>
+                        <span>قدردانی</span>
                         <i class="fa fa-heart"></i>
                 </a>
         </div>
 
-        <div class="profile-bio">
-
-            <p><span class="profile-real-name">ساریاب</span>
-            گردآوری و اشتراک دانش و تجربه؛ و ایجاد انگیزه.
-            </p>
-
+        
+        <div class="contribute-links">
+            <a class="profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال مطلب یا دیدگاه</a>
+            <a class="profile-edit-btn" href="positions.php">همکاری با ما</a>
         </div>
+ 
+
+    
 
     </div>
     <!-- End of profile section -->
@@ -87,17 +93,6 @@ require_once 'config.php';
 <main>
 
 <div class="container">
-    <div class="toolbar">
-
-
-	<form class="searchbox" method="GET" action="index.php" >
-        <input  class="search-txt" type="text" name="q" placeholder="جستجو...">
-            <button type="submit" class="search-btn" >
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-    </form>
-    
-
 
 	<ul class="categories" >
     <?php
@@ -114,7 +109,6 @@ require_once 'config.php';
     }
     ?>
     </ul>
-    </div>
 
 
 
@@ -174,9 +168,15 @@ require_once 'config.php';
                                   <div class="gallery-item-back">
                                          <div class="gallery-item-back-content ">
                                                    <h2 class="titles"><?php echo $row['Title'] ?></h2>
-                                                   <span class="Paragraf"><?php echo $row['Abstract'] ?></span>
+                                                   <span class="Paragraf"><?php
+                                                   $AllowedCharsLimit = 30;
+                                                   if(strlen($item['Abstract']) > $AllowedCharsLimit)
+                                                     echo substr($item['Abstract'], 0, $AllowedCharsLimit)."...";
+                                                   else
+                                                     echo $item['Abstract'];
+                                                     ?></span>
 
-                                                   <a href="#" class="buttons"><span>read more</span></a>
+                                                   <a href="view.php?id=<?php echo $row['Id'] ?>" class="buttons"><span>بیشتر بدانید</span></a>
                                           </div>
                                      </div>
                  </div>

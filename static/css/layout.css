@@ -16,9 +16,11 @@
     box-sizing: border-box;
 }
 
-body {
+* {
     font-family: MyFont;
-    min-height: 100vh;
+}
+
+body {
     background-color: #fafafa;
     color: rgb(37, 127, 83);
     padding-bottom: 3rem;
