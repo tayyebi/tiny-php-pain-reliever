@@ -15,7 +15,7 @@ require_once 'config.php';
     
     <link rel="stylesheet" href="static/css/layout.css">
     <link rel="stylesheet" href="static/css/index.css">
-    <script src="https://use.fontawesome.com/feedb0380e.js"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.css">
   
 </head>
@@ -45,12 +45,27 @@ require_once 'config.php';
         </div>
 
         
-        <div class="social-button">
-                  <a href="https://instagram.com/sariabbloggers"><i class="fab fa-instagram"></i></a>
-                  <a href="https://t.me/sariabbloggers"><i class="fab fa-telegram"></i></a>
-                  <a href="https://github.com/Pressz/Sariab-V2"><i class="fab fa-github"></i></a>
-                  <a href="http://vrgl.ir/32N6W"><i class="fa fa-question"></i></a>
-                  <a href="thankyou.php"><i class="fa fa-heart"></i></a>
+        <div class="social-button ">
+                <a href="https://instagram.com/sariabbloggers" class="icon insta">
+                        <span>Instagram</span>
+                        <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://t.me/sariabbloggers"class="icon tel">
+                        <span>Telegram</span> 
+                        <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://github.com/Pressz/Sariab-V2"class="icon git">
+                        <span>Source</span>
+                        <i class="fab fa-github"></i>
+                </a>
+                <a href="http://vrgl.ir/32N6W"class="icon faq">
+                        <span>FAQ</span>
+                        <i class="fa fa-question"></i>
+                </a>
+                <a href="thankyou.php"class="icon heart">
+                        <span>heart</span>
+                        <i class="fa fa-heart"></i>
+                </a>
         </div>
 
         <div class="profile-bio">
@@ -77,9 +92,9 @@ require_once 'config.php';
 
 	<form class="searchbox" method="GET" action="index.php" >
         <input  class="search-txt" type="text" name="q" placeholder="جستجو...">
-        <button type="submit" class="search-btn" >
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
+            <button type="submit" class="search-btn" >
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
     </form>
     
 
@@ -114,7 +129,7 @@ require_once 'config.php';
     ?>
     <h1><?php echo $row['Title'] ?></h1>
     <h2><?php echo $row['PublishDate'] ?></h2>
-    <audio controls preload="metadata" class="center">
+    <audio controls preload="metadata" >
         <!-- <source src="myfile.ogg" type="audio/ogg"> -->
         <source src="<?php echo $row['FileUrl'] ?>" type="audio/mpeg">
         مرورگر شما از پخش کننده‌ی صدا پشتیبانی نمی‌کند/
@@ -149,17 +164,19 @@ require_once 'config.php';
         while ($row = $result->fetch_assoc()) {
 
         ?>
-                <a class="gallery-item" tabindex="0" >
-                <!--.card:hover>.gallery-item-front-->
+                <div class="gallery-item" tabindex="0" >
+               
                 
                 <div class="gallery-item card">
                               <div class="gallery-item-front ">
                                      <img src="image-generator.php?id=<?php echo $row['Id'] ?>" class="gallery-image" alt="<?php echo $row['Title'] ?>">
                                 </div>
                                   <div class="gallery-item-back">
-                                         <div class="gallery-item gallery-item-back-content ">
-                                                   <h2><?php echo $row['Title'] ?></h2>
-                                                   <span><?php echo $row['Abstract'] ?></span>
+                                         <div class="gallery-item-back-content ">
+                                                   <h2 class="titles"><?php echo $row['Title'] ?></h2>
+                                                   <span class="Paragraf"><?php echo $row['Abstract'] ?></span>
+
+                                                   <a href="#" class="buttons"><span>read more</span></a>
                                           </div>
                                      </div>
                  </div>
@@ -173,7 +190,7 @@ require_once 'config.php';
 
             </div> -->
 
-        </a>
+                </div>
         
         <?php
         }
