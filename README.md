@@ -2,13 +2,19 @@ Project Sariab
 ===
 Based on **Pressz** guideline
 
+# What is Sariab?
+
+Sariab (www.sariab.ir) is a non-profit blogging campaign which is focused on empowering students, increase mental health level, and motivate them, through an integrated knowledge base made on distributed blogs and free content on internet social networks and website platform.
+
+# What is inside this repository?
+
+Web application which is serving content as the hub is available in this repository.
+
 ![Website Status](https://img.shields.io/website?url=http%3A%2F%2Fsariab.ir)
 ![Build](https://img.shields.io/appveyor/build/Pressz/Sariab-V2)
 ![Languages](https://img.shields.io/github/languages/count/Pressz/Sariab-V2)
 ![Top Language](https://img.shields.io/github/languages/top/Pressz/Sariab-V2)
 ![Issues](https://img.shields.io/codeclimate/issues/Pressz/Sariab-V2)
-
-A hub which bloggers can share their content with target audience.
 
 # Installation notes
 
@@ -110,3 +116,8 @@ $dbname = "DATABASE_NAME_HERE";
 - [ ] ALLOW USERS TO BOOKMARK POSTS USING COOKIES
 - [x] FLASH CARD BEHAVIOR ON A HOMEPAGE POST HOVER
 - [ ] POP-UP WINDOW ON HOMEPAGE POST CLICK
+
+# Links
+
+Home <http://sariab.ir>
+سوالات متداول <https://vrgl.ir/32N6W>
