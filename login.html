@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Required</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+
+</head>
+<body>
+    
+    <body class="container" style="direction: rtl; text-align: right;">
+        <h1 class="text-center border p-4">هویت احراز نشده است</h1>
+        <p>
+        <strong class="h2">نکات:</strong>
+        <pre>
+        - در صورت لزوم تمامی تحرکات شما در این سامانه لاگ می‌شوند
+        - حفاظت از اطلاعات هویتی بر عهده شماست
+        - از امنیت شبکه‌ی داخلی خود پیش از ارسال اطلاعات هویتی اطمینان حاصل کنید
+        - از امنیت مرورگر و افزونه‌های مرورگر خود پیش از ارسال اطلاعات هویتی اطمینان حاصل کنید
+        </pre>
+        </p>
+        <a class="httpauth" id="basic" href="login-basic.php">Proceed to login</a>
+    </body>
+
+    <script src="mdb/js/jquery.js"></script>
+    <script src="mdb/js/jquery.cookie.js"></script>
+    <script>
+    // Documentation: https://www.peej.co.uk/sandbox/htmlhttpauth/
+    window.onload = function()
+    {
+        var anchors = document.getElementsByTagName("a");
+        for (var foo = 0; foo < anchors.length; foo++) {
+            if (anchors[foo].className == "httpauth") {
+                createForm(anchors[foo]);
+            }
+        }
+    }
+
+    function createForm(httpauth)
+    {
+    
+        var container = document.createElement("div");
+        container.innerHTML = `
+        <form class="text-center border border-light p-5"
+        id="basic" action="login-basic.php" method="get"
+        onsubmit="login(event)">
+
+            <p class="h4 mb-4">ورود به سیستم</p>
+
+            <!-- Email -->
+            <input type="text" id="username" name="username" class="form-control mb-4" placeholder="نام کاربری">
+
+            <!-- Password -->
+            <input type="password" id="password" name="password" class="form-control mb-4" placeholder="کلمه ی عبور">
+
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit">ورود</button>
+
+        </form>
+        `;
+        var form = container;
+
+
+        // // METHOD 2
+        // var form = document.createElement("form");
+        // form.action = httpauth.href;
+        // form.method = "get";
+        // form.onsubmit = login;
+        // form.id = httpauth.id;
+        // var username = document.createElement("label");
+        // var usernameInput = document.createElement("input");
+        // usernameInput.name = "username";
+        // usernameInput.type = "text";
+        // usernameInput.id = /*httpauth.id + "-" + */ "username";
+        // username.appendChild(document.createTextNode("Username:"));
+        // username.appendChild(usernameInput);
+        // var password = document.createElement("label");
+        // var passwordInput = document.createElement("input");
+        // passwordInput.name = "password";
+        // passwordInput.type = "password";
+        // passwordInput.id = /*httpauth.id + "-" + */ "password";
+        // password.appendChild(document.createTextNode("Password:"));
+        // password.appendChild(passwordInput);
+        // var submit = document.createElement("input");
+        // submit.type = "submit";
+        // submit.value = "Log in";
+        // form.appendChild(username);
+        // form.appendChild(password);
+        // form.appendChild(submit);
+        // var logoutLink = document.createElement("a");
+        // logoutLink.href = "#";
+        // logoutLink.onclick = logout;
+        // logoutLink.appendChild(document.createTextNode("Log out"));
+        // form.appendChild(logoutLink);
+        
+        httpauth.parentNode.replaceChild(form, httpauth);
+    }
+
+    function getHTTPObject() {
+        var xmlhttp = false;
+        if (typeof XMLHttpRequest != 'undefined') {
+            try {
+                xmlhttp = new XMLHttpRequest();
+            } catch (e) {
+                xmlhttp = false;
+            }
+        } else {
+            /*@cc_on
+            @if (@_jscript_version >= 5)
+                try {
+                    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (E) {
+                        xmlhttp = false;
+                    }
+                }
+            @end @*/
+        }
+        return xmlhttp;
+    }
+
+    function login(e)
+    {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var http = getHTTPObject();
+        //var url = "http://" + username + ":" + password + "@" + this.action.substr(7);
+        var url = "login-basic.php"; // METHOD 1
+        // var url = this.action; // METHOD 2
+        http.open("get", url, false, username, password);
+        http.send("");
+        if (http.status == 200) {
+            document.location = url;
+        } else {
+            alert("Incorrect username and/or password!");
+            e.preventDefault();
+        }
+        return false;
+    }
+
+    // TODO: Logout with javascript
+    function logout()
+    {
+        var http = getHTTPObject();
+        http.open("get", this.parentNode.action, false, "null", "null");
+        http.send("");
+        alert("You have been logged out.");
+        return false;
+    }
+    </script>
+</body>
+</html>

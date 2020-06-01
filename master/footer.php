@@ -11,8 +11,14 @@
 
     <!-- Bootstrap Core JS -->
     <script src="static/js/bootstrap.js"></script>
+    
+    <!-- CKEditor -->
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script>
+      CKEDITOR.replace( 'Body' );
+    </script>
 
-    <!-- Icons -->
+    <!-- Menu Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace();

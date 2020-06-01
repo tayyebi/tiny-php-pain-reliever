@@ -1,8 +1,8 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -14,6 +14,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="static/css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Fonts for tiny editor -->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="static/css/dashboard.css" rel="stylesheet">
@@ -21,7 +24,7 @@
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company Name</a>
       <span class="form-control form-control-dark">
       <?php
         // Echos the page id and login
@@ -31,7 +34,7 @@
       </span>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link" href="login-basic.php?logout=true">Sign out</a>
         </li>
       </ul>
     </nav>
@@ -45,6 +48,12 @@
                 <a class="nav-link active" href="#">
                   <span data-feather="home"></span>
                   Dashbaord
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="tinyfilemanager.php">
+                  <span data-feather="folder"></span>
+                  File Manager
                 </a>
               </li>
               <li class="nav-item">

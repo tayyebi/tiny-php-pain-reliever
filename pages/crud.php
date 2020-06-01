@@ -4,17 +4,58 @@
     // to create, update, and delete rows
     // in that table.
     require_once 'lib.php';
+    require_once 'strings.php';
+?>
 
+<form method="get" class="form-inline">
+    <input type="hidden" name="id" value="crud" />
+    <select name="table" class="form-control inline">
+        <option value="News">News</option>
+        <option value="Posts">Posts</option>
+        <option value="Comments">Comments</option>
+    </select>
+    <input type="submit" value="Switch" class="btn btn-primary" />
+</form>
+
+<?php
     // Defined table, id, and default table select query
     // TODO: Dynamically generate the data below
-    $table_name = 'todo';
+    $table_name = 'News';
     $table_id = 'Id';
     $select_query = 'SELECT
-    CONCAT(\'<a class="btn btn-sm btn-default" href="index.php?id=crud&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
-    Id
-    , Submit
-    ,`Value`
-    FROM `todo`';
+    CONCAT(\'<a class="btn btn-sm btn-default" href="index.php?id=crud&table=News&entry=\', Id , \'">\', \'Edit\', \'</a>\') as Edit,
+    Id,
+    Title,
+    Submit
+    FROM `News`
+    ORDER BY `Id` DESC';
+    if (isset($_GET['table']))
+    {
+        $table_name  = $_GET['table'];
+        switch ($_GET['table'])
+        {
+            case "Posts":
+                $table_id = 'Id';
+                $select_query = 'SELECT
+                CONCAT(\'<a class="btn btn-sm btn-default" href="index.php?id=crud&table=Posts&entry=\', Id , \'">\', \'Edit\', \'</a>\') as Edit,
+                Id,
+                Title,
+                Submit
+                FROM `Posts`
+                ORDER BY `Id` DESC';
+                break;
+            case "Comments":
+                $table_id = 'Id';
+                $select_query = 'SELECT
+                CONCAT(\'<a class="btn btn-sm btn-default" href="index.php?id=crud&table=Comments&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+                Phone,
+                Status,
+                Body
+                FROM `Comments`
+                ORDER BY `Id` DESC';
+                break;
+        }
+    }
 
     // If data was posted
     if (isset($_POST['update']))
@@ -23,7 +64,7 @@
         $update_query_key_values = '';
 
         // Get table structure
-        // In this case: todo table
+        // In this case: Potodosts table
         $result = $conn->query("DESCRIBE " . $table_name);
 
         // output data of each row
@@ -44,6 +85,8 @@
                 $symbol = '';
                 if ($type == "varchar"
                 or $type == "datetime"
+                or $type == "text"
+                or $type == "longtext"
                 or $type == "char" ) {
                     $symbol = '\'';
                 }
@@ -69,7 +112,7 @@
         $update_query  = 'UPDATE ' . $table_name . ' SET ' . $update_query_key_values . ' WHERE ' . $table_id . ' = '. $_POST[$table_id] ;
         
         // run the query !
-        mysqli_query($conn, $update_query);
+        mysqli_query($conn, injection_prevent($update_query));
     }
     else if (isset($_POST['insert']))
     {
@@ -98,6 +141,8 @@
                 $symbol = '';
                 if ($type == "varchar"
                 or $type == "datetime"
+                or $type == "text"
+                or $type == "longtext"
                 or $type == "char" ) {
                     $symbol = '\'';
                 }
@@ -129,7 +174,7 @@
         . ")" ;
         
         // run the query !
-        mysqli_query($conn, $insert_query);
+        mysqli_query($conn, injection_prevent($insert_query));
 
     }
     else if (isset($_POST['delete']))
@@ -138,7 +183,7 @@
         $delete_query  = 'DELETE FROM ' . $table_name . ' WHERE ' . $table_id . ' = '. $_POST[ $table_id ] ;
 
         // run the query !
-        mysqli_query($conn, $delete_query);
+        mysqli_query($conn, injection_prevent($delete_query));
     }
 
     // Select data to table

@@ -2,7 +2,7 @@
 abstract class SuperLiteSql {
     // Function to create tables from queries
     static function createTable_from_sql_select_query($sql_link, $query) {
-
+        
         $result=mysqli_query($sql_link, $query);
   
         if ($result->num_rows > 0) 
@@ -57,7 +57,7 @@ abstract class SuperLiteSql {
         <div class="modal-content">
         <div class="modal-body">';
         
-        $form .= "<form action=\"index.php?id=crud\"
+        $form .= "<form action=\"index.php?id=crud&table=$table_name\"
         class=\"gordarg-form\"
         method=\"post\">";
         
@@ -79,6 +79,11 @@ abstract class SuperLiteSql {
                         $type = substr($type, 0, strpos($type, "("));
 
                     switch ($type){
+                        case "longtext":
+                            $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
+                            $form .= '<textarea class="form-control" name="' . $row["Field"] . '" id="' . $row["Field"] . '" data-tiny-editor>' . htmlspecialchars($values[$row["Field"]]) . '</textarea>';
+                            break;
+                        case "text":
                         case "varchar":
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
                             $form .= "<input class=\"form-control\" type='text' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
@@ -99,9 +104,9 @@ abstract class SuperLiteSql {
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
                             $form .= "<input class=\"form-control\" type='number'  step='0.01' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
                             break;
-                        case "datetime":
+                        case "datetime":                          
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "<input class=\"form-control\" type='datetime-local' name='" . $row["Field"] . "' value='" . $values[$row["Field"]] . "' >";
+                            $form .= "<input class=\"form-control\" type='datetime-local' name='" . $row["Field"] . "' value='" . date('Y-m-d\TH:i') . "' >";
                             break;
                         case "bit":
                             // echo "here " . $row["Field"] . ": " . $values[$row["Field"]]; exit; // Debug
