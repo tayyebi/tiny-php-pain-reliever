@@ -1,8 +1,3 @@
-<?php
-require_once 'config.pass.php';
-require_once 'config.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +6,8 @@ require_once 'config.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>قدردان شماییم</title>
 
-    <link rel="stylesheet" href="static/css/layout.css">
-    <link rel="stylesheet" href="static/css/thankyou.css">
+    <link rel="stylesheet" href="../static/css/layout.css">
+    <link rel="stylesheet" href="../static/css/thankyou.css">
 </head>
 <body>
 <header>
@@ -24,15 +19,11 @@ require_once 'config.php';
 <div class="container">
 
     <?php
-    $select_posts_query = "SELECT *
-    FROM `Supports`";
-
-    $result = $conn->query($select_posts_query);
-    while ($row = $result->fetch_assoc()) {
+    foreach ($Data['Model'] as $item) {
     ?>
     <div class="item">
-        <h3><?php echo $row['Name'] ?></h3>
-        <a href="<?php echo $row['Url'] ?>">🔗</a>
+        <h3><?php echo $item['Name'] ?></h3>
+        <a href="<?php echo $item['Url'] ?>">🔗</a>
     </div>
     <?php
     }

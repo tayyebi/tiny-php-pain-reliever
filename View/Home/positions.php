@@ -1,8 +1,3 @@
-<?php
-require_once 'config.pass.php';
-require_once 'config.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +6,8 @@ require_once 'config.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>موقعیت‌های همکاری</title>
 
-    <link rel="stylesheet" href="static/css/layout.css">
-    <link rel="stylesheet" href="static/css/positions.css">
+    <link rel="stylesheet" href="../static/css/layout.css">
+    <link rel="stylesheet" href="../static/css/positions.css">
 </head>
 <body>
 <header>
@@ -24,17 +19,11 @@ require_once 'config.php';
 <div class="container">
 
     <?php
-    $select_posts_query = "SELECT *
-    FROM `Positions`
-    WHERE `IsActive` = 1
-    ORDER BY `Id` DESC";
-
-    $result = $conn->query($select_posts_query);
-    while ($row = $result->fetch_assoc()) {
+    foreach ($Data['Model'] as $item) {
     ?>
     <div class="item">
-        <h3><?php echo $row['Title'] ?></h3>
-        <p><?php echo $row['JobDescription'] ?></p>
+        <h3><?php echo $item['Title'] ?></h3>
+        <p><?php echo $item['JobDescription'] ?></p>
     </div>
     <?php
     }

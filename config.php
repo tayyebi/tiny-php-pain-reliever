@@ -1,19 +1,22 @@
 <?php
 
-// Configuration
-$servername = "localhost";
-$dbname = "sariab_data";
+// Application name
+define('_AppName', 'Mein Kampf');
 
-// This web app, uses MySQL server users
-// If it can connect to MySQL, then user pass
-// is valid else not.
-// Create connection
-$conn = @new mysqli($servername
-    , $_SERVER['PHP_AUTH_USER'] // Username
-    , $_SERVER['PHP_AUTH_PW'] // Password
-    , $dbname);
+// Default URL (For redirects and etc.)
+define('_Root', 'http://localhost/BASU-MVC-99/app/');
 
-// Set database charset to support persian.
-// mysqli_set_charset($conn,"utf8");
+// Run application in debug mode
+define('_Debug', true);
+
+// The directory used by file manager to upload user files
+define('_UploadDirectory', 'Uploads/');
+
+
+// Database
+define('_DatabaseServer', "localhost");
+define('_DatabaseName', "sariab_data");
+define('_DatabaseUsername', "root");
+define('_DatabasePassword', "umrH4bSJ4YYbt3s");
 
 ?>
