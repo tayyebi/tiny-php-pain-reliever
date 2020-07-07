@@ -57,7 +57,7 @@
                         <span>متن باز</span>
                         <i class="fab fa-github"></i>
                 </a>
-                <a href="http://vrgl.ir/32N6W"class="icon faq">
+                <a href="https://vrgl.ir/D2lo5"class="icon faq">
                         <span>سوالات پرتکرار (FAQ)</span>
                         <i class="fa fa-question"></i>
                 </a>

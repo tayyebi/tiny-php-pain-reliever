@@ -20,7 +20,7 @@ include('Core/Exceptions.php');
 include('Core/Model.php');
 
 // Libs
-// include('Libs/lib.php');
+include('Libs/lib.php');
 include('Libs/fagd.php');
 
 // Controllers core

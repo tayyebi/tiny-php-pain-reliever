@@ -124,4 +124,4 @@ $dbname = "DATABASE_NAME_HERE";
 # Links
 
 Home <http://sariab.ir>
-سوالات متداول <https://vrgl.ir/32N6W>
+سوالات متداول <https://vrgl.ir/D2lo5>

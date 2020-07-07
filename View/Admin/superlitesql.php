@@ -1,16 +1,12 @@
-<?php
-require_once 'lib.php';
-?>
-
 <!--  Required scripts to load SQL marker plugin -->
-<script src="static/codemirror-5.46.0/lib/codemirror.js"></script>
-<link rel="stylesheet" href="static/codemirror-5.46.0/lib/codemirror.css">
-<script src="static/codemirror-5.46.0/mode/javascript/javascript.js"></script>
-<script src="static/codemirror-5.46.0/addon/edit/matchbrackets.js"></script>
-<script src="static/codemirror-5.46.0/sql.js"></script>
-<link rel="stylesheet" href="static/codemirror-5.46.0/addon/hint/show-hint.css" />
-<script src="static/codemirror-5.46.0/addon/hint/show-hint.js"></script>
-<script src="static/codemirror-5.46.0/addon/hint/sql-hint.js"></script>
+<script src="<?php echo _Root ?>static/codemirror-5.46.0/lib/codemirror.js"></script>
+<link rel="stylesheet" href="<?php echo _Root ?>static/codemirror-5.46.0/lib/codemirror.css">
+<script src="<?php echo _Root ?>static/codemirror-5.46.0/mode/javascript/javascript.js"></script>
+<script src="<?php echo _Root ?>static/codemirror-5.46.0/addon/edit/matchbrackets.js"></script>
+<script src="<?php echo _Root ?>static/codemirror-5.46.0/sql.js"></script>
+<link rel="stylesheet" href="<?php echo _Root ?>static/codemirror-5.46.0/addon/hint/show-hint.css" />
+<script src="<?php echo _Root ?>static/codemirror-5.46.0/addon/hint/show-hint.js"></script>
+<script src="<?php echo _Root ?>static/codemirror-5.46.0/addon/hint/sql-hint.js"></script>
 
 <?php
 // If any report was selected

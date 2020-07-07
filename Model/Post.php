@@ -11,7 +11,30 @@ class Post extends Model{
 
         return $this->DoSelect($Query, $Values);
     }
-    function GetArchive() {
+    
+    // === Based on a pattern ===
+    function DescribeTable() {
+        return $this->DoSelect("DESCRIBE `Posts`");
+    }
+    function GetAdminPanelItems($Values = null) {
 
+        $Query = 'SELECT
+        CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Posts&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+        CONCAT(\'<a class="btn btn-sm btn-default" href="view.php?id=\', id , \'">\', \'View\', \'</a>\') as View,
+        Id
+        , Submit
+        ,`Title`
+        ,`Publisher`
+        FROM `Posts`';
+
+        return $this->DoSelect($Query);
+    }
+    function GetItemByIdentifier($Values) {
+        $Query = "SELECT *
+        FROM `Posts`
+        WHERE `Id` = :Id
+        LIMIT 1";
+
+        return $this->DoSelect($Query, $Values);
     }
 }
