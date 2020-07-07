@@ -9,7 +9,7 @@ class Keyword extends Model{
     function GetAdminPanelItems($Values = null) {
 
         $Query = 'SELECT
-            CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Keywords&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+            CONCAT(\'<a class="btn btn-sm btn-default" href="' . _Root . 'Admin/Items/Keyword/\', id , \'">\', \'Edit\', \'</a>\') as Edit,
             Id
             ,`Title`
             FROM `Keywords`';

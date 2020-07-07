@@ -19,8 +19,8 @@ class Post extends Model{
     function GetAdminPanelItems($Values = null) {
 
         $Query = 'SELECT
-        CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Posts&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
-        CONCAT(\'<a class="btn btn-sm btn-default" href="view.php?id=\', id , \'">\', \'View\', \'</a>\') as View,
+        CONCAT(\'<a class="btn btn-sm btn-default" href="' . _Root . 'Admin/Items/Post/\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+        CONCAT(\'<a class="btn btn-sm btn-default" href="' . _Root . 'Home/View/\', id , \'">\', \'View\', \'</a>\') as View,
         Id
         , Submit
         ,`Title`

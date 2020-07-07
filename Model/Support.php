@@ -14,7 +14,7 @@ class Support extends Model{
     function GetAdminPanelItems($Values = null) {
 
         $Query = 'SELECT
-                CONCAT(\'<a class="btn btn-sm btn-default" href="admin.php?id=crud&table=Supports&entry=\', id , \'">\', \'Edit\', \'</a>\') as Edit,
+                CONCAT(\'<a class="btn btn-sm btn-default" href="' . _Root . 'Admin/Items/Support/\', id , \'">\', \'Edit\', \'</a>\') as Edit,
                 Id
                 ,`Name`
                 ,`Url`

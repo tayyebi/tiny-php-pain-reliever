@@ -30,9 +30,9 @@ class Controller {
      *
      * @return void
      */
-    function CallModel(string $Entity){
+    function CallModel(string $Entity, bool $UsePDO = true){
         include('Model/' . $Entity . '.php');
-        return new $Entity;
+        return new $Entity($UsePDO);
     }
 
     /**

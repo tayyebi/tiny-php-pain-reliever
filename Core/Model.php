@@ -29,12 +29,22 @@ class Model{
      * 
      * @return void
      */
-    function __construct()
+    function __construct($PDO)
     {
-        $ConnectionParameters = []; // array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
-        self::$Connection = new PDO((string)$this,  _DatabaseUsername, _DatabasePassword, $ConnectionParameters);
-        if (_Debug)
-            self::$Connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if ($PDO)
+        {
+            $ConnectionParameters = []; // array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
+            self::$Connection = new PDO((string)$this,  _DatabaseUsername, _DatabasePassword, $ConnectionParameters);
+            if (_Debug)
+                self::$Connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        else
+        {
+            self::$Connection = @new mysqli(_DatabaseServer
+            , _DatabaseUsername
+            , _DatabasePassword
+            , _DatabaseName);
+        }
     }
 
 
