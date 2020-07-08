@@ -47,21 +47,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?php echo _Root ?>Admin/SuperLiteSQL">
-                  <span data-feather="code"></span>
-                  SuperLiteSQL
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="folder"></span>
                   File Manager
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?php echo _Root ?>Admin/Users">
-                  <span data-feather="users"></span>
-                  Users
                 </a>
               </li>
               <li class="nav-item">
@@ -75,7 +63,7 @@
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span>Database</span>
               <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
+                <!-- <span data-feather="plus-circle"></span> -->
               </a>
             </h6>
 
@@ -84,6 +72,12 @@
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Post">
                   <span data-feather="file"></span>
                   Posts
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Roadmap">
+                  <span data-feather="file"></span>
+                  Roadmaps
                 </a>
               </li>
               <li class="nav-item">
@@ -112,29 +106,6 @@
               </li>
             </ul>
 
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Saved reports</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <span data-feather="plus-circle"></span>
-              </a>
-            </h6>
-
-            <ul class="nav flex-column mb-2"><?php
-              $vowels = array("Classic Report", "-", ".sql"); //TODO: replace item check
-              if ($handle = opendir('./reports')) {
-                  while (false !== ($entry = readdir($handle))) {
-                      if ($entry != "." && $entry != ".." && $entry != "filters") {
-                          echo '<li class="nav-item">
-                          <a class="nav-link" href="admin.php?id=superlitesql&entry=' . $entry . '">
-                            <span data-feather="file-text"></span>
-                            ' . $entry . '
-                          </a>
-                        </li>';
-                      }
-                  }
-                  closedir($handle);
-              }
-            ?></ul>
           </div>
         </nav>
 
