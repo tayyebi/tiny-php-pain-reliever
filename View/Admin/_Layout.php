@@ -9,7 +9,7 @@
 
     <title>tiny PHP PAIN RELIEVER</title>
 
-    <link rel="canonical" href="http://owerofthisdomain.ir">
+    <link rel="canonical" href="<?php echo _Root?>">
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo _Root ?>static/css/bootstrap.css" rel="stylesheet">
