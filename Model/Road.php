@@ -1,6 +1,12 @@
 <?php
 
 class Road extends Model{
+    function GetHome() {
+        $Query = 'SELECT *
+        FROM `Roads` Order By `Priority` ASC';
+
+        return $this->DoSelect($Query);
+    }
 
     // === Based on a pattern ===
     function DescribeTable() {

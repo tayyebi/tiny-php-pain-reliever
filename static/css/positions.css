@@ -7,8 +7,6 @@
     margin-bottom: 1em;
     padding: 1em;
     text-align: center;
-    color: white;
-    background-color: rgb(37, 127, 83);
 }
 .item * {
     display: inline-block;

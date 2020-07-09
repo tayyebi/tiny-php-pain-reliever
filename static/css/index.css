@@ -1,12 +1,49 @@
-    /*
+/* Roads Section */
+.roads {
+    text-align: center;
+    font-size: 2em;
+    margin: 1em;
+    align-items: center;
+    list-style-type: none;
+    border: 3rem;
+}
 
-All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 310). 
-        
-The 'supports' rule will only run if your browser supports CSS grid.
+.roads li {
+    width: 15em;
+    margin: .3em;
+    display: inline-block;
+    padding: 1.5em;
+}
 
-Flexbox and floats are used as a fallback so that browsers which don't support grid will still recieve a similar layout.
+.roads li a {
+    display: block;
+    width: 100%;
+    text-decoration: inherit;
+    padding: 1rem;
+    margin-left: 1rem;
+    text-align: center;
+}
 
-*/
+
+/* Categories Section */
+
+.categories {
+    align-items: center;
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding: 1em;
+}
+
+.categories li {
+    display: inline-block;
+    margin-left: 1em;
+}
+
+.categories li a {
+    text-align: center;
+    padding-right: 1em;
+}
 
 /* Podcast Section */
 
@@ -14,17 +51,9 @@ Flexbox and floats are used as a fallback so that browsers which don't support g
     position: relative;
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
     margin: 1rem 1rem;
-    border-radius: .2em;
     margin-bottom: 1em;
     padding: 1em;
     text-align: center;
-    color: white;
-    background-color: #2E7D32;
-    background-image: url('../img/podcast.png');
-    background-position: center right;
-    background-attachment: scroll;
-    background-size: auto 80%;
-    background-repeat: no-repeat;
 }
 
 audio:hover,
@@ -35,7 +64,6 @@ audio:active {
 
 audio {
     transition: all 0.5s linear;
-    border-radius: 30px;
     outline: none;
 }
 
@@ -56,8 +84,9 @@ audio {
 }
 
 .gallery-item {
+    width: 200px;
+    height: 285px;
     position: relative;
-    color: #fff;
     cursor: pointer;
     backface-visibility: hidden;
     transition: transform .6s linear;
@@ -65,32 +94,28 @@ audio {
 
 .card {
     cursor: pointer;
-    width: 285px;
-    height: 285px;
 }
 
 .gallery-item-front,
 .gallery-item-back {
     width: 100%;
     height: 100%;
+    padding: 3em;
     position: absolute;
     flex: 1 0 22rem;
-    color:black;
     cursor: pointer;
     backface-visibility: hidden;
     transition: transform .6s linear;
-    background: #4CAF50;
     overflow: hidden;
 }
 
 .gallery-item-front {
+    font-size: 1.3em;
     transform: perspective(600px) rotateY(0deg);
 }
 
 .gallery-item-back {
     transform: perspective(600px) rotateY(180deg);
-    background: #4CAF50;
-    padding: 3em;
     text-align: justify;
 }
 
@@ -102,11 +127,6 @@ audio {
     transform: perspective(600px) rotateY(0deg);
 }
 
-.gallery-item-back-content {
-    color: #2c3e50;
-    width: 100%;
-}
-
 .gallery-item:hover .gallery-item-info,
 .gallery-item:focus .gallery-item-info {
     display: flex;
@@ -114,17 +134,12 @@ audio {
     align-items: center;
     position: absolute;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
 }
 /*button gallery back*/
 
-.gallery-item-back-content .buttons {
+.gallery-item-back .buttons {
     border-radius: .2em;
-    background-color: #2E7D32;
     border: none;
-    color: #FFFFFF;
     text-align: center;
     font-size: 14px;
     padding: 10px;
@@ -138,14 +153,14 @@ audio {
     margin: 10px auto 0 auto;
 }
 
-.gallery-item-back-content .buttons span {
+.gallery-item-back .buttons span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
 }
 
-.gallery-item-back-content .buttons span:after {
+.gallery-item-back .buttons span:after {
     content: '«';
     position: absolute;
     opacity: 0;
@@ -155,41 +170,27 @@ audio {
     transform: perspective(600px) rotateY(180deg);
 }
 
-.gallery-item-back-content .buttons:hover span {
+.gallery-item-back .buttons:hover span {
     padding-right: 15px;
 }
 
-.gallery-item-back-content .buttons:hover span:after {
+.gallery-item-back .buttons:hover span:after {
     opacity: 1;
     right: 0;
 }
 /*title and Paragraf*/
 
-.gallery-item-back-content .titles {
+.gallery-item-back .titles {
     font-size: 18px;
     font-weight: 400;
-    color: #fff;
     margin-top: 0;
     text-align: center;
 }
 
-.gallery-item-back-content .Paragraf {
-    color: #000;
+.gallery-item-back .Paragraf {
     font-size: 14px;
     text-align: justify;
     line-height: 1.8em;
-}
-
-/* Loader */
-
-.loader {
-    width: 5rem;
-    height: 5rem;
-    border: 0.6rem solid #999;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    margin: 0 auto;
-    animation: loader 500ms linear infinite;
 }
 
 /* Media Query */

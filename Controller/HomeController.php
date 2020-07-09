@@ -16,12 +16,16 @@ class HomeController extends Controller {
         $KeywordModel= $this->CallModel("Keyword");
         $Keywords= $KeywordModel->GetHome();
 
+        $RoadModel= $this->CallModel("Road");
+        $Roads= $RoadModel->GetHome();
+
         $Data = [
             "Title" => _AppName . ' خانه',
             "Models" => [
                 'Posts'=> $Posts,
                 'Podcasts'=> $Podcasts,
-                'Keywords' => $Keywords
+                'Keywords' => $Keywords,
+                'Roads'=> $Roads,
             ]
         ];
         
