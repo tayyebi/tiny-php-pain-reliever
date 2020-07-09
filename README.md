@@ -6,6 +6,11 @@ Based on **Pressz** guideline
 
 Sariab (www.sariab.ir) is a non-profit blogging campaign which is focused on empowering students, increase mental health level, and motivate them, through an integrated knowledge base made on distributed blogs and free content on internet social networks and website platform.
 
+# Links
+
+Home <http://sariab.ir>
+سوالات متداول <https://vrgl.ir/D2lo5>
+
 # What is inside this repository?
 
 Web application which is serving content as the hub is available in this repository.
@@ -16,7 +21,7 @@ Web application which is serving content as the hub is available in this reposit
 ![Top Language](https://img.shields.io/github/languages/top/Pressz/Sariab-V2)
 ![Issues](https://img.shields.io/codeclimate/issues/Pressz/Sariab-V2)
 
-# Installation notes
+# Installation
 
 ## Install Apache-MySQL-PHP
 
@@ -46,15 +51,6 @@ wget http://localhost/index.php
 
 `php --version`
 
-## Install php-gd for *image generator*
-
-> If you get errors like: [php7:error] [client ::1:34758] PHP Fatal error:  Uncaught Error: Call to undefined function imagecreatetruecolor() in /var/www/html/Sariab-V2/image-generator.php:XX Stack trace: #0 {main}  thrown in /var/www/html/Sariab-V2/image-generator.php on line XX,
-
->> Note: you have to check `cat /var/log/apache2/error.log`
-
-- php 7.2 `sudo apt-get install php7.2-gd`
-- php 5 `apt-get update && apt-get -y install php5-gd`
-
 ## Create database
 
 ```
@@ -67,44 +63,23 @@ From file `db.sql`
 
 ## Change config file and set yout cridentials
 
-Change the lines:
-
-file: `config.pass.php`
-
-```
-$_SERVER['PHP_AUTH_USER'] = "DATABASE_USER";
-$_SERVER['PHP_AUTH_PW'] = "DATABASE_PASSWORD";
-```
+Set your custom configuration:
 
 file: `config.php`
 
-```
-$servername = "SERVER_NAME_HERE"; // Server name her
-$dbname = "DATABASE_NAME_HERE";
-```
-# **How to contribute on project :**
+# Contribute
+1. Install git from git-scm.com
+1. Make a **Fork** of the repository
+1. **Clone** the project on your machine
+1. Change whatever you want
+1. Commit your changes
+1. **Pull** before push(Notice that you have to choose **Pull From** the main project.)
+1. Push
+1. Make a **pull request**
+1. Tell us your notes
+1. Your commits will be merged after review by developers of master branch
 
-0- Install git from git-scm.com
-
-1- Make a **Fork** of the repository
-
-2- **Clone** the project on your machine
-
-3- Change whatever you want
-
-4- Commit your changes
-
-5- **Pull** before push(Notice that you have to choose **Pull From** the main project.)
-
-6- Push
-
-7- Make a **pull request**
-
-8- Tell us your notes
-
-9- Your commits will be merged after review by developers of master branch
-
-# Project TODO list
+## Project TODO list
 
 - [ ] GUI AND DATABASE UPDATES BASED ON NEW WIREFRAME (DOWNLOAD [> WIREFRAME.PDF](docs/prototype/Wireframe.pdf))
 - [x] SEARCH AND CATEGORIES POSTS
@@ -119,9 +94,8 @@ $dbname = "DATABASE_NAME_HERE";
 - [ ] CREATE A ROADMAP FEATURE WHICH ALLOWS PEOPLE TO FOLLOW POSTS FOR A GOAL
 - [ ] LAZY LOAD THE CONTENT ON FIRST PAGE
 - [ ] TABLE ARCHIVE VIEW OF POSTS
-- [ ] LAZY LOAD ON ADMIN PANEL DATA TABLES
+- [ ] PAGINATION ON ADMIN PANEL DATA TABLES
+- [ ] HOMEPAGE SEARCH
+- [ ] FILE UPLOADER
 
-# Links
-
-Home <http://sariab.ir>
-سوالات متداول <https://vrgl.ir/D2lo5>
+# Developers
