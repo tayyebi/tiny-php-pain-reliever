@@ -10,7 +10,7 @@ define('_Root', 'http://localhost/Sariab-V2/');
 define('_Debug', true);
 
 // The directory used by file manager to upload user files
-define('_UploadDirectory', 'Uploads/');
+define('_UploadDirectory', 'download/');
 
 
 // Database

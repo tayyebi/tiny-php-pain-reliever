@@ -26,6 +26,33 @@ class AdminController extends Controller {
 
     }
 
+    /**
+     * 
+     * FilesGET
+     * 
+     * Embded Filemanager
+     * 
+     * 
+     */
+    function FilesGET() {
+        define('FM_EMBED', true);
+        define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
+        require 'Libs/filemanager-master/filemanager.php';
+    }
+    /**
+     * 
+     * FilesPost
+     * 
+     * Embded Filemanager
+     * 
+     * 
+     */
+    function FilesPOST() {
+        define('FM_EMBED', true);
+        define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
+        require 'Libs/filemanager-master/filemanager.php';
+    }
+
 
     /**
      * ItemsGET
@@ -346,6 +373,10 @@ class AdminController extends Controller {
             . ")" ;
             
             // run the query !
+            if (_Debug)
+            mysqli_query($conn, $insert_query)
+            or trigger_error("Query Failed! $insert_query - Error: ".mysqli_error($conn), E_USER_ERROR);
+            else 
             mysqli_query($conn, $insert_query);
 
         }

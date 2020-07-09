@@ -57,7 +57,7 @@ wget http://localhost/index.php
 mysql> CREATE DATABASE `sariab_data`;
 ```
 
-## Execute database query
+### Execute database query
 
 From file `db.sql`
 
@@ -66,6 +66,12 @@ From file `db.sql`
 Set your custom configuration:
 
 file: `config.php`
+
+## Give apache permissions to write
+
+```
+sudo chgrp -R www-data /var/www/html
+```
 
 # Contribute
 1. Install git from git-scm.com
@@ -96,6 +102,7 @@ file: `config.php`
 - [ ] TABLE ARCHIVE VIEW OF POSTS
 - [ ] PAGINATION ON ADMIN PANEL DATA TABLES
 - [ ] HOMEPAGE SEARCH
-- [ ] FILE UPLOADER
+- [X] FILE UPLOADER
+- [ ] RSS
 
 # Developers

@@ -9,7 +9,7 @@ $use_auth = true;
 
 // Users: array('Username' => 'Password', 'Username2' => 'Password2', ...)
 $auth_users = array(
-    'fm_admin' => 'fm_admin',
+    // 'fm_admin' => 'fm_admin',
 );
 
 // Enable highlight.js (https://highlightjs.org/) on view's page
@@ -22,7 +22,8 @@ $highlightjs_style = 'vs';
 $default_timezone = 'Europe/Minsk'; // UTC+3
 
 // Root path for file manager
-$root_path = $_SERVER['DOCUMENT_ROOT'];
+// $root_path = $_SERVER['DOCUMENT_ROOT'];
+$root_path = _UploadDirectory;
 
 // Root url for links in file manager.Relative to $http_host. Variants: '', 'path/to/subfolder'
 // Will not working if $root_path will be outside of server document root
@@ -60,9 +61,9 @@ if (defined('FM_EMBED')) {
     session_start();
 }
 
-if (empty($auth_users)) {
-    $use_auth = false;
-}
+// if (empty($auth_users)) {
+//     $use_auth = false;
+// }
 
 $is_https = isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1)
     || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https';
@@ -1784,6 +1785,7 @@ code.maxheight,pre.maxheight{max-height:512px}input[type="checkbox"]{margin:0;pa
 function fm_show_footer()
 {
     ?>
+<p class="center"><small><a href="<?php echo _Root ?>Admin">Back to Dashboard</a></small></p>
 <p class="center"><small><a href="https://github.com/alexantr/filemanager" target="_blank">PHP File Manager</a></small></p>
 </div>
 <script>
