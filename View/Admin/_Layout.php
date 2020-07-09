@@ -47,7 +47,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Files">
                   <span data-feather="folder"></span>
                   File Manager
                 </a>
@@ -78,6 +78,12 @@
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Roadmap">
                   <span data-feather="file"></span>
                   Roadmaps
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Road">
+                  <span data-feather="file"></span>
+                  Roads
                 </a>
               </li>
               <li class="nav-item">

@@ -10,25 +10,64 @@ class HomeController extends Controller {
             'q'=> $search_query
         ]);
         
-        // $PodcastModel =
-        // $Podcast = 
+        $PodcastModel = $this->CallModel("Podcast");
+        $Podcasts = $PodcastModel->GetHome();
 
-        // $KeywordModel=
-        // $Keywords=
+        $KeywordModel= $this->CallModel("Keyword");
+        $Keywords= $KeywordModel->GetHome();
 
         $Data = [
             "Title" => _AppName . ' خانه',
             "Models" => [
                 'Posts'=> $Posts,
-                // 'Podcast'=> $Podcast,
-                // 'Keywords' => $Keywords
+                'Podcasts'=> $Podcasts,
+                'Keywords' => $Keywords
             ]
         ];
         
         $this->Render('Index', $Data);
     }
 
+    function RssGET($search_query = '') {
+        $Model = $this->CallModel("Post");
+        // TODO: From, to, limitation
+        $Rows = $Model->GetHome([
+            'q'=> $search_query
+        ]);
 
+        $Title = _AppName;
+        $Link = _Root;
+        $Description = ''; // TODO: Description
+
+        header("Content-type: text/xml");
+        echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
+<rss version=\"2.0\">
+
+<channel>
+<title>$Title</title>
+<link>$Link</link>
+<description>$Description</description>";
+
+        for ($i = 0 ; $i < count($Rows) ; $i++)
+        {
+            $item_title = $Rows[$i]['Title'];
+            $item_link = _Root . 'Home/View/' . $Rows[$i]['Id'];
+            $item_abstract = $Rows[$i]['Abstract'];
+
+
+            echo "<item>
+    <title>$item_title</title>
+    <link>$item_link</link>
+    <description>$item_abstract</description>
+</item>
+";
+        }
+        
+echo '
+</channel>
+
+</rss>';
+    }
 
     function ThankYouGET($search_query = '') {
 

@@ -25,7 +25,8 @@ class Post extends Model{
         , Submit
         ,`Title`
         ,`Publisher`
-        FROM `Posts`';
+        FROM `Posts`
+        ORDER BY `Id` DESC';
 
         return $this->DoSelect($Query);
     }

@@ -3,8 +3,10 @@
 class Support extends Model{
 
     function GetAll () {
-    	$Query = 'SELECT * FROM `Supports`;';
-	return $this->DoSelect($Query);
+    	$Query = 'SELECT * FROM `Supports`
+        ORDER BY `Id` DESC;';
+        
+	    return $this->DoSelect($Query);
     }
 
     // === Based on a pattern ===

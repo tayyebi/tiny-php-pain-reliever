@@ -1,7 +1,13 @@
 <?php
 
 class Podcast extends Model{
+    function GetHome() {
+        $Query = 'SELECT *
+        FROM `Podcasts`
+        ORDER BY Id DESC LIMIT 1';
 
+        return $this->DoSelect($Query);
+    }
     // === Based on a pattern ===
     function DescribeTable() {
         return $this->DoSelect("DESCRIBE `Podcasts`");
@@ -13,7 +19,8 @@ class Podcast extends Model{
         ,`Title`
         ,`EpisodeNumber`
         ,`PublishDate`
-        FROM `Podcasts`';
+        FROM `Podcasts`
+        ORDER BY `Id` DESC';
 
         return $this->DoSelect($Query);
     }

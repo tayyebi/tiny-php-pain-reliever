@@ -103,6 +103,6 @@ sudo chgrp -R www-data /var/www/html
 - [ ] PAGINATION ON ADMIN PANEL DATA TABLES
 - [ ] HOMEPAGE SEARCH
 - [X] FILE UPLOADER
-- [ ] RSS
+- [X] RSS
 
 # Developers

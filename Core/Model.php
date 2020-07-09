@@ -33,7 +33,7 @@ class Model{
     {
         if ($PDO)
         {
-            $ConnectionParameters = []; // array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
+            $ConnectionParameters = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES latin1'); // utf8
             self::$Connection = new PDO((string)$this,  _DatabaseUsername, _DatabasePassword, $ConnectionParameters);
             if (_Debug)
                 self::$Connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -44,6 +44,7 @@ class Model{
             , _DatabaseUsername
             , _DatabasePassword
             , _DatabaseName);
+            mysqli_set_charset(self::$Connection,"latin1"); //utf8
         }
     }
 

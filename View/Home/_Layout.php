@@ -14,7 +14,7 @@
   
 </head>
 <body>
-<header>
+<header class="container">
     <div class="profile">
         <div class="profile-image">
         <a href="http://sariab.ir">
@@ -34,31 +34,35 @@
                     </button>
             </form>
         </div>
-        <div class="social-button">
-                <a href="https://instagram.com/sariabbloggers" class="icon insta">
-                        <span>اینستاگرام</span>
-                        <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://t.me/sariabbloggers"class="icon tel">
-                        <span>تلگرام</span> 
-                        <i class="fab fa-telegram"></i>
-                </a>
-                <a href="https://github.com/Pressz/Sariab-V2"class="icon git">
-                        <span>متن باز</span>
-                        <i class="fab fa-github"></i>
-                </a>
-                <a href="https://vrgl.ir/D2lo5"class="icon faq">
-                        <span>سوالات پرتکرار (FAQ)</span>
-                        <i class="fa fa-question"></i>
-                </a>
-                <a href="<?php echo _Root ?>Home/ThankYou"class="icon heart">
-                        <span>قدردانی</span>
-                        <i class="fa fa-heart"></i>
-                </a>
-        </div>
         <div class="contribute-links">
             <a class="profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال مطلب یا دیدگاه</a>
             <a class="profile-edit-btn" href="<?php echo _Root ?>Home/Positions">همکاری با ما</a>
+        </div>
+        <div class="social-button">
+            <a href="https://instagram.com/sariabbloggers" class="icon insta">
+                <span>اینستاگرام</span>
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://t.me/sariabbloggers"class="icon tel">
+                <span>تلگرام</span> 
+                <i class="fab fa-telegram"></i>
+            </a>
+            <a href="https://github.com/Pressz/Sariab-V2"class="icon git">
+                <span>متن باز</span>
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://vrgl.ir/D2lo5"class="icon faq">
+                <span>سوالات پرتکرار (FAQ)</span>
+                <i class="fa fa-question"></i>
+            </a>
+            <a href="<?php echo _Root ?>Home/ThankYou"class="icon heart">
+                <span>قدردانی</span>
+                <i class="fa fa-heart"></i>
+            </a>
+            <a href="<?php echo _Root ?>Home/RSS"class="icon rss">
+                <span>خوراک</span>
+                <i class="fa fa-rss"></i>
+            </a>
         </div>
     </div>
     <!-- End of profile section -->

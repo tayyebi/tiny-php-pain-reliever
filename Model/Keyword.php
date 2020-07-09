@@ -1,7 +1,12 @@
 <?php
 
 class Keyword extends Model{
+    function GetHome() {
+        $Query = 'SELECT *
+        FROM `Keywords`';
 
+        return $this->DoSelect($Query);
+    }
     // === Based on a pattern ===
     function DescribeTable() {
         return $this->DoSelect("DESCRIBE `Keywords`");
@@ -18,7 +23,7 @@ class Keyword extends Model{
     }
     function GetItemByIdentifier($Values) {
         $Query = "SELECT *
-        FROM `Keyword`
+        FROM `Keywords`
         WHERE `Id` = :Id
         LIMIT 1";
 

@@ -75,10 +75,11 @@ audio {
     height: 100%;
     position: absolute;
     flex: 1 0 22rem;
-    color: #fff;
+    color:black;
     cursor: pointer;
     backface-visibility: hidden;
     transition: transform .6s linear;
+    background: #4CAF50;
     overflow: hidden;
 }
 
@@ -134,7 +135,7 @@ audio {
 
 .gallery-item-back .buttons {
     display: block;
-    margin: 80px auto 0 auto;
+    margin: 10px auto 0 auto;
 }
 
 .gallery-item-back-content .buttons span {

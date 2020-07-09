@@ -19,7 +19,8 @@ class Position extends Model {
         ,`Title`
         ,`IsPaid`
         ,`Salary`
-        FROM `Positions`';
+        FROM `Positions`
+        ORDER BY `Id` DESC';
 
         return $this->DoSelect($Query);
     }
