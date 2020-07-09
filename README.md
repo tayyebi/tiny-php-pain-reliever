@@ -73,6 +73,23 @@ file: `config.php`
 sudo chgrp -R www-data /var/www/html
 ```
 
+## Authenticaition
+
+Edit **.htaccess** for default **.htpasswd** file directory.
+
+Then set the permissions to
+
+```
+chmod 644 .htaccess
+chmod 644 .htpasswd
+```
+
+To create **.htpasswd** for the first time:
+
+```
+htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
+```
+
 # Contribute
 1. Install git from git-scm.com
 1. Make a **Fork** of the repository

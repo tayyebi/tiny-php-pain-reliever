@@ -1,7 +1,9 @@
-## Password protected authentication
-# AuthType Basic
-# AuthName "protected_area"
-# require valid-user
+<FilesMatch "^(Admin|Admin/*)$">
+Authtype Basic
+AuthName "Apache basic authentication"
+AuthUserFile /var/www/html/Sariab-V2/.htpasswd
+Require valid-user
+</FilesMatch>
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
