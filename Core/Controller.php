@@ -6,6 +6,74 @@ class Controller {
 
     protected $ViewDirectory;
 
+        /**
+     * __construct
+     *
+     * Responsible for statistics
+     * 
+     * 
+     * @return void
+     */
+    function __construct() {
+
+        // If system was configured to disable statistics
+        if (!_Statistics)
+            return;
+
+        // Set a cookie for tracking
+        if (!isset($_COOKIE['CLIENT_TRACK']))
+        {
+            $value = StringFunctions::generate_guid();
+            setcookie('CLIENT_TRACK', $value, time() + (86400 * 30), "/"); // 86400 = 1 day
+            $_COOKIE['CLIENT_TRACK'] = $value;
+        }
+
+        // Call the model
+        $Model = $this->CallModel("Statistics");
+        
+        // Bind values
+        $Values = [
+            "CLIENT_TRACK" => $_COOKIE['CLIENT_TRACK'],
+            "CONTEXT_DOCUMENT_ROOT" => isset($_SERVER["CONTEXT_DOCUMENT_ROOT"]) ? $_SERVER["CONTEXT_DOCUMENT_ROOT"] : "",
+            "CONTEXT_PREFIX" => isset($_SERVER["CONTEXT_PREFIX"]) ? $_SERVER["CONTEXT_PREFIX"] : "",
+            "DOCUMENT_ROOT" => isset($_SERVER["DOCUMENT_ROOT"]) ? $_SERVER["DOCUMENT_ROOT"] : "",
+            "HTTP_ACCEPT" => isset($_SERVER["HTTP_ACCEPT"]) ? $_SERVER["HTTP_ACCEPT"] : "",
+            "HTTP_ACCEPT_ENCODING" => isset($_SERVER["HTTP_ACCEPT_ENCODING"]) ? $_SERVER["HTTP_ACCEPT_ENCODING"] : "",
+            "HTTP_ACCEPT_LANGUAGE" => isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]) ? $_SERVER["HTTP_ACCEPT_LANGUAGE"] : "",
+            "HTTP_CACHE_CONTROL" => isset($_SERVER["HTTP_CACHE_CONTROL"]) ? $_SERVER["HTTP_CACHE_CONTROL"] : "",
+            "HTTP_CONNECTION" => isset($_SERVER["HTTP_CONNECTION"]) ? $_SERVER["HTTP_CONNECTION"] : "",
+            "HTTP_COOKIE" => isset($_SERVER["HTTP_COOKIE"]) ? $_SERVER["HTTP_COOKIE"] : "",
+            "HTTP_HOST" => isset($_SERVER["HTTP_HOST"]) ? $_SERVER["HTTP_HOST"] : "",
+            "HTTP_REFERER" => isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : "",
+            "HTTP_SEC_FETCH_DEST" => isset($_SERVER["HTTP_SEC_FETCH_DEST"]) ? $_SERVER["HTTP_SEC_FETCH_DEST"] : "",
+            "HTTP_SEC_FETCH_MODE" => isset($_SERVER["HTTP_SEC_FETCH_MODE"]) ? $_SERVER["HTTP_SEC_FETCH_MODE"] : "",
+            "HTTP_SEC_FETCH_SITE" => isset($_SERVER["HTTP_SEC_FETCH_SITE"]) ? $_SERVER["HTTP_SEC_FETCH_SITE"] : "",
+            "HTTP_SEC_FETCH_Person" => isset($_SERVER["HTTP_SEC_FETCH_Person"]) ? $_SERVER["HTTP_SEC_FETCH_Person"] : "",
+            "HTTP_UPGRADE_INSECURE_REQUESTS" => isset($_SERVER["HTTP_UPGRADE_INSECURE_REQUESTS"]) ? $_SERVER["HTTP_UPGRADE_INSECURE_REQUESTS"] : "",
+            "HTTP_Person_AGENT" => isset($_SERVER["HTTP_Person_AGENT"]) ? $_SERVER["HTTP_Person_AGENT"] : "",
+            "PATH" => isset($_SERVER["PATH"]) ? $_SERVER["PATH"] : "",
+            "PATH_INFO" => isset($_SERVER["PATH_INFO"]) ? $_SERVER["PATH_INFO"] : "",
+            "PATH_TRANSLATED" => isset($_SERVER["PATH_TRANSLATED"]) ? $_SERVER["PATH_TRANSLATED"] : "",
+            "PHP_SELF" => isset($_SERVER["PHP_SELF"]) ? $_SERVER["PHP_SELF"] : "",
+            "QUERY_STRING" => isset($_SERVER["QUERY_STRING"]) ? $_SERVER["QUERY_STRING"] : "",
+            "REDIRECT_STATUS" => isset($_SERVER["REDIRECT_STATUS"]) ? $_SERVER["REDIRECT_STATUS"] : "",
+            "REDIRECT_URL" => isset($_SERVER["REDIRECT_URL"]) ? $_SERVER["REDIRECT_URL"] : "",
+            "REMOTE_ADDR" => isset($_SERVER["REMOTE_ADDR"]) ? $_SERVER["REMOTE_ADDR"] : "",
+            "REMOTE_PORT" => isset($_SERVER["REMOTE_PORT"]) ? $_SERVER["REMOTE_PORT"] : "",
+            "REQUEST_METHOD" => isset($_SERVER["REQUEST_METHOD"]) ? $_SERVER["REQUEST_METHOD"] : "",
+            "REQUEST_SCHEME" => isset($_SERVER["REQUEST_SCHEME"]) ? $_SERVER["REQUEST_SCHEME"] : "",
+            "REQUEST_TIME" => isset($_SERVER["REQUEST_TIME"]) ? $_SERVER["REQUEST_TIME"] : "",
+            "REQUEST_TIME_FLOAT" => isset($_SERVER["REQUEST_TIME_FLOAT"]) ? $_SERVER["REQUEST_TIME_FLOAT"] : "",
+            "REQUEST_URI" => isset($_SERVER["REQUEST_URI"]) ? $_SERVER["REQUEST_URI"] : "",
+            "SCRIPT_FILENAME" => isset($_SERVER["SCRIPT_FILENAME"]) ? $_SERVER["SCRIPT_FILENAME"] : "",
+            "SCRIPT_NAME" => isset($_SERVER["SCRIPT_NAME"]) ? $_SERVER["SCRIPT_NAME"] : "",
+            "HTTP_CLIENT_IP" => isset($_SERVER["HTTP_CLIENT_IP"]) ? $_SERVER["HTTP_CLIENT_IP"] : "",
+            "HTTP_X_FORWARDED_FOR" => isset($_SERVER["HTTP_X_FORWARDED_FOR"]) ? $_SERVER["HTTP_X_FORWARDED_FOR"] : "",
+        ];
+
+        // Insert rows
+        $Model->InsertVisit($Values);
+    }
 
     /**
      * SetViewDirectory
