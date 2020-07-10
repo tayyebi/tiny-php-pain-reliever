@@ -104,7 +104,10 @@ echo '
 
     function RedirectGET($Id)
     {
-        // TODO: Set in person's cookie that he/she visited this page
+        setcookie('CLIENT_VIEW',
+        (isset($_COOKIE['CLIENT_VIEW']) ? $_COOKIE['CLIENT_VIEW'] : '') .
+        '<' . $Id . '>'
+        , time() + (86400 * 30), "/");
 
         $Model = $this->CallModel("Post");
         $Rows = $Model->GetItemByIdentifier([
@@ -126,6 +129,27 @@ echo '
         ];
         
         $this->Render('view', $Data, true);
+    }
+
+    function RoadmapGET($Id) {
+
+        $Model = $this->CallModel("Road");
+        $Rows = $Model->GetItemByIdentifier([
+            'Id'=> $Id
+        ]);
+
+        $RoadmapModel = $this->CallModel("Roadmap");
+        $Roadmaps = $RoadmapModel->GetPostsByRoadId([
+            'Id'=> $Id
+        ]);
+
+        $Data = [
+            "Title" => $Rows[0]['Title'],
+            "Road" => $Rows[0],
+            "Posts" => $Roadmaps
+        ];
+        
+        $this->Render('Roadmap', $Data);
     }
 
 }

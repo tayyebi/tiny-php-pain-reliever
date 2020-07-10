@@ -2,6 +2,18 @@
 
 class Roadmap extends Model{
 
+    function GetPostsByRoadId($Values) {
+
+        $Query = 'SELECT
+            Roadmaps.Id, Posts.*
+            FROM `Roadmaps`
+            INNER JOIN `Posts` ON Roadmaps.PostId = Posts.Id
+            WHERE RoadId = :Id
+            ORDER BY Roadmaps.`Priority` DESC';
+
+        return $this->DoSelect($Query, $Values);
+    }
+
     // === Based on a pattern ===
     function DescribeTable() {
         return $this->DoSelect("DESCRIBE `Roadmaps`");
