@@ -102,4 +102,30 @@ echo '
         $this->Render('positions', $Data);
     }
 
+    function RedirectGET($Id)
+    {
+        // TODO: Set in person's cookie that he/she visited this page
+
+        $Model = $this->CallModel("Post");
+        $Rows = $Model->GetItemByIdentifier([
+            'Id'=> $Id
+        ]);
+        $this->RedirectResponse($Rows[0]['Canonical']);
+    }
+
+    function ViewGET($Id) {
+
+        $Model = $this->CallModel("Post");
+        $Rows = $Model->GetItemByIdentifier([
+            'Id'=> $Id
+        ]);
+
+        $Data = [
+            "Title" => $Rows[0]['Title'],
+            "Model" => $Rows[0]
+        ];
+        
+        $this->Render('view', $Data, true);
+    }
+
 }

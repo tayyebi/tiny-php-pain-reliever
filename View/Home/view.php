@@ -1,131 +1,64 @@
-<?php
-
-if(!$_GET['id']) {
-    header('Location: index.php');
-    exit; // TODO: Return 404
-}
-
-require_once 'config.pass.php';
-require_once 'config.php';
-$result= mysqli_query($conn, 
-    "SELECT * FROM Posts WHERE Id = " . $_GET['id'] . " LIMIT 1"
-);
-$values = $result->fetch_array();
-
-if ($values == null)
-{
-    header('Location: index.php');
-    exit; // TODO: Return 404
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $values['Title'] ?></title>
+    <title><?php echo $Data['Title'] ?></title>
 
-    <link rel="stylesheet" href="static/css/layout.css">
-    <link rel="stylesheet" href="static/css/view.css">
+    <link rel="stylesheet" href="<?php echo _Root ?>static/css/sariab.css">
+    <link rel="stylesheet" href="<?php echo _Root ?>static/css/layout.css">
+    <link rel="stylesheet" href="<?php echo _Root ?>static/css/view.css">
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="<?php echo $values['Title'] ?>">
-    <meta name="description" content="<?php echo $values['Abstract'] ?>">
-    <meta name="keywords" content="<?php echo $values['Meta'] ?>" />
+    <meta name="title" content="<?php echo $Data['Model']['Title'] ?>">
+    <meta name="description" content="<?php echo $Data['Model']['Abstract'] ?>">
+    <meta name="keywords" content="<?php echo $Data['Model']['Meta'] ?>" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://sariab.ir/">
-    <meta property="og:title" content="<?php echo $values['Title'] ?>">
-    <meta property="og:description" content="<?php echo $values['Abstract'] ?>">
-    <meta property="og:image" content="http://sariab.ir/image-generator.php?id=<?php echo $values['Id'] ?>">
+    <meta property="og:url" content="<?php echo _Root ?>">
+    <meta property="og:title" content="<?php echo $Data['Model']['Title'] ?>">
+    <meta property="og:description" content="<?php echo $Data['Model']['Abstract'] ?>">
+    <meta property="og:image" content="http://sariab.ir/image-generator.php?id=<?php echo $Data['Model']['Id'] ?>">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="http://sariab.ir/">
-    <meta property="twitter:title" content="<?php echo $values['Title'] ?>">
-    <meta property="twitter:description" content="<?php echo $values['Abstract'] ?>">
-    <meta property="twitter:image" content="http://sariab.ir/image-generator.php?id=<?php echo $values['Id'] ?>">
+    <meta property="twitter:url" content="<?php echo _Root ?>">
+    <meta property="twitter:title" content="<?php echo $Data['Model']['Title'] ?>">
+    <meta property="twitter:description" content="<?php echo $Data['Model']['Abstract'] ?>">
+    <meta property="twitter:image" content="http://sariab.ir/image-generator.php?id=<?php echo $Data['Model']['Id'] ?>">
 
 </head>
 <body>
-<header>
-
-<div class="container">
-
-    <div class="profile">
-
-        <div class="profile-image">
-
-            <img width="150" src="logo/Icon.svg" alt="Sariab Logo">
-
-        </div>
-
-        <div class="profile-user-settings">
-
-            <h1 class="profile-user-name">sariabbloggers</h1>
-
-            <a class="btn profile-edit-btn" href="http://kouy.ir/sariabcontent">ارسال محتوی</a>
-
-            <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
-
-        </div>
-
-        <!-- <div class="profile-stats">
-
-            <ul>
-                <li><span class="profile-stat-count">164</span> posts</li>
-                <li><span class="profile-stat-count">188</span> followers</li>
-                <li><span class="profile-stat-count">206</span> following</li>
-            </ul>
-
-        </div> -->
-
-        <div class="profile-bio">
-
-            <p><span class="profile-real-name">ساریاب</span>
-            ساریاب نام کوهی است که دانشگاه کوچکمان را در پناه آن ساخته اند</p>
-
-        </div>
-
-    </div>
-    <!-- End of profile section -->
-
-</div>
-<!-- End of container -->
-
-</header>
 
 <main>
 
-<div class="container">
+<div class="container background-white">
 
+    <a class="border-rounded background-white color-dark"
+    href="<?php echo _Root ?>#Posts">✖</a>
 
-    <div>
-        <?php echo $values['Abstract'] ?>
-    </div>
+    <h1><?php echo $Data['Model']['Title'] ?></h1>
+    <span><?php echo $Data['Model']['Publisher'] ?></span>
+    <span><?php echo $Data['Model']['Submit'] ?></span>
 
-    <a class="push-btn" href="<?php echo $values['Canonical'] ?>">
+    <p><?php echo $Data['Model']['Abstract'] ?></p>
+
+    <a class="border-radius background-gold color-dark"
+    href="<?php echo _Root . 'Home/Redirect/' .  $Data['Model']['Id'] ?>">
         مطالعه پست
     </a>
 
     <script>
-
     // Your application has indicated there's an error
     window.setTimeout(function(){
 
         // Move to a new location or you can do something else
-        window.location.href = "<?php echo $values['Canonical'] ?>";
+        window.location.href = "<?php echo _Root . 'Home/Redirect/' .  $Data['Model']['Id'] ?>";
 
-    }, 5000);
-
+    }, 60000);
     </script>
-
-
-    <!-- <div class="loader"></div> -->
 
 </div>
 <!-- End of container -->

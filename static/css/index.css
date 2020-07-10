@@ -92,10 +92,6 @@ audio {
     transition: transform .6s linear;
 }
 
-.card {
-    cursor: pointer;
-}
-
 .gallery-item-front,
 .gallery-item-back {
     width: 100%;

@@ -50,19 +50,20 @@ foreach ($Data['Models']['Podcasts'] as $item) {
 
 <!-- Posts -->
 <h1 class="h1" ><b>پست‌ها</b>ی گردآوری شده</h1>
-<div class="gallery">
+<div class="gallery" id="Posts">
 <?php
 foreach ($Data['Models']['Posts'] as $item) {
 ?>
     <div class="gallery-item" tabindex="0" >
         <div class="gallery-item card">
-            <div class="gallery-item-front background-dark color-white">
+            <a class="gallery-item-front background-dark color-white"
+                href="<?php echo _Root . 'Home/Redirect/' . $item['Id'] ?>">
                 <span><?php echo $item['Publisher'] ?></span>
                 <h2 class="titles"><?php echo $item['Title'] ?></h2>
                 <!-- <img src="image-generator.php?id=<?php echo $item['Id'] ?>" class="gallery-image" alt="<?php echo $item['Title'] ?>"> -->
-            </div>
+            </a>
             <div class="gallery-item-back background-gold color-dark">
-                <a href="view.php?id=<?php echo $item['Id'] ?>" class="buttons"><span>بیشتر بدانید</span></a>
+                <a href="<?php echo _Root . 'Home/View/' . $item['Id'] ?>" class="buttons"><span>بیشتر بدانید</span></a>
                 <span class="Paragraf"><?php
                 $AllowedCharsLimit = 400;
                 if(strlen($item['Abstract']) > $AllowedCharsLimit)

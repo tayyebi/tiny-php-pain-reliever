@@ -6,6 +6,17 @@ header {
     background-size: 3em;
 }
 
+
+.items {
+    column-count: 2;
+}
+
+.item {
+    width: 100%;
+    padding: .25em;
+    margin-bottom: .25em;
+}
+
 .item * {
     display: inline-block;
     text-align: right;

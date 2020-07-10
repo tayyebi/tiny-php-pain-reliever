@@ -2,8 +2,8 @@
 <?php
 foreach ($Data['Model'] as $item) {
 ?>
-<div class="item">
-    <h3><?php echo $item['Title'] ?></h3>
+<div class="item background-dark color-white font-large">
+    <h3 class="font-xlarge"><?php echo $item['Title'] ?></h3>
     <p><?php echo $item['JobDescription'] ?></p>
 </div>
 <?php
