@@ -1,10 +1,3 @@
-<FilesMatch "^(Admin|Admin/*)$">
-Authtype Basic
-AuthName "Apache basic authentication"
-AuthUserFile /var/www/html/Sariab-V2/.htpasswd
-Require valid-user
-</FilesMatch>
-
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

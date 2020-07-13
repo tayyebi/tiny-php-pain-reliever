@@ -85,7 +85,7 @@ class Controller {
      *
      * @return void
      */
-    function SetViewDirectory(string $Value){
+    function SetViewDirectory($Value){
         $this->ViewDirectory = $Value;
     }
 
@@ -98,7 +98,7 @@ class Controller {
      *
      * @return void
      */
-    function CallModel(string $Entity, bool $UsePDO = true){
+    function CallModel($Entity, $UsePDO = true){
         include('Model/' . $Entity . '.php');
         return new $Entity($UsePDO);
     }
@@ -251,7 +251,41 @@ class Controller {
     {
         if ($LoginRequired)
         {
-            return true;       
+
+            // Read the passwords file
+            $Lines = array();
+            if ($file = fopen(".htpasswd", "r")) {
+                while(!feof($file)) {
+                    array_push($Lines,fgets($file));
+                }
+                fclose($file);
+            }
+
+            // Break to lines to two dimensional array
+            $Credits = array_map(function($val) {
+                if ($val)
+                    return explode(':', $val);
+            }, $Lines);
+            
+            // Check if pasword is sent
+            if (!isset($_SERVER['PHP_AUTH_USER'])) {
+                a:
+                throw new UnauthException();
+            } else {
+                // Check password
+                foreach ($Credits as $Credit)
+                {                   
+                    $enc_pass =  crypt($_SERVER['PHP_AUTH_PW']); // Choose correct encryption
+
+                    if ($_SERVER['PHP_AUTH_USER'] == $Credit[0]
+                        && $enc_pass == $Credit[1])
+                        // Success
+                        return true;
+                }
+                // If failed
+                goto a;
+            }
+
         }
     }
 }

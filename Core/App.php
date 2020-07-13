@@ -55,6 +55,11 @@ class App {
     public function ThowError($HttpStatusCode, $Message = '') {
         switch ($HttpStatusCode)
         {
+            case 401:
+                header('WWW-Authenticate: Basic realm="My Realm"');
+                header('HTTP/1.0 401 Unauthorized');
+                include('static/errors/HTTP401.html');
+                exit;
             case 403:
                 header('HTTP/1.0 403 Forbidden');
                 include('static/errors/HTTP403.html');
@@ -121,10 +126,12 @@ class App {
             // Call the view
             call_user_func_array([$ClassObject, $ControllerMethod], $this->Params);
 	}
-	catch (AuthException $exp ){ // On auth error
+    catch (AuthException $exp ){ // On auth error
             $this->ThowError(403);
         } catch (NotFoundException $exp ){ // on not found error
             $this->ThowError(404);
+        } catch (UnauthException $exp) { // on unauthorized exception
+            $this->ThowError(401);
         }
     }
 

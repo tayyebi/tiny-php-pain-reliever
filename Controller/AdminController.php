@@ -35,6 +35,8 @@ class AdminController extends Controller {
      * 
      */
     function FilesGET() {
+        $this->CheckAuth($_COOKIE); // Check login
+
         define('FM_EMBED', true);
         define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
         require 'Libs/filemanager-master/filemanager.php';
@@ -48,6 +50,8 @@ class AdminController extends Controller {
      * 
      */
     function FilesPOST() {
+        $this->CheckAuth($_COOKIE); // Check login
+
         define('FM_EMBED', true);
         define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
         require 'Libs/filemanager-master/filemanager.php';

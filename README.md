@@ -6,9 +6,12 @@ Based on **Pressz** guideline
 
 Sariab (www.sariab.ir) is a non-profit blogging campaign which is focused on empowering students, increase mental health level, and motivate them, through an integrated knowledge base made on distributed blogs and free content on internet social networks and website platform.
 
-# Links
+# Homepage
 
-Home <http://sariab.ir>
+خانه <http://sariab.ir>
+
+# FAQ
+
 سوالات متداول <https://vrgl.ir/D2lo5>
 
 # What is inside this repository?
@@ -130,5 +133,12 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [X] RSS
 - [ ] WARN PEOPLE ABOUT TRACKING
 - [ ] Flag posts which are just indexed by Sariab not produced by Sariab Bloggers. This will allow us to add more detailed content even if we are not the producer.
+- [ ] Delete 'HTTP_CONNECTION', 'HTTP_SEC_FETCH_MODE', 'HTTP_SEC_FETCH_SITE', 'HTTP_SEC_FETCH_DEST', 'HTTP_SEC_FETCH_PERSON', 'HTTP_UPGRADE_INSECURE_REQUEST', 'HTTP_PERSON_AGENT', 'PATH' from Viststs
+- [ ] Add $_SERVER['HTTP_USER_AGENT'], $_SERVER['PHP_AUTH_USER'] to Visists
+
 
 # Developers
+<https://github.com/Pressz/Sariab-V2/graphs/contributors>
+
+# Love behind the project
+<http://sariab.ir/ThankYou>

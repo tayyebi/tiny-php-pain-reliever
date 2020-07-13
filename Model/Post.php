@@ -6,8 +6,9 @@ class Post extends Model{
         FROM `Posts`
         WHERE `Meta` LIKE :q
         OR `Title` LIKE :q
+        OR :q LIKE ''
         ORDER BY `Submit` DESC
-        LIMIT 100";
+        LIMIT 150";
 
         return $this->DoSelect($Query, $Values);
     }
