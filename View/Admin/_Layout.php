@@ -47,6 +47,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Statistics">
+                  <span data-feather="pie-chart"></span>
+                  Statistics
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Files">
                   <span data-feather="folder"></span>
                   File Manager

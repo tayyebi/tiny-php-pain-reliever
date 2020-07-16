@@ -26,6 +26,42 @@ class AdminController extends Controller {
 
     }
 
+
+
+
+    /**
+     * StatisticsGET
+     *
+     * Index view of admin dashboard
+     * 
+     * @return void
+     */
+    function StatisticsGET() {
+
+        $Data = [
+            'Title' => 'آمار',
+        ];
+
+        // Call the model
+        $Model = $this->CallModel("Visit");
+        
+        // Get grouped count
+        $Rows = $Model->GroupedVisitCount();
+        $Data['GroupedVisitCountRows'] = $Rows;
+
+        // Get grouped visit count by agent
+        $Rows = $Model->GroupedVisitCountByAgent();
+        $Data['GroupedVisitCountByAgent'] = $Rows;
+
+        // Get grouped visit count by agent
+        $Rows = $Model->PostsVisitCountByAddress();
+        $Data['PostsVisitCountByAddress'] = $Rows;
+
+        $this->Render('Statistics', $Data);
+
+    }
+
+
     /**
      * 
      * FilesGET

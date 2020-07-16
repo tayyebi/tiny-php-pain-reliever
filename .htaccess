@@ -1,4 +1,18 @@
+# <FilesMatch "(.*index.php.*|index.php/Admin)">
+# Authtype Basic
+# AuthName "Apache basic authentication"
+# AuthUserFile /home2/sariab/public_html/.htpasswd
+# Require valid-user
+# </FilesMatch>
+
+
 RewriteEngine On
+
+# Former urls must be still available
+RewriteCond %{THE_REQUEST} \s/+view\.php\?id=([0-9]+)\s [NC]
+# Redirect with QueryStringDiscard Flag
+RewriteRule (.*) /Home/View/%1 [R=301,L,QSD]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)$ index.php/$1 [L]
