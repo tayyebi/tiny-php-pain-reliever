@@ -1,7 +1,24 @@
 <?php
 
 class Visit extends Model {
-    
+
+    function DailyGroupedVisitCount() {
+        $Query = 'SELECT
+        CONCAT(\'ساعت \', HourNumber) as HourNumber,
+        COUNT(*) as TotalRequests
+        FROM
+        (
+            SELECT
+            HOUR(`Submit`) AS HourNumber
+            FROM `Visits`
+            WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -24 HOUR) -- Limit for 1 days
+        ) as AliasOfFirstSelect
+        GROUP BY
+        HourNumber';
+        $Result = $this->DoSelect($Query);
+        return $Result;
+    }
+
     function GroupedVisitCount() {
         $Query = 'SELECT
         CONCAT(\'هفته \', WeekNumber) as WeekNumber,
@@ -26,6 +43,7 @@ class Visit extends Model {
         FROM `Visits`
         WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -90 DAY) -- Limit for three monthes
         GROUP BY `HTTP_USER_AGENT`
+        LIMIT 5
         ';
         $Result = $this->DoSelect($Query);
         return $Result;
@@ -40,7 +58,7 @@ class Visit extends Model {
         AND `REQUEST_URI` LIKE \'%HOME/REDIRECT%\'
         GROUP BY `REQUEST_URI`
         ORDER BY TotalRequests DESC, Uri DESC
-        LIMIT 100
+        LIMIT 50
         ';
         $Result = $this->DoSelect($Query);
         return $Result;
