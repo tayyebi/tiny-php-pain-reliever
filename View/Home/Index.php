@@ -67,10 +67,10 @@ foreach ($Data['Models']['Posts'] as $item) {
                 <a href="<?php echo _Root . 'Home/View/' . $item['Id'] ?>" class="buttons"><span>بیشتر بدانید</span></a>
                 <span class="Paragraf"><?php
                 $AllowedCharsLimit = 400;
-                if(strlen($item['Abstract']) > $AllowedCharsLimit)
-                    echo substr($item['Abstract'], 0, $AllowedCharsLimit)."...";
+                if(strlen(strip_tags($item['Abstract'])) > $AllowedCharsLimit)
+                    echo substr(strip_tags($item['Abstract']), 0, $AllowedCharsLimit)."...";
                 else
-                    echo $item['Abstract'];
+                    echo strip_tags($item['Abstract']);
                     ?></span>
             </div>
         </div>
