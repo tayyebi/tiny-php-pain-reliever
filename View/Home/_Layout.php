@@ -73,5 +73,15 @@
 <main class="container background-white color-dark">
 <!--VIEW_CONTENT-->
 </main>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('<?php echo _Root ?>static/js/service-worker.js').then(function(reg){
+    }).catch(function(err) {
+    console.log("Failed to register service-worker.js: ", err)
+    });
+}
+</script>
+
 </body>
 </html>

@@ -45,6 +45,10 @@ class AdminController extends Controller {
         // Call the model
         $Model = $this->CallModel("Visit");
         
+        // Get daily grouped count
+        $Rows = $Model->DailyGroupedVisitCount();
+        $Data['DailyGroupedVisitCountRows'] = $Rows;
+
         // Get grouped count
         $Rows = $Model->GroupedVisitCount();
         $Data['GroupedVisitCountRows'] = $Rows;

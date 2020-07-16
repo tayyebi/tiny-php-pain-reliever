@@ -11,22 +11,22 @@
     <link rel="stylesheet" href="<?php echo _Root ?>static/css/view.css">
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="<?php echo $Data['Model']['Title'] ?>">
-    <meta name="description" content="<?php echo $Data['Model']['Abstract'] ?>">
-    <meta name="keywords" content="<?php echo $Data['Model']['Meta'] ?>" />
+    <meta name="title" content="<?php echo strip_tags($Data['Model']['Title']) ?>">
+    <meta name="description" content="<?php echo strip_tags($Data['Model']['Abstract']) ?>">
+    <meta name="keywords" content="<?php echo strip_tags($Data['Model']['Meta']) ?>" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo _Root ?>">
-    <meta property="og:title" content="<?php echo $Data['Model']['Title'] ?>">
-    <meta property="og:description" content="<?php echo $Data['Model']['Abstract'] ?>">
+    <meta property="og:title" content="<?php echo strip_tags($Data['Model']['Title']) ?>">
+    <meta property="og:description" content="<?php echo strip_tags($Data['Model']['Abstract']) ?>">
     <meta property="og:image" content="http://sariab.ir/image-generator.php?id=<?php echo $Data['Model']['Id'] ?>">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="<?php echo _Root ?>">
-    <meta property="twitter:title" content="<?php echo $Data['Model']['Title'] ?>">
-    <meta property="twitter:description" content="<?php echo $Data['Model']['Abstract'] ?>">
+    <meta property="twitter:title" content="<?php echo strip_tags($Data['Model']['Title']) ?>">
+    <meta property="twitter:description" content="<?php echo strip_tags($Data['Model']['Abstract']) ?>">
     <meta property="twitter:image" content="http://sariab.ir/image-generator.php?id=<?php echo $Data['Model']['Id'] ?>">
 
 </head>
