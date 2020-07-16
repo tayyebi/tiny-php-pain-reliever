@@ -30,7 +30,7 @@
       </span>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="<?php echo _Root ?>Authentication/Logout">Sign out</a>
+          <a class="nav-link" href="<?php echo _Root ?>User/Logout">Sign out</a>
         </li>
       </ul>
     </nav>

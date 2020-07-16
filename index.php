@@ -22,6 +22,7 @@ include('Core/Model.php');
 // Libs
 include('Libs/lib.php');
 include('Libs/fagd.php');
+include('Libs/apr1.php');
 
 // Controllers core
 include('Core/Controller.php');

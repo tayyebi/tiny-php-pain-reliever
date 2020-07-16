@@ -2,6 +2,9 @@
 /**
  * Master class of controllers
  */
+
+use WhiteHat101\Crypt\APR1_MD5;
+
 class Controller {
 
     protected $ViewDirectory;
@@ -272,15 +275,24 @@ class Controller {
                 a:
                 throw new UnauthException();
             } else {
-                // Check password
+                // Check passwords
                 foreach ($Credits as $Credit)
                 {                   
-                    $enc_pass =  crypt($_SERVER['PHP_AUTH_PW']); // Choose correct encryption
+                    // Check username
+                    if ($_SERVER['PHP_AUTH_USER'] != $Credit[0])
+                        continue;
 
-                    if ($_SERVER['PHP_AUTH_USER'] == $Credit[0]
-                        && $enc_pass == $Credit[1])
-                        // Success
-                        return true;
+                    // Check plaintext password against an APR1-MD5 hash
+                    $plain_text_passwd = $_SERVER['PHP_AUTH_PW'];
+                    $check_result = APR1_MD5::check($plain_text_passwd, rtrim($Credit[1]));
+
+                    // If not correct
+                    if (!$check_result)
+                        throw new UnauthException();
+
+                    // If correct
+                    return true;
+                    
                 }
                 // If failed
                 goto a;
