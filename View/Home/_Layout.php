@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?php echo $Data['Title'] ?></title>
 
+    <link rel="manifest" href="manifest.json">
     
     <link rel="stylesheet" href="<?php echo _Root ?>static/css/sariab.css">
     <link rel="stylesheet" href="<?php echo _Root ?>static/css/layout.css">

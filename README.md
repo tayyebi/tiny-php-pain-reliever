@@ -135,7 +135,7 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [ ] Flag posts which are just indexed by Sariab not produced by Sariab Bloggers. This will allow us to add more detailed content even if we are not the producer.
 - [X] Delete 'HTTP_CONNECTION', 'HTTP_SEC_FETCH_MODE', 'HTTP_SEC_FETCH_SITE', 'HTTP_SEC_FETCH_DEST', 'HTTP_SEC_FETCH_PERSON', 'HTTP_UPGRADE_INSECURE_REQUEST', 'HTTP_PERSON_AGENT', 'PATH' from Viststs
 - [X] Add $_SERVER['HTTP_USER_AGENT'], $_SERVER['PHP_AUTH_USER'] to Visists
-
+- [ ] Optimize the manifest https://web.dev/add-manifest/
 
 # Developers
 <https://github.com/Pressz/Sariab-V2/graphs/contributors>
