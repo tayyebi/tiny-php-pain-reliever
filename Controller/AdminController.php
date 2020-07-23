@@ -235,7 +235,7 @@ class AdminController extends Controller {
                                 <label class="form-check-label" for="' . $row["Field"] . '">
                                 ' . $row["Field"] . '
                                 </label>
-                                <input class="form-check-input" type="checkbox" name="' . $row["Field"] . '" value="' . ( $values[$row["Field"]] == '0' ? 'false' : 'true' ) . '">
+                                <input class="form-check-input" type="checkbox" name="' . $row["Field"] . '" ' . ( $values[$row["Field"]] == '1' ? 'checked' : '' ) . '>
                             ';
                             break;
                         default :
@@ -337,6 +337,12 @@ class AdminController extends Controller {
                     or $type == "char" ) {
                         $symbol = '\'';
                     }
+
+                    // If it was a bit value
+                    if ($type == "bit" and isset( $_POST[ $row["Field"] ] )
+                        and $_POST[ $row["Field"] ] == "on")
+                        $_POST[ $row["Field"] ] = "1" ;
+
                     
                     // If value is posted and its not null
                     if (! isset( $_POST[ $row["Field"] ] )
@@ -348,7 +354,7 @@ class AdminController extends Controller {
                         $update_query_key_values .= "NULL" ;
                     }
                     else if ($_POST[ $row["Field"] ] == ''
-                        and ( $type == "int" or $type == "bit" or $type == "decimal" )
+                        and ( $type == "int" or $type == "decimal" )
                     ) {
                         $update_query_key_values .= "NULL" ;
                     }
@@ -356,6 +362,7 @@ class AdminController extends Controller {
                         // append value to values array
                         $update_query_key_values .= $symbol . $_POST[ $row["Field"] ]  . $symbol;
                     }
+
                 }
             }
 
@@ -415,7 +422,7 @@ class AdminController extends Controller {
                         $insert_query_values .= "NULL" ;
                     }
                     else if ($_POST[ $row["Field"] ] == ''
-                        and ( $type == "int" or $type == "bit" or $type == "decimal" )
+                        and ( $type == "int" or $type == "decimal" )
                     ) {
                         $insert_query_values .= "NULL" ;
                     }

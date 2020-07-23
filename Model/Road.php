@@ -18,7 +18,7 @@ class Road extends Model{
         $Query = 'SELECT
             CONCAT(\'<a class="btn btn-sm btn-default" href="' . _Root . 'Admin/Items/Road/\', id , \'">\', \'Edit\', \'</a>\') as Edit,
             Id
-            ,`Title`, Priority
+            ,`Title`, Priority, IsVisibleOnHomePage as Visible
             FROM `Roads`
             ORDER BY `Priority` DESC';
 
