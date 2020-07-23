@@ -408,6 +408,11 @@ class AdminController extends Controller {
                     or $type == "char" ) {
                         $symbol = '\'';
                     }
+
+                    // If it was a bit value
+                    if ($type == "bit" and isset( $_POST[ $row["Field"] ] )
+                        and $_POST[ $row["Field"] ] == "on")
+                        $_POST[ $row["Field"] ] = "1" ;
                     
                     // dont insert comma for the last record
                     if ($insert_query_values != '')

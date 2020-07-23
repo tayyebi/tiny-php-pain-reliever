@@ -39,9 +39,15 @@
     <a class="border-rounded background-white color-dark"
     href="<?php echo _Root ?>#Posts">✖</a>
 
+
+    <?php if ($Data['Model']['IsExternalWriter']) { ?>
+    <strong>محتوای غیر رسمی <span title="این پست توسط بلاگر‌های آزاد ساریاب تهیه نشده است">ⓘ</span></strong>
+    <?php } ?>
+
     <h1><?php echo $Data['Model']['Title'] ?></h1>
     <span><?php echo $Data['Model']['Publisher'] ?></span>
     <span><?php echo $Data['Model']['Submit'] ?></span>
+
 
     <p><?php echo $Data['Model']['Abstract'] ?></p>
 
