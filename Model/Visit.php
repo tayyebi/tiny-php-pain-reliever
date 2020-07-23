@@ -11,10 +11,11 @@ class Visit extends Model {
             SELECT
             HOUR(`Submit`) AS HourNumber
             FROM `Visits`
-            WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -24 HOUR) -- Limit for 1 days
+            WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -23 HOUR) -- Limit for 1 days
         ) as AliasOfFirstSelect
         GROUP BY
-        HourNumber';
+        HourNumber
+        order by (HourNumber % (HOUR(Now())+1))';
         $Result = $this->DoSelect($Query);
         return $Result;
     }
@@ -43,6 +44,7 @@ class Visit extends Model {
         FROM `Visits`
         WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -90 DAY) -- Limit for three monthes
         GROUP BY `HTTP_USER_AGENT`
+        ORDER BY TotalRequests DESC
         LIMIT 5
         ';
         $Result = $this->DoSelect($Query);

@@ -4,9 +4,11 @@ class Post extends Model{
     function GetHome($Values) {
         $Query = "SELECT *
         FROM `Posts`
-        WHERE `Meta` LIKE :q
+        WHERE
+        (`Meta` LIKE :q
         OR `Title` LIKE :q
-        OR :q LIKE ''
+        OR :q LIKE '')
+        AND `IsExternalWriter` = 0
         ORDER BY `Submit` DESC
         LIMIT 150";
 
@@ -27,6 +29,7 @@ class Post extends Model{
         ,`Title`
         ,`Publisher`
         FROM `Posts`
+        WHERE `IsExternalWriter` = 0
         ORDER BY `Id` DESC';
 
         return $this->DoSelect($Query);

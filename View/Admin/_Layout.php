@@ -81,6 +81,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Post2">
+                  <span data-feather="file"></span>
+                  Posts (External Writer)
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Roadmap">
                   <span data-feather="file"></span>
                   Roadmaps
