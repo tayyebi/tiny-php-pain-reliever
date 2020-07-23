@@ -3,8 +3,9 @@
 class Road extends Model{
     function GetHome() {
         $Query = 'SELECT *
-        FROM `Roads` Order By `Priority` ASC
-        WHERE `IsVisibleOnHomePage` = 1';
+        FROM `Roads`
+        WHERE `IsVisibleOnHomePage` = 1
+        Order By `Priority` ASC';
         return $this->DoSelect($Query);
     }
 
