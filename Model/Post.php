@@ -5,8 +5,8 @@ class Post extends Model{
         $Query = "SELECT *
         FROM `Posts`
         WHERE
-        (`Meta` LIKE :q
-        OR `Title` LIKE :q
+        (`Title` LIKE CONCAT('%', :q, '%')
+        OR `Meta` LIKE CONCAT('%', :q, '%')
         OR :q LIKE '')
         AND `IsExternalWriter` = 0
         AND `IsVerified` = 1
