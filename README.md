@@ -137,8 +137,10 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [X] Add $_SERVER['HTTP_USER_AGENT'], $_SERVER['PHP_AUTH_USER'] to Visists
 - [ ] Optimize the manifest for PWA https://web.dev/add-manifest/
 - [ ] Statistics -> Daily Visit Count: Show details of each day's top users navigatino in website
+- [ ] Statistics -> Daily Visit Count: Show unique users visits
 - [X] Statistics -> Daily Visit Count: Show current hour as last
 - [ ] Statistics -> Weekly Visit Count: Change lables to week date
+- [ ] Statistics -> Weekly Visit Count: Show unique users visits
 - [ ] Statistics -> Daily Visit Count: View a special hour requests in detials
 - [ ] Add `interface` and `implements` for repeating functions in models
 
