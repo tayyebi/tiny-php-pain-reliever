@@ -296,6 +296,7 @@ class AdminController extends Controller {
         switch ($table)
         {
             case "Post2":
+            case "Post3":
                 $table_id = "Id";
                 $table_plural = "Posts";
                 break;
@@ -459,6 +460,10 @@ class AdminController extends Controller {
             $delete_query  = 'DELETE FROM ' . $table_plural . ' WHERE ' . $table_id . ' = '. $Id ;
 
             // run the query !
+            if (_Debug)
+            mysqli_query($conn, $delete_query)
+            or trigger_error("Query Failed! $delete_query - Error: ".mysqli_error($conn), E_USER_ERROR);
+            else 
             mysqli_query($conn, $delete_query);
         }
 

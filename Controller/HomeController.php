@@ -119,7 +119,7 @@ echo '
     function ViewGET($Id) {
 
         $Model = $this->CallModel("Post");
-        $Rows = $Model->GetItemByIdentifier([
+        $Rows = $Model->GetVerifiedItemByIdentifier([
             'Id'=> $Id
         ]);
 

@@ -480,3 +480,5 @@ ALTER TABLE `Visits` ADD `HTTP_USER_AGENT` VARCHAR(500) NULL AFTER `HTTP_X_FORWA
 
 ALTER TABLE `Posts` ADD `IsExternalWriter` BIT(1) NOT NULL DEFAULT b'0' AFTER `Publisher`;
 ALTER TABLE `Roads` ADD `IsVisibleOnHomePage` BIT(1) NOT NULL DEFAULT b'0' AFTER `Abstract`;
+ALTER TABLE `Posts` ADD `IsVerified` BIT(1) NOT NULL DEFAULT b'0' AFTER `IsExternalWriter`;
+update Posts set `IsVerified` = 1

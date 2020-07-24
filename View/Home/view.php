@@ -41,7 +41,7 @@
 
 
     <?php if ($Data['Model']['IsExternalWriter']) { ?>
-    <strong>محتوای غیر رسمی <span title="این پست توسط بلاگر‌های آزاد ساریاب تهیه نشده است">ⓘ</span></strong>
+    <strong>محتوای غیر رسمی <span title="اجازه رسمی پیوند به این پست توسط ساریاب دریافت نشده است؛ و یا نویسنده عضو رسمی بلاگر های آزاد ساریاب نیست.">ⓘ</span></strong>
     <?php } ?>
 
     <h1><?php echo $Data['Model']['Title'] ?></h1>
