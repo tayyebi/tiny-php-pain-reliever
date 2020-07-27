@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="<?php echo _Root ?>static/css/sariab.css">
     <link rel="stylesheet" href="<?php echo _Root ?>static/css/layout.css">
     <link rel="stylesheet" href="<?php echo _Root ?>static/css/index.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.css">
   
 </head>
@@ -45,6 +44,10 @@
                 <span class="background-dark color-white border-radius">اینستاگرام</span>
                 <i class="fab fa-instagram"></i>
             </a>
+            <a href="https://www.linkedin.com/company/sariab/" class="border-rounded icon insta background-dark color-white">
+                <span class="background-dark color-white border-radius">لینکداین</span>
+                <i class="fab fa-linkedin-in"></i>
+            </a>
             <a href="https://t.me/sariabbloggers"class="border-rounded icon tel background-dark color-white">
                 <span class="background-dark color-white border-radius">تلگرام</span> 
                 <i class="fab fa-telegram"></i>
@@ -72,6 +75,15 @@
 
 <main class="container background-white color-dark">
 <!--VIEW_CONTENT-->
+<div class="cookie-container background-dark color-white">
+<p class="cookie-p ">
+we care about your data, and we'd use cookies only to improve your experience</br>
+ما از کوکی ها برای بهبود کیفیت خدمات استفاده می‌کنیم
+</p>
+    <button class="cookie-btn background-gold">
+        قبول
+    </button>
+</div>
 </main>
 
 <script>
@@ -81,6 +93,18 @@ if ('serviceWorker' in navigator) {
     console.log("Failed to register service-worker.js: ", err)
     });
 }
+//Cookies Use 
+const cookieContainer =document.querySelector(".cookie-container");
+const cookieButton=document.querySelector(".cookie-btn");
+cookieButton.addEventListener("click",()=>{
+    cookieContainer.classList.remove("active");
+    localStorage.setItem("cookieBannerDisplaye","true")
+})
+setTimeout(() => {
+    if(!localStorage.getItem("cookieBannerDisplaye"))
+         cookieContainer.classList.add("active")
+    },1000);
+    //End Cookies Use
 </script>
 
 </body>

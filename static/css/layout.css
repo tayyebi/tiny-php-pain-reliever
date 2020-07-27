@@ -1,6 +1,5 @@
 /* Base Styles */
 
-
 @font-face {
     font-family: MyFont;
     src: url('../fonts/Vazir-Bold.ttf');
@@ -32,6 +31,7 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
 a:hover {
     text-decoration: underline;
 }
@@ -39,7 +39,7 @@ a:hover {
 .container {
     max-width: 90em;
     margin: 0 auto 0 auto;
-    margin: 2em auto 0 auto ;
+    margin: 2em auto 0 auto;
     padding: 2em;
 }
 
@@ -60,7 +60,9 @@ a:hover {
     clip: rect(1px, 1px, 1px, 1px);
 }
 
+
 /* Profile Section */
+
 .profile {
     display: flex;
     flex-wrap: wrap;
@@ -93,6 +95,7 @@ a:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .profile-real-name {
     display: block;
 }
@@ -103,6 +106,8 @@ a:hover {
     background-position: 50% 50%;
     background-repeat: repeat;
 }
+
+
 /*button */
 
 .profile-edit-btn {
@@ -124,6 +129,7 @@ a:hover {
 .contribute-links {
     padding: 5em;
 }
+
 
 /* social icon bar*/
 
@@ -196,16 +202,16 @@ a:hover {
 .searchbox:active>.search-txt,
 .searchbox .search-txt:active,
 .searchbox .search-txt:focus {
-    padding-right:2em;
+    padding-right: 2em;
     margin-right: -1.5em;
     width: 15em;
+    visibility: visible;
 }
 
- ::-webkit-input-placeholder {
-}
+ ::-webkit-input-placeholder {}
 
-.searchbox:hover > .search-btn,
-.searchbox:active > .search-btn {
+.searchbox:hover>.search-btn,
+.searchbox:active>.search-btn {
     border-color: white;
     text-decoration: none;
 }
@@ -230,4 +236,37 @@ a:hover {
     transition: 0.4s;
     line-height: 40px;
     width: 0px;
+    visibility: hidden;
+}
+
+
+/*cookie style*/
+
+.cookie-container {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    padding: 0 32px;
+    transition: 400ms;
+    text-align: center;
+}
+
+.cookie-p {
+    margin: 20px 0;
+    line-height: 2;
+    font-size: 16px;
+}
+
+.cookie-container.active {
+    bottom: 0;
+}
+
+.cookie-btn {
+    border: 0;
+    padding: 10px 40px;
+    font-size: 14px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    cursor: pointer;
 }
