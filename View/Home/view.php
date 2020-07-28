@@ -34,15 +34,17 @@
 <body>
 <!-- View Page Post -->
 <main>
-<<<<<<< HEAD
 <!-- Image Post View -->
 <div class="container background-white blog-post ">
    <div>
-             <a class="border-rounded background-white color-dark blog-post__close "
-                 href="<?php echo _Root ?>#Posts">✖ محتوی غیر رسمی
-                 <i class="fas fa-exclamation-circle tooltip"><span class="tooltiptext">اجازه رسمی پیوند به این پست توسط ساریاب دریافت نشده است؛ و یا نویسنده عوض رسمی بلاگر های آزاد ساریاب نیست.</span></i>
-                 </a>
-                 <div class="gallery-item card blog-post__img background-dark color-white"></div>
+        <a class="border-rounded background-white color-dark blog-post__close "
+        href="<?php echo _Root ?>#Posts">✖
+        </a>
+        <?php if (!$Data['Model']['IsExternalWriter']) { ?>
+        محتوای غیر رسمی
+        <i class="fas fa-exclamation-circle tooltip"><span class="tooltiptext">اجازه رسمی پیوند به این پست توسط ساریاب دریافت نشده است؛ و یا نویسنده عضو رسمی بلاگر های آزاد ساریاب نیست.</span></i>
+        <?php } ?>
+        <div class="gallery-item card blog-post__img background-dark color-white"></div>
     </div> 
 <!-- End Image Post View  -->
 <!-- Post Description -->
@@ -53,28 +55,6 @@
           <span><?php echo $Data['Model']['Submit'] ?></span>
         <a class="border-radius background-gold color-dark blog-post__cta"
         href="<?php echo _Root . 'Home/Redirect/' .  $Data['Model']['Id'] ?>">
-=======
-
-<div class="container background-white">
-
-    <a class="border-rounded background-white color-dark"
-    href="<?php echo _Root ?>#Posts">✖</a>
-
-
-    <?php if ($Data['Model']['IsExternalWriter']) { ?>
-    <strong>محتوای غیر رسمی <span title="اجازه رسمی پیوند به این پست توسط ساریاب دریافت نشده است؛ و یا نویسنده عضو رسمی بلاگر های آزاد ساریاب نیست.">ⓘ</span></strong>
-    <?php } ?>
-
-    <h1><?php echo $Data['Model']['Title'] ?></h1>
-    <span><?php echo $Data['Model']['Publisher'] ?></span>
-    <span><?php echo $Data['Model']['Submit'] ?></span>
-
-
-    <p><?php echo $Data['Model']['Abstract'] ?></p>
-
-    <a class="border-radius background-gold color-dark"
-    href="<?php echo _Root . 'Home/Redirect/' .  $Data['Model']['Id'] ?>">
->>>>>>> 51bf7f69994424aa06fdbb306da8d7a150b74928
         مطالعه پست
         </a>
     </div>

@@ -143,6 +143,7 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [ ] Statistics -> Weekly Visit Count: Show unique users visits
 - [ ] Statistics -> Daily Visit Count: View a special hour requests in detials
 - [ ] Add `interface` and `implements` for repeating functions in models
+- [ ] Statistics -> Search Engine Bots: https://www.webnots.com/user-agents-list-for-google-bing-baidu-and-yandex-search-engines/
 
 # Developers
 <https://github.com/Pressz/Sariab-V2/graphs/contributors>
