@@ -40,7 +40,7 @@
         <a class="border-rounded background-white color-dark blog-post__close "
         href="<?php echo _Root ?>#Posts">✖
         </a>
-        <?php if (!$Data['Model']['IsExternalWriter']) { ?>
+        <?php if ($Data['Model']['IsExternalWriter']) { ?>
         محتوای غیر رسمی
         <i class="fas fa-exclamation-circle tooltip"><span class="tooltiptext">اجازه رسمی پیوند به این پست توسط ساریاب دریافت نشده است؛ و یا نویسنده عضو رسمی بلاگر های آزاد ساریاب نیست.</span></i>
         <?php } ?>
