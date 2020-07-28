@@ -132,10 +132,17 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [X] FILE UPLOADER
 - [X] RSS
 - [ ] WARN PEOPLE ABOUT TRACKING
-- [ ] Flag posts which are just indexed by Sariab not produced by Sariab Bloggers. This will allow us to add more detailed content even if we are not the producer.
+- [X] Flag posts which are just indexed by Sariab not produced by Sariab Bloggers. This will allow us to add more detailed content even if we are not the producer. And manage from seperated menu.
 - [X] Delete 'HTTP_CONNECTION', 'HTTP_SEC_FETCH_MODE', 'HTTP_SEC_FETCH_SITE', 'HTTP_SEC_FETCH_DEST', 'HTTP_SEC_FETCH_PERSON', 'HTTP_UPGRADE_INSECURE_REQUEST', 'HTTP_PERSON_AGENT', 'PATH' from Viststs
 - [X] Add $_SERVER['HTTP_USER_AGENT'], $_SERVER['PHP_AUTH_USER'] to Visists
 - [ ] Optimize the manifest for PWA https://web.dev/add-manifest/
+- [ ] Statistics -> Daily Visit Count: Show details of each day's top users navigatino in website
+- [ ] Statistics -> Daily Visit Count: Show unique users visits
+- [X] Statistics -> Daily Visit Count: Show current hour as last
+- [ ] Statistics -> Weekly Visit Count: Change lables to week date
+- [ ] Statistics -> Weekly Visit Count: Show unique users visits
+- [ ] Statistics -> Daily Visit Count: View a special hour requests in detials
+- [ ] Add `interface` and `implements` for repeating functions in models
 
 # Developers
 <https://github.com/Pressz/Sariab-V2/graphs/contributors>

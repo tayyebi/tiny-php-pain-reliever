@@ -6,6 +6,24 @@
 
 
 <div class="card m-4">
+<?php
+$date = new DateTime();
+$timeZone = $date->getTimezone();
+echo $timeZone->getName();
+
+echo " (";
+
+// $tz=timezone_open("Asia/Tehran");
+// $dateTimeOslo=date_create("now",timezone_open("Europe/London"));
+// echo timezone_offset_get($tz,$dateTimeOslo);
+
+echo date('P');
+
+echo ")";
+?>
+</div>
+
+<div class="card m-4">
     <div class="card-header" id="Requests">بازدید امروز</div>
     <div class="card-body">
         <canvas id="myAreaChart1" width="736" height="294" style="display: block; width: 736px; height: 294px;" class="chartjs-render-monitor"></canvas>

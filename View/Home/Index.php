@@ -20,7 +20,7 @@ foreach ($Data['Models']['Roads'] as $item) {
 <?php
 foreach ($Data['Models']['Keywords'] as $item) {
 ?>
-<li class="background-dark color-white border-radius"><a class="btn profile-edit-btn" href="index.php?q=<?php echo $item['Title'] ?>"><?php echo $item['Title'] ?></a></li>
+<li class="background-dark color-white border-radius"><a class="btn profile-edit-btn" href="<?php echo _Root . 'Home/Index/' . $item['Title'] . '#Posts'?>"><?php echo $item['Title'] ?></a></li>
 <?php
 }
 ?>
@@ -53,6 +53,12 @@ foreach ($Data['Models']['Podcasts'] as $item) {
 <h1 class="h1" ><b>پست‌ها</b>ی گردآوری شده</h1>
 <div class="gallery" id="Posts">
 <?php
+if (count($Data['Models']['Posts']) == 0) {
+?>
+<strong>هیچ پستی یافت نشد</strong>
+<?php
+}
+else
 foreach ($Data['Models']['Posts'] as $item) {
 ?>
     <div class="gallery-item" tabindex="0" >

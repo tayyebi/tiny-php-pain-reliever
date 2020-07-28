@@ -235,7 +235,7 @@ class AdminController extends Controller {
                                 <label class="form-check-label" for="' . $row["Field"] . '">
                                 ' . $row["Field"] . '
                                 </label>
-                                <input class="form-check-input" type="checkbox" name="' . $row["Field"] . '" value="' . ( $values[$row["Field"]] == '0' ? 'false' : 'true' ) . '">
+                                <input class="form-check-input" type="checkbox" name="' . $row["Field"] . '" ' . ( $values[$row["Field"]] == '1' ? 'checked' : '' ) . '>
                             ';
                             break;
                         default :
@@ -295,6 +295,11 @@ class AdminController extends Controller {
         // Plural table names
         switch ($table)
         {
+            case "Post2":
+            case "Post3":
+                $table_id = "Id";
+                $table_plural = "Posts";
+                break;
             default:
                 $table_id = "Id";
                 $table_plural = $table . "s";
@@ -334,13 +339,23 @@ class AdminController extends Controller {
                         $symbol = '\'';
                     }
 
+                    // If it was a bit value
+                    if ($type == "bit" and isset( $_POST[ $row["Field"] ] )
+                        and $_POST[ $row["Field"] ] == "on")
+                        $_POST[ $row["Field"] ] = "1" ;
+
                     
                     // If value is posted and its not null
-                    if (! isset( $_POST[ $row["Field"] ] ) ) {
+                    if (! isset( $_POST[ $row["Field"] ] )
+                        and ( $type == "bit" )
+                    ) {
+                        $update_query_key_values .= "0" ;
+                    }
+                    else if (! isset( $_POST[ $row["Field"] ] ) ) {
                         $update_query_key_values .= "NULL" ;
                     }
                     else if ($_POST[ $row["Field"] ] == ''
-                        and ( $type == "int" or $type == "bit" or $type == "decimal" )
+                        and ( $type == "int" or $type == "decimal" )
                     ) {
                         $update_query_key_values .= "NULL" ;
                     }
@@ -348,6 +363,7 @@ class AdminController extends Controller {
                         // append value to values array
                         $update_query_key_values .= $symbol . $_POST[ $row["Field"] ]  . $symbol;
                     }
+
                 }
             }
 
@@ -355,6 +371,10 @@ class AdminController extends Controller {
             $update_query  = 'UPDATE ' . $table_plural . ' SET ' . $update_query_key_values . ' WHERE ' . $table_id . ' = '. $Id ;
             
             // run the query !
+            if (_Debug)
+            mysqli_query($conn, $update_query)
+            or trigger_error("Query Failed! $update_query - Error: ".mysqli_error($conn), E_USER_ERROR);
+            else 
             mysqli_query($conn, $update_query);
         }
         else if (isset($_POST['insert']))
@@ -389,16 +409,26 @@ class AdminController extends Controller {
                     or $type == "char" ) {
                         $symbol = '\'';
                     }
+
+                    // If it was a bit value
+                    if ($type == "bit" and isset( $_POST[ $row["Field"] ] )
+                        and $_POST[ $row["Field"] ] == "on")
+                        $_POST[ $row["Field"] ] = "1" ;
                     
                     // dont insert comma for the last record
                     if ($insert_query_values != '')
                         $insert_query_values .= ', ';
                     // If value is posted and its not null
-                    if (! isset( $_POST[ $row["Field"] ] ) ) {
+                    if (! isset( $_POST[ $row["Field"] ] )
+                        and ( $type == "bit" )
+                    ) {
+                        $insert_query_values .= "0" ;
+                    }
+                    else if (! isset( $_POST[ $row["Field"] ] ) ) {
                         $insert_query_values .= "NULL" ;
                     }
                     else if ($_POST[ $row["Field"] ] == ''
-                        and ( $type == "int" or $type == "bit" or $type == "decimal" )
+                        and ( $type == "int" or $type == "decimal" )
                     ) {
                         $insert_query_values .= "NULL" ;
                     }
@@ -430,6 +460,10 @@ class AdminController extends Controller {
             $delete_query  = 'DELETE FROM ' . $table_plural . ' WHERE ' . $table_id . ' = '. $Id ;
 
             // run the query !
+            if (_Debug)
+            mysqli_query($conn, $delete_query)
+            or trigger_error("Query Failed! $delete_query - Error: ".mysqli_error($conn), E_USER_ERROR);
+            else 
             mysqli_query($conn, $delete_query);
         }
 

@@ -3,8 +3,9 @@
 class Road extends Model{
     function GetHome() {
         $Query = 'SELECT *
-        FROM `Roads` Order By `Priority` ASC';
-
+        FROM `Roads`
+        WHERE `IsVisibleOnHomePage` = 1
+        Order By `Priority` ASC';
         return $this->DoSelect($Query);
     }
 
@@ -17,7 +18,7 @@ class Road extends Model{
         $Query = 'SELECT
             CONCAT(\'<a class="btn btn-sm btn-default" href="' . _Root . 'Admin/Items/Road/\', id , \'">\', \'Edit\', \'</a>\') as Edit,
             Id
-            ,`Title`, Priority
+            ,`Title`, Priority, IsVisibleOnHomePage as Visible
             FROM `Roads`
             ORDER BY `Priority` DESC';
 
