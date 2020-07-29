@@ -9,7 +9,7 @@ class Roadmap extends Model{
             FROM `Roadmaps`
             INNER JOIN `Posts` ON Roadmaps.PostId = Posts.Id
             WHERE RoadId = :Id
-            ORDER BY Roadmaps.`Priority` ASC';
+            ORDER BY Roadmaps.`Priority` ASC, Posts.Submit ASC';
 
         return $this->DoSelect($Query, $Values);
     }

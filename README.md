@@ -141,7 +141,8 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [X] Statistics -> Daily Visit Count: Show current hour as last
 - [ ] Statistics -> Weekly Visit Count: Change lables to week date
 - [ ] Statistics -> Weekly Visit Count: Show unique users visits
-- [ ] Statistics -> Daily Visit Count: View a special hour requests in detials
+- [ ] Statistics -> Daily Visit Count: View a special hour requests in details
+- [ ] Statistics -> Each post growth diagrams
 - [ ] Add `interface` and `implements` for repeating functions in models
 - [ ] Statistics -> Search Engine Bots: https://www.webnots.com/user-agents-list-for-google-bing-baidu-and-yandex-search-engines/
 

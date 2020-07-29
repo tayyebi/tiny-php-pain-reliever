@@ -144,9 +144,14 @@
     <script src="<?php echo _Root ?>static/js/jquery.slim.js"></script>
     <!-- Bootstrap Core JS -->
     <script src="<?php echo _Root ?>static/js/bootstrap.js"></script>
-    
-    <!-- Tiny editor -->
-    <script src="<?php echo _Root ?>static/js/tinyeditor.js"></script>
+    <!-- SummerNote Editor -->
+    <link href="<?php echo _Root ?>static/summernote/summernote.min.css" rel="stylesheet">
+    <script src="<?php echo _Root ?>static/summernote/summernote.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      $('.html-editor').summernote();
+    });
+    </script>
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>

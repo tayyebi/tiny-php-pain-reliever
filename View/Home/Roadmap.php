@@ -18,11 +18,11 @@
         echo '<strong>✓</strong>';
       }
       ?></span>
-      <a href="<?php echo _Root . '/Home/View/' . $Data['Posts'][$i]['Id'] ?>"><h2><?php echo $Data['Posts'][$i]['Title'] ?></h2></a>
+      <a href="<?php echo _Root . 'Home/View/' . $Data['Posts'][$i]['Id'] ?>"><h2><?php echo $Data['Posts'][$i]['Title'] ?></h2></a>
       <div class="">
         <?php echo $Data['Posts'][$i]['Abstract'] ?>
       </div>
-      <a class="border-radius background-gold color-white" href="<?php echo _Root . '/Home/View/' . $Data['Posts'][$i]['Id'] ?>">مطالعه</a>
+      <a class="border-radius background-gold color-white" href="<?php echo _Root . 'Home/View/' . $Data['Posts'][$i]['Id'] ?>">مطالعه</a>
     </div>
   </div>
   <?php } ?>
