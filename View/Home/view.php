@@ -38,7 +38,12 @@
 <div class="container background-white blog-post ">
    <div>
         <a class="border-rounded background-white color-dark blog-post__close "
-        href="<?php echo _Root ?>#Posts">✖
+        <?php if (isset($Data['RoadId'])) { ?>
+        href="<?php echo _Root ?>Home/Roadmap/<?php echo $Data['RoadId'] ?>#post_<?php echo $Data['Model']['Id'] ?>"
+        <?php } else { ?>
+        href="<?php echo _Root ?>Home/Index/#Posts"
+        <?php } ?>
+        >✖
         </a>
         <?php if ($Data['Model']['IsExternalWriter']) { ?>
         محتوای غیر رسمی
@@ -46,20 +51,20 @@
         <?php } ?>
         <div class="gallery-item card blog-post__img background-dark color-white"></div>
     </div> 
-<!-- End Image Post View  -->
-<!-- Post Description -->
+    <!-- End Image Post View  -->
+    <!-- Post Description -->
     <div class="blog-post__info blog-post__date">
         <h1 class="blog-post__title"><?php echo $Data['Model']['Title'] ?></h1>
         <p class="blog-post__text"><?php echo $Data['Model']['Abstract'] ?></p>
         <span><?php echo $Data['Model']['Publisher'] ?></span>
           <span><?php echo $Data['Model']['Submit'] ?></span>
-        <a class="border-radius background-gold color-dark blog-post__cta"
+        <a class="border-radius background-gold color-dark button-medium" target="_blank"
         href="<?php echo _Root . 'Home/Redirect/' .  $Data['Model']['Id'] ?>">
         مطالعه پست
         </a>
     </div>
     <!-- End Post Description -->
- <!-- End View Page Post -->
+    <!-- End View Page Post -->
     <script>
     // Your application has indicated there's an error
     window.setTimeout(function(){

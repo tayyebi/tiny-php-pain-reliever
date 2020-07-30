@@ -8,7 +8,7 @@
 
 <div class="timeline background-dark color-white">
   <?php for($i = 0;$i < count($Data['Posts']);$i++) {  ?>
-  <div class="item <?php echo $i % 2 == 0 ? 'left' : 'right' ?>">
+  <div class="item <?php echo $i % 2 == 0 ? 'left' : 'right' ?>" id="post_<?php echo $Data['Posts'][$i]['Id'] ?>">
     <div class="content background-white color-dark">
       <span class="font-xxlarge color-gold"><?php
       echo $i+1 . '/' . count($Data['Posts']);
@@ -18,11 +18,11 @@
         echo '<strong>✓</strong>';
       }
       ?></span>
-      <a href="<?php echo _Root . 'Home/View/' . $Data['Posts'][$i]['Id'] ?>"><h2><?php echo $Data['Posts'][$i]['Title'] ?></h2></a>
-      <div class="">
+      <a href="<?php echo _Root . 'Home/View/' . $Data['Posts'][$i]['Id'] . '/' . $Data['Road']['Id'] ?>"><h2><?php echo $Data['Posts'][$i]['Title'] ?></h2></a>
+      <div class="abstract">
         <?php echo $Data['Posts'][$i]['Abstract'] ?>
       </div>
-      <a class="border-radius background-gold color-white" href="<?php echo _Root . 'Home/View/' . $Data['Posts'][$i]['Id'] ?>">مطالعه</a>
+      <a class="border-radius background-gold color-dark button-small more" href="<?php echo _Root . 'Home/View/' . $Data['Posts'][$i]['Id'] . '/' . $Data['Road']['Id'] ?>">مطالعه</a>
     </div>
   </div>
   <?php } ?>

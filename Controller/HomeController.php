@@ -116,7 +116,7 @@ echo '
         $this->RedirectResponse($Rows[0]['Canonical']);
     }
 
-    function ViewGET($Id) {
+    function ViewGET($Id, $RoadId = null) {
 
         $Model = $this->CallModel("Post");
         $Rows = $Model->GetVerifiedItemByIdentifier([
@@ -125,6 +125,7 @@ echo '
 
         $Data = [
             "Title" => $Rows[0]['Title'],
+            "RoadId" => $RoadId,
             "Model" => $Rows[0]
         ];
         
