@@ -27,12 +27,13 @@ echo ")";
 </div>
 
 <div class="card m-4">
-<div class="card-header" id="Requests">بازدید کننده‌های برتر هفته</div>
+<div class="card-header" id="Requests">بازدید کننده‌های برتر هفت روز گذشته</div>
     <div class="card-body">
 <?php
   foreach ($Data['TopUsers'] as $Row) {
-    echo '<a title="' . $Row['HTTP_USER_AGENT'] . '"
-    href="' . _Root . 'Admin/Statistics/' . $Row['CLIENT_TRACK'] . '">' . $Row['CLIENT_TRACK'] . '</a>';
+    echo '<a class="btn bg-primary text-white d-block m-1" title="' . $Row['HTTP_USER_AGENT'] . '"
+    href="' . _Root . 'Admin/Statistics/' . $Row['CLIENT_TRACK'] . '">'
+    . $Row['CLIENT_TRACK'] . ' (' . $Row['TotalRequests'] . ')' . '</a>';
   }
 ?>
   </div>
@@ -60,13 +61,14 @@ echo ")";
 </div>
 
 <div class="card m-4" id="Posts">
-    <div class="card-header">مشاهده پست‌ها</div>
+    <div class="card-header">پربازدید ترین پست‌های نود روز گذشته</div>
     <div class="card-body">
     <table class="table table-striped table-dark" style="table-layout: fixed;">
       <thead>
         <tr>
           <th scope="col">تعداد درخواست</th>
-          <th scope="col" colspan="5">آدرس</th>
+          <th scope="col">مشاهده</th>
+          <th scope="col" colspan="5">عنوان</th>
         </tr>
       </thead>
       <tbody>
@@ -75,14 +77,13 @@ echo ")";
         {
         ?>
         <tr>
-          <td><?php echo $item['TotalRequests'] ?></td>
-          <td colspan="5" style="white-space: nowrap; overflow-x:auto;font-size:xx-small"><?php echo $item['Uri'] ?></td>
+          <td><?php echo $item['TotalVisits'] ?></td>
+          <td><a class="btn btn-light btn-sm" href="<?php echo _Root . 'Home/View/' . $item['Id'] ?>">مشاهده</a></td>
+          <td colspan="5" class="font-small"><?php echo $item['Title'] ?></td>
         </tr>
         <?php
         }
         ?>
-
-
       </tbody>
     </table>
     </div>
@@ -120,8 +121,8 @@ var myLineChart = new Chart('myAreaChart1', {
       $max = 0;
       foreach ($Data['DailyGroupedVisitCountRows'] as $item)
       {
-        $max = $max > $item['TotalRequests'] ? $max : $item['TotalRequests'];
-        echo $item['TotalRequests'] . ', ';
+        $max = $max > $item['TotalVisits'] ? $max : $item['TotalVisits'];
+        echo $item['TotalVisits'] . ', ';
       }
       ?>
       ],
@@ -190,8 +191,8 @@ var myLineChart = new Chart('myAreaChart', {
       $max = 0;
       foreach ($Data['GroupedVisitCountRows'] as $item)
       {
-        $max = $max > $item['TotalRequests'] ? $max : $item['TotalRequests'];
-        echo $item['TotalRequests'] . ', ';
+        $max = $max > $item['TotalVisits'] ? $max : $item['TotalVisits'];
+        echo $item['TotalVisits'] . ', ';
       }
       ?>
       ],
@@ -239,7 +240,7 @@ var data = {
             <?php
             foreach ($Data['GroupedVisitCountByAgent'] as $item)
             {
-              echo '"' . $item['TotalRequests'] . '", ';
+              echo '"' . $item['TotalVisits'] . '", ';
             }
             ?>
 					],

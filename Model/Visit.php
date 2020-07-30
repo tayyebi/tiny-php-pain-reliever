@@ -16,8 +16,8 @@ class Visit extends Model {
 
     function UserStory($Values) {
         $Query = 'SELECT `Submit`, REQUEST_URI as Uri,
-        `PHP_AUTH_USER`, `PHP_AUTH_USER`, `HTTP_USER_AGENT`,
-        `HTTP_REFERER`, `HTTP_CLIENT_IP`
+        `PHP_AUTH_USER`, `PHP_AUTH_USER`,
+        `HTTP_REFERER`
         FROM `Visits`
         -- TODO: Difference with prev step (To determine waiting time)
         WHERE CLIENT_TRACK=:CLIENT_TRACK
@@ -30,11 +30,12 @@ class Visit extends Model {
     function DailyGroupedVisitCount() {
         $Query = 'SELECT
         CONCAT(\'ساعت \', HourNumber) as HourNumber,
-        COUNT(*) as TotalRequests
+        COUNT(DISTINCT CLIENT_TRACK) as TotalVisits
         FROM
         (
             SELECT
-            HOUR(`Submit`) AS HourNumber
+            HOUR(`Submit`) AS HourNumber,
+            CLIENT_TRACK
             FROM `Visits`
             WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -23 HOUR) -- Limit for 1 days
         ) as AliasOfFirstSelect
@@ -48,11 +49,12 @@ class Visit extends Model {
     function GroupedVisitCount() {
         $Query = 'SELECT
         CONCAT(\'هفته \', WeekNumber) as WeekNumber,
-        COUNT(*) as TotalRequests
+        COUNT(DISTINCT CLIENT_TRACK) as TotalVisits
         FROM
         (
             SELECT
-            DATEDIFF(`Submit`, NOW()) AS WeekNumber
+            YEARWEEK( `Submit`) AS WeekNumber,
+            CLIENT_TRACK
             FROM `Visits`
             WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -90 DAY) -- Limit for three monthes
         ) as AliasOfFirstSelect
@@ -64,12 +66,12 @@ class Visit extends Model {
 
     function GroupedVisitCountByAgent() {
         $Query = 'SELECT
-        COUNT(*) as TotalRequests,
+        COUNT(*) as TotalVisits,
         HTTP_USER_AGENT as Agent
         FROM `Visits`
         WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -90 DAY) -- Limit for three monthes
         GROUP BY `HTTP_USER_AGENT`
-        ORDER BY TotalRequests DESC
+        ORDER BY TotalVisits DESC
         LIMIT 5
         ';
         $Result = $this->DoSelect($Query);
@@ -78,13 +80,16 @@ class Visit extends Model {
     
     function PostsVisitCountByAddress() {
         $Query = 'SELECT
-        COUNT(*) as TotalRequests,
-        REQUEST_URI as Uri
+        COUNT(*) as TotalVisits,
+        Posts.Id,
+        Posts.Title
         FROM `Visits`
-        WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -90 DAY) -- Limit for three monthes
+        LEFT OUTER JOIN `Posts`
+        ON Posts.Id = SUBSTRING(REQUEST_URI FROM POSITION(\'Redirect\' in REQUEST_URI) + 9 /* FOR 0 */)
+        WHERE Visits.`Submit` > DATE_ADD(NOW(), INTERVAL -90 DAY) -- Limit for three monthes
         AND `REQUEST_URI` LIKE \'%HOME/REDIRECT%\'
-        GROUP BY `REQUEST_URI`
-        ORDER BY TotalRequests DESC, Uri DESC
+        GROUP BY Posts.Id
+        ORDER BY TotalVisits DESC, Posts.Id DESC
         LIMIT 50
         ';
         $Result = $this->DoSelect($Query);

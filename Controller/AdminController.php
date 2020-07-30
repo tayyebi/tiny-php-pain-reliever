@@ -32,22 +32,24 @@ class AdminController extends Controller {
     /**
      * StatisticsGET
      *
-     * Index view of admin dashboard
+     * OpenData Statistics
      * 
      * @return void
      */
     function StatisticsGET($CLIENT_TRACK = null) {
-        $this->CheckAuth($_COOKIE); // Check login
 
         $Data = [
-            'Title' => 'آمار',
+            'Title' => 'آمار داده باز',
         ];
 
         // Call the model
         $Model = $this->CallModel("Visit");
 
+        // If specific user track was requested
         if (isset($CLIENT_TRACK))
         {
+            $this->CheckAuth($_COOKIE); // Check login
+
             // Get user story by cookie
             $Rows = $Model->UserStory([
                 'CLIENT_TRACK' => $CLIENT_TRACK

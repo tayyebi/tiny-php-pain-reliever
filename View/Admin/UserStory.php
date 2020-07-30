@@ -1,6 +1,6 @@
 <a href="../Statistics">Back</a>
 
-<table class="table">
+<table class="table table-striped table-dark">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Date</th>
@@ -11,11 +11,11 @@
   </thead>
   <tbody>
     <?php $i = 0; foreach ($Data['UserStory'] as $Row) { $i++?>
-    <tr <?php echo ($i%2) ? 'class="color-gold background-dark"' : 'class="background-dark color-white"' ?>>
+    <tr>
       <td scope="row"><?php echo $Row['Submit']?></td>
-      <td><?php echo $Row['HTTP_REFERER']?></td>
-      <td><?php echo $Row['Uri']?></td>
-      <td><span title="<?php echo $Row['HTTP_CLIENT_IP'] . '|' . $Row['HTTP_USER_AGENT']?>">Human</span>:<?php echo $Row['PHP_AUTH_USER']?></td>
+      <td class="font-small"><?php echo $Row['HTTP_REFERER']?></td>
+      <td class="font-small"><?php echo $Row['Uri']?></td>
+      <td><?php echo $Row['PHP_AUTH_USER']?></td>
     </tr>
     <?php } ?>
   </tbody>
