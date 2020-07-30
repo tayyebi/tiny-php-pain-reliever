@@ -15,8 +15,9 @@ class Visit extends Model {
     }
 
     function UserStory($Values) {
-        $Query = 'SELECT `Submit`, REQUEST_URI as Uri
-        , `PHP_AUTH_USER`, `HTTP_USER_AGENT`
+        $Query = 'SELECT `Submit`, REQUEST_URI as Uri,
+        `PHP_AUTH_USER`, `PHP_AUTH_USER`, `HTTP_USER_AGENT`,
+        `HTTP_REFERER`, `HTTP_CLIENT_IP`
         FROM `Visits`
         -- TODO: Difference with prev step (To determine waiting time)
         WHERE CLIENT_TRACK=:CLIENT_TRACK

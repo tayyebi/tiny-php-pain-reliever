@@ -37,6 +37,7 @@ class AdminController extends Controller {
      * @return void
      */
     function StatisticsGET($CLIENT_TRACK = null) {
+        $this->CheckAuth($_COOKIE); // Check login
 
         $Data = [
             'Title' => 'آمار',
