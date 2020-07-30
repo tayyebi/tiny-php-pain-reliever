@@ -36,7 +36,7 @@ class AdminController extends Controller {
      * 
      * @return void
      */
-    function StatisticsGET() {
+    function StatisticsGET($CLIENT_TRACK = null) {
 
         $Data = [
             'Title' => 'آمار',
@@ -44,7 +44,23 @@ class AdminController extends Controller {
 
         // Call the model
         $Model = $this->CallModel("Visit");
-        
+
+        if (isset($CLIENT_TRACK))
+        {
+            // Get user story by cookie
+            $Rows = $Model->UserStory([
+                'CLIENT_TRACK' => $CLIENT_TRACK
+            ]);
+            $Data['UserStory'] = $Rows;
+
+            $this->Render('UserStory', $Data);
+            return;
+        }
+
+        // Get top users by cookies
+        $Rows = $Model->TopUsers();
+        $Data['TopUsers'] = $Rows;
+
         // Get daily grouped count
         $Rows = $Model->DailyGroupedVisitCount();
         $Data['DailyGroupedVisitCountRows'] = $Rows;

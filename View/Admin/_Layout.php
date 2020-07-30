@@ -15,6 +15,7 @@
     <link href="<?php echo _Root ?>static/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+    <link href="<?php echo _Root ?>static/css/sariab.css" rel="stylesheet">
     <link href="<?php echo _Root ?>static/css/dashboard.css" rel="stylesheet">
   </head>
 

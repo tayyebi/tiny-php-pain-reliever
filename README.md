@@ -107,16 +107,15 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 
 ## Project TODO list
 
-- [ ] GUI AND DATABASE UPDATES BASED ON NEW WIREFRAME (DOWNLOAD [> WIREFRAME.PDF](docs/prototype/Wireframe.pdf))
+- [X] GUI AND DATABASE UPDATES BASED ON NEW WIREFRAME (DOWNLOAD [> WIREFRAME.PDF](docs/prototype/Wireframe.pdf))
 - [X] VIEW POST PAGE
 - [X] BUG WITH SUPPORT AND POSITIONS PAGES THEME
 - [X] REDIRECT ACTION IN HOME CONTROLLER
 - [X] VIEW ROADMAP PAGE (CONTAINING STEPS, CHECKLIST, ...)
-- [ ] HOMEPAGE SEARCH
-- [ ] SEARCH AND CATEGORIES POSTS
+- [X] HOMEPAGE SEARCH
+- [X] SEARCH AND CATEGORIES POSTS
 - [X] CREATE A TRACKING INFRASTRUCTURE
-- [ ] CREATE REPORTS FROM TRACKING
-- [ ] CREATE AN INTERNAL STATISTICS INFRASTRUCTURE (LINKS VISIT COUNT, PAGES VISIT COUNT, NETWORK TRAFIC USAGE, BROWSERS STATISTICS, COUNTRIES STATISTICS, PAGES HEATMAP)
+- [X] CREATE AN INTERNAL STATISTICS INFRASTRUCTURE (LINKS VISIT COUNT, PAGES VISIT COUNT, NETWORK TRAFIC USAGE, BROWSERS STATISTICS, COUNTRIES STATISTICS, PAGES HEATMAP)
 - [ ] CREATE A DONATE PAGE
 - [ ] COOKIE BASED RECOMMENDATION
 - [ ] UPLOAD IMAGES FOR POSTS
@@ -127,17 +126,16 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [ ] POP-UP WINDOW ON HOMEPAGE POST CLICK ('PARTIAL VIEW' OF 'VIEW PAGE')
 - [X] CREATE A ROADMAP FEATURE WHICH ALLOWS PEOPLE TO FOLLOW POSTS FOR A GOAL
 - [ ] LAZY LOAD THE CONTENT ON FIRST PAGE
-- [ ] TABLE ARCHIVE VIEW OF POSTS
 - [ ] PAGINATION ON ADMIN PANEL DATA TABLES
 - [X] FILE UPLOADER
 - [X] RSS
-- [ ] WARN PEOPLE ABOUT TRACKING
+- [X] WARN PEOPLE ABOUT TRACKING
 - [X] Flag posts which are just indexed by Sariab not produced by Sariab Bloggers. This will allow us to add more detailed content even if we are not the producer. And manage from seperated menu.
 - [X] Delete 'HTTP_CONNECTION', 'HTTP_SEC_FETCH_MODE', 'HTTP_SEC_FETCH_SITE', 'HTTP_SEC_FETCH_DEST', 'HTTP_SEC_FETCH_PERSON', 'HTTP_UPGRADE_INSECURE_REQUEST', 'HTTP_PERSON_AGENT', 'PATH' from Viststs
 - [X] Add $_SERVER['HTTP_USER_AGENT'], $_SERVER['PHP_AUTH_USER'] to Visists
 - [ ] Optimize the manifest for PWA https://web.dev/add-manifest/
-- [ ] Statistics -> Daily Visit Count: Show details of each day's top users navigatino in website
-- [ ] Statistics -> Daily Visit Count: Show unique users visits
+- [X] Statistics -> Daily Visit Count: Show details of each day's top users navigatino in website
+- [X] Statistics -> Daily Visit Count: Show unique users visits
 - [X] Statistics -> Daily Visit Count: Show current hour as last
 - [ ] Statistics -> Weekly Visit Count: Change lables to week date
 - [ ] Statistics -> Weekly Visit Count: Show unique users visits
@@ -145,6 +143,7 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [ ] Statistics -> Each post growth diagrams
 - [ ] Add `interface` and `implements` for repeating functions in models
 - [ ] Statistics -> Search Engine Bots: https://www.webnots.com/user-agents-list-for-google-bing-baidu-and-yandex-search-engines/
+- [ ] Edit all Select * Queries
 
 # Developers
 <https://github.com/Pressz/Sariab-V2/graphs/contributors>

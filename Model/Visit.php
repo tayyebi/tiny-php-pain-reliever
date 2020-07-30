@@ -2,6 +2,30 @@
 
 class Visit extends Model {
 
+    function TopUsers() {
+        $Query = 'SELECT
+        COUNT(*) as TotalRequests, `CLIENT_TRACK`, `HTTP_USER_AGENT`
+        FROM `Visits`
+        WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -7 DAY) -- LIMIT FOR 7 DAYS
+        GROUP BY `CLIENT_TRACK`, `HTTP_USER_AGENT`
+        ORDER BY TotalRequests DESC
+        LIMIT 10';
+        $Result = $this->DoSelect($Query);
+        return $Result;
+    }
+
+    function UserStory($Values) {
+        $Query = 'SELECT `Submit`, REQUEST_URI as Uri
+        , `PHP_AUTH_USER`, `HTTP_USER_AGENT`
+        FROM `Visits`
+        -- TODO: Difference with prev step (To determine waiting time)
+        WHERE CLIENT_TRACK=:CLIENT_TRACK
+        AND `Submit` > DATE_ADD(NOW(), INTERVAL -7 DAY) -- LIMIT FOR 7 DAYS
+        ORDER BY `Id` DESC';
+        $Result = $this->DoSelect($Query, $Values);
+        return $Result;
+    }
+
     function DailyGroupedVisitCount() {
         $Query = 'SELECT
         CONCAT(\'ساعت \', HourNumber) as HourNumber,

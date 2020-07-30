@@ -6,6 +6,8 @@
 
 
 <div class="card m-4">
+<div class="card-header" id="Requests"> تنظیمات سرور</div>
+    <div class="card-body">
 <?php
 $date = new DateTime();
 $timeZone = $date->getTimezone();
@@ -21,6 +23,19 @@ echo date('P');
 
 echo ")";
 ?>
+  </div>
+</div>
+
+<div class="card m-4">
+<div class="card-header" id="Requests">بازدید کننده‌های برتر هفته</div>
+    <div class="card-body">
+<?php
+  foreach ($Data['TopUsers'] as $Row) {
+    echo '<a title="' . $Row['HTTP_USER_AGENT'] . '"
+    href="' . _Root . 'Admin/Statistics/' . $Row['CLIENT_TRACK'] . '">' . $Row['CLIENT_TRACK'] . '</a>';
+  }
+?>
+  </div>
 </div>
 
 <div class="card m-4">

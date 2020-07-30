@@ -19,6 +19,17 @@
     font-size: .7em;
 }
 
+/* Buttons */
+.button-small {
+    display: inline-block;
+    padding: 1em 1em;
+    font-size: 1em;
+}
+.button-medium {
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    font-size: 14px;
+}
 
 /* Border Radius */
 .border-radius {
