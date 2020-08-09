@@ -153,4 +153,18 @@ echo '
         $this->Render('Roadmap', $Data);
     }
 
+    function SubmitGET()
+    {
+        $this->Render('Submit');
+    }
+
+
+    function SubmitPOST()
+    {
+
+    }
+
+
+
 }
+
