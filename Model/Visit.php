@@ -28,33 +28,53 @@ class Visit extends Model {
     }
 
     function DailyGroupedVisitCount() {
+
+        $temp = 'create temporary table dailyhours (
+            DayNumber smallint,
+            HourNumber tinyint
+        );
+        insert into dailyhours values (0,24), (0,1),
+        (0,2), (0,3), (0,4), (0,5), (0,6), (0,7), (0,8), (0,9),
+        (0,10), (0,11), (0,12), (0,13), (0,14), (0,15), (0,16),
+        (0,17), (0,18), (0,19), (0,20), (0,21), (0,22), (0,23);
+        update dailyhours set DayNumber = 1 where HourNumber <= HOUR(NOW());
+        ';
+        $this->DoQuery($temp);
+
         $Query = 'SELECT
-        CONCAT(\'ساعت \', HourNumber) as HourNumber,
-        COUNT(DISTINCT CLIENT_TRACK) as TotalVisits
-        FROM
-        (
+        CONCAT(\'ساعت \', A.HourNumber % 24) as HourNumber,
+        IFNULL(TotalVisits,0) as TotalVisits FROM
+        dailyhours A left outer join (
             SELECT
-            HOUR(`Submit`) AS HourNumber,
-            CLIENT_TRACK
-            FROM `Visits`
-            WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -23 HOUR) -- Limit for 1 days
-        ) as AliasOfFirstSelect
-        GROUP BY
-        HourNumber
-        order by (HourNumber % (HOUR(Now())+1))';
+            HourNumber,
+            COUNT(*) as TotalVisits
+            FROM
+            (
+                SELECT
+                distinct CLIENT_TRACK,
+                HOUR(`Submit`) AS HourNumber
+                FROM `Visits`
+                WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -23 HOUR) -- Limit for 1 days
+            ) as AliasOfFirstSelect
+            GROUP BY
+            HourNumber
+        ) B on B.HourNumber = A.HourNumber
+        order by A.DayNumber ASC, A.HourNumber ASC
+        ';
         $Result = $this->DoSelect($Query);
         return $Result;
+
     }
 
     function GroupedVisitCount() {
         $Query = 'SELECT
         CONCAT(\'هفته \', WeekNumber) as WeekNumber,
-        COUNT(DISTINCT CLIENT_TRACK) as TotalVisits
+        COUNT(*) as TotalVisits
         FROM
         (
             SELECT
-            YEARWEEK( `Submit`) AS WeekNumber,
-            CLIENT_TRACK
+            distinct CLIENT_TRACK,
+            YEARWEEK( `Submit`) AS WeekNumber
             FROM `Visits`
             WHERE `Submit` > DATE_ADD(NOW(), INTERVAL -90 DAY) -- Limit for three monthes
         ) as AliasOfFirstSelect
