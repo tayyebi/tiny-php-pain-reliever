@@ -140,12 +140,14 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [X] Statistics -> Weekly Visit Count: Change lables to week date
 - [X] Statistics -> Weekly Visit Count: Show unique users visits
 - [ ] Statistics -> Daily Visit Count: View a special hour requests in details
-- [ ] Statistics -> Each post growth diagrams
+- [ ] Home/View -> Each post growth diagrams
+- [ ] Statistics -> Each referrer growth diagrams
 - [ ] Add `interface` and `implements` for repeating functions in models
 - [ ] Statistics -> Search Engine Bots: https://www.webnots.com/user-agents-list-for-google-bing-baidu-and-yandex-search-engines/
 - [ ] Edit all Select * Queries
 - [ ] Debug and Track HTTP_CLIENT_IP
 - [ ] Captcha for public post submit Home/Submit
+- [ ] Rules
 
 # Developers
 <https://github.com/Pressz/Sariab-V2/graphs/contributors>

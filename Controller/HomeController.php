@@ -153,6 +153,24 @@ echo '
         $this->Render('Roadmap', $Data);
     }
 
+    function RulesGET()
+    {
+        // Read the file
+        $filename = "docs/rules/public.txt";
+        $publicrules = fopen($filename, "r") or die("فایل قوانین پیدا نشد!");
+        $rules = str_repeat("       ",5) . "[ " . _Root . $filename . " ]" . str_repeat("\n",5);
+        $rules .= fread($publicrules,filesize($filename));
+        fclose($publicrules);
+
+        // Render the view
+        $Data = [
+            'Title' => 'قوانین ساریاب',
+            'Rules' => $rules
+        ];
+
+        $this->Render('Rules', $Data);
+    }
+
     function SubmitGET()
     {
         $Data = [

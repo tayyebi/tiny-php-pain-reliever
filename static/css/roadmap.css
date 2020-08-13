@@ -101,6 +101,9 @@
     position: relative;
     border-radius: 6px;
 }
+.content img {
+    width: 100% !important;
+}
 
 .abstract {
     margin-top: 1em;

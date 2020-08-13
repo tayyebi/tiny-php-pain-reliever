@@ -76,13 +76,14 @@
 <main class="container background-white color-dark">
 <!--VIEW_CONTENT-->
 <div class="cookie-container background-dark color-white">
-<p class="cookie-p ">
+<p class="cookie-p">
 we care about your data, and we'd use cookies only to improve your experience</br>
-ما از کوکی ها برای بهبود کیفیت خدمات استفاده می‌کنیم
+ما همچنین از کوکی‌ها برای بهبود کیفیت خدمات استفاده می‌کنیم
 </p>
     <button class="cookie-btn background-gold">
-        قبول
+        قوانین را قبول دارم
     </button>
+    <a class="cookie-btn background-gold color-dark" target="_blank" href="<?php _Root ?>Home/Rules">مرور قوانین</a>
 </div>
 </main>
 
@@ -96,7 +97,7 @@ if ('serviceWorker' in navigator) {
 }
 //Cookies Use 
 const cookieContainer =document.querySelector(".cookie-container");
-const cookieButton=document.querySelector(".cookie-btn");
+const cookieButton=document.querySelector("button.cookie-btn");
 cookieButton.addEventListener("click",()=>{
     cookieContainer.classList.remove("active");
     localStorage.setItem("cookieBannerDisplaye","true")
