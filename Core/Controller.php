@@ -9,7 +9,7 @@ class Controller {
 
     protected $ViewDirectory;
 
-        /**
+    /**
      * __construct
      *
      * Responsible for statistics
@@ -239,61 +239,54 @@ class Controller {
     /**
      * CheckAuth
      *
-     * Renders the view
-     * 
-     * @param  mixed $Cookies
-     * @param  mixed $Data
+     * Checks the auth
      *
      * @return void
      */
-    function CheckAuth($Cookies, $LoginRequired = true)
+    function CheckAuth()
     {
-        if ($LoginRequired)
-        {
-
-            // Read the passwords file
-            $Lines = array();
-            if ($file = fopen(".htpasswd", "r")) {
-                while(!feof($file)) {
-                    array_push($Lines,fgets($file));
-                }
-                fclose($file);
+        // Read the passwords file
+        $Lines = array();
+        if ($file = fopen(".htpasswd", "r")) {
+            while(!feof($file)) {
+                array_push($Lines,fgets($file));
             }
-
-            // Break to lines to two dimensional array
-            $Credits = array_map(function($val) {
-                if ($val)
-                    return explode(':', $val);
-            }, $Lines);
-            
-            // Check if pasword is sent
-            if (!isset($_SERVER['PHP_AUTH_USER'])) {
-                a:
-                throw new UnauthException();
-            } else {
-                // Check passwords
-                foreach ($Credits as $Credit)
-                {                   
-                    // Check username
-                    if ($_SERVER['PHP_AUTH_USER'] != $Credit[0])
-                        continue;
-
-                    // Check plaintext password against an APR1-MD5 hash
-                    $plain_text_passwd = $_SERVER['PHP_AUTH_PW'];
-                    $check_result = APR1_MD5::check($plain_text_passwd, rtrim($Credit[1]));
-
-                    // If not correct
-                    if (!$check_result)
-                        throw new UnauthException();
-
-                    // If correct
-                    return true;
-                    
-                }
-                // If failed
-                goto a;
-            }
-
+            fclose($file);
         }
+
+        // Break to lines to two dimensional array
+        $Credits = array_map(function($val) {
+            if ($val)
+                return explode(':', $val);
+        }, $Lines);
+        
+        // Check if pasword is sent
+        if (!isset($_SERVER['PHP_AUTH_USER'])) {
+            a:
+            throw new UnauthException();
+        } else {
+            // Check passwords
+            foreach ($Credits as $Credit)
+            {                   
+                // Check username
+                if ($_SERVER['PHP_AUTH_USER'] != $Credit[0])
+                    continue;
+
+                // Check plaintext password against an APR1-MD5 hash
+                $plain_text_passwd = $_SERVER['PHP_AUTH_PW'];
+                $check_result = APR1_MD5::check($plain_text_passwd, rtrim($Credit[1]));
+
+                // If not correct
+                if (!$check_result)
+                    throw new UnauthException();
+
+                // If correct
+                return true;
+                
+            }
+            // If failed
+            goto a;
+        }
+
     }
 }

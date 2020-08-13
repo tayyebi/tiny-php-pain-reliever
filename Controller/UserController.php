@@ -15,7 +15,7 @@ class UserController extends Controller {
      * @return void
      */
     function LogoutGET() {
-        $this->CheckAuth($_COOKIE); // Check login
+        $this->CheckAuth(); // Check login
 
         throw new UnauthException();
         

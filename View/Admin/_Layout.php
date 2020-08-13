@@ -145,13 +145,60 @@
     <script src="<?php echo _Root ?>static/js/jquery.slim.js"></script>
     <!-- Bootstrap Core JS -->
     <script src="<?php echo _Root ?>static/js/bootstrap.js"></script>
-    <!-- SummerNote Editor -->
-    <link href="<?php echo _Root ?>static/summernote/summernote.min.css" rel="stylesheet">
-    <script src="<?php echo _Root ?>static/summernote/summernote.min.js"></script>
+    <!-- Quill Editor -->
+    <link href="<?php echo _Root ?>static/quill/quill.snow.1-3-6.css" rel="stylesheet">
+    <script src="<?php echo _Root ?>static/quill/quill.min.1-3-6.js"></script>
+    <script src="<?php echo _Root ?>static/quill/quill-textarea.js"></script>
     <script>
     $(document).ready(function() {
-      $('.html-editor').summernote();
+      // METHOD 1
+      // var editor = new Quill('.html-editor'); // for divs
+
+      // METHOD 2
+      var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+
+        [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+
+        ['clean'],                                         // remove formatting button
+
+        ['image']
+      ];
+
+
+      (function() {
+        quilljs_textarea('.html-editor', {
+            modules: {
+              toolbar: {
+                  container: toolbarOptions,
+                  handlers: {
+                      image: function imageHandler() {
+                          var range = this.quill.getSelection();
+                          var value = prompt('What is the image URL');
+                          if(value){
+                              this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+                          }
+                      }
+                  }
+              }
+            },
+            theme: 'snow',
+            });
+        })();
     });
+    
     </script>
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

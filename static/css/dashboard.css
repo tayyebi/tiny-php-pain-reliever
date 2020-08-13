@@ -103,3 +103,7 @@ Functionality Items
     overflow-y:auto;
 }
 
+.html-editor, .html-editor * {
+  text-align: left;
+  direction: ltr !important;
+}

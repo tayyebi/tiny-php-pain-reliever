@@ -16,7 +16,7 @@ class AdminController extends Controller {
      */
     function IndexGET() {
 
-        $this->CheckAuth($_COOKIE); // Check login
+        $this->CheckAuth(); // Check login
 
         $Data = [
             'Title' => 'پنل مدیر',
@@ -48,7 +48,7 @@ class AdminController extends Controller {
         // If specific user track was requested
         if (isset($CLIENT_TRACK))
         {
-            $this->CheckAuth($_COOKIE); // Check login
+            $this->CheckAuth(); // Check login
 
             // Get user story by cookie
             $Rows = $Model->UserStory([
@@ -94,7 +94,7 @@ class AdminController extends Controller {
      * 
      */
     function FilesGET() {
-        $this->CheckAuth($_COOKIE); // Check login
+        $this->CheckAuth(); // Check login
 
         define('FM_EMBED', true);
         define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
@@ -109,7 +109,7 @@ class AdminController extends Controller {
      * 
      */
     function FilesPOST() {
-        $this->CheckAuth($_COOKIE); // Check login
+        $this->CheckAuth(); // Check login
 
         define('FM_EMBED', true);
         define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
@@ -126,7 +126,7 @@ class AdminController extends Controller {
      */
     function ItemsGET($table = "Post", $Id = null) {
 
-        $this->CheckAuth($_COOKIE); // Check login
+        $this->CheckAuth(); // Check login
 
         // ========== Ask database for data
         $Model = $this->CallModel($table);
@@ -220,7 +220,7 @@ class AdminController extends Controller {
                     switch ($type){
                         case "longtext":
                             $form .= "<label for='" . $row["Field"] . "'>" . $row["Field"] . "</label>";
-                            $form .= "<textarea class=\"form-control html-editor\" type='text' name='" . $row["Field"] . "' >" . $values[$row["Field"]] . "</textarea>";
+                            $form .= "<textarea class=\"html-editor\" type='text' name='" . $row["Field"] . "' >" . $values[$row["Field"]] . "</textarea>";
                             break;
                         case "text":
                         case "varchar":
@@ -304,7 +304,7 @@ class AdminController extends Controller {
      * 
      */
     function ItemsPOST($table = "Post", $Id = null) {
-        $this->CheckAuth($_COOKIE); // Check login
+        $this->CheckAuth(); // Check login
 
         // ========== Ask database for data
         $Model = $this->CallModel($table, false);
@@ -498,7 +498,7 @@ class AdminController extends Controller {
      */
     function ServerGET() {
 
-        $this->CheckAuth($_COOKIE); // Check login
+        $this->CheckAuth(); // Check login
 
         // Ask database for data
 

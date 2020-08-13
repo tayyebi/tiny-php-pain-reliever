@@ -36,7 +36,7 @@
             </form>
         </div>
         <div class="contribute-links">
-            <a class="profile-edit-btn background-dark color-white border-radius" href="http://kouy.ir/sariabcontent">ارسال مطلب یا دیدگاه</a>
+            <a class="profile-edit-btn background-dark color-white border-radius" href="<?php echo _Root ?>Home/Submit">ارسال مطلب</a>
             <a class="profile-edit-btn background-dark color-white border-radius" href="<?php echo _Root ?>Home/Positions">همکاری با ما</a>
         </div>
         <div class="social-button">
@@ -87,6 +87,7 @@ we care about your data, and we'd use cookies only to improve your experience</b
 </main>
 
 <script>
+// PWA
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('<?php echo _Root ?>static/js/service-worker.js').then(function(reg){
     }).catch(function(err) {

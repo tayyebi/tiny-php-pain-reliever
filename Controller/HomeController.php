@@ -155,13 +155,29 @@ echo '
 
     function SubmitGET()
     {
-        $this->Render('Submit');
+        $Data = [
+            'Title' => 'ارسال محتوا برای ساریاب'
+        ];
+
+        $this->Render('Submit', $Data);
     }
 
 
     function SubmitPOST()
     {
+        $Model = $this->CallModel('Post');
+        $Model->SubmitPost([
+            'Title' => $_POST['Title'],
+            'Publisher' => $_POST['Publisher'],
+            'Abstract' => $_POST['Abstract'],
+            'Canonical' => $_POST['Canonical'],
+        ]);
 
+        $Data = [
+            'Title' => 'ارسال محتوا برای ساریاب',
+            'Message' => 'محتوا با موفقیت ثبت شد و در انتظار تایید تحریریه است! از شما ممنونیم.'
+        ];
+        $this->Render('Submit', $Data);
     }
 
 

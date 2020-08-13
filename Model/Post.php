@@ -25,6 +25,14 @@ class Post extends Model{
         return $this->DoSelect($Query, $Values);
     }
 
+    function SubmitPost($Values) {
+        $Query = "INSERT INTO `Posts`
+        (`Publisher`, `Title`, `Canonical`, `Abstract`, `IsExternalWriter`, `IsVerified`, `Submit`, `Meta`)
+        VALUES (:Publisher, :Title, :Canonical, :Abstract, b'1', b'0', NOW(), '' );
+        ";
+        $this->DoQuery($Query, $Values);
+    }
+
     // === Based on a pattern ===
     function DescribeTable() {
         return $this->DoSelect("DESCRIBE `Posts`");
