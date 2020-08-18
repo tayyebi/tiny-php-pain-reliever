@@ -41,7 +41,7 @@ class HomeController extends Controller {
 
         $Title = _AppName;
         $Link = _Root;
-        $Description = ''; // TODO: Description
+        $Description = 'Sariab RSS Feed.'; // TODO: Description
 
         header("Content-type: text/xml");
         echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
@@ -54,9 +54,9 @@ class HomeController extends Controller {
 
         for ($i = 0 ; $i < count($Rows) ; $i++)
         {
-            $item_title = $Rows[$i]['Title'];
+            $item_title = htmlspecialchars( $Rows[$i]['Title']);
             $item_link = _Root . 'Home/View/' . $Rows[$i]['Id'];
-            $item_abstract = $Rows[$i]['Abstract'];
+            $item_abstract = htmlspecialchars($Rows[$i]['Abstract']);
 
 
             echo "<item>
