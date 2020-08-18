@@ -55,14 +55,15 @@ class HomeController extends Controller {
         for ($i = 0 ; $i < count($Rows) ; $i++)
         {
             $item_title = htmlspecialchars( $Rows[$i]['Title']);
-            $item_link = _Root . 'Home/View/' . $Rows[$i]['Id'];
+            $item_link = _Root . 'Home/Redirect/' . $Rows[$i]['Id'];
             $item_abstract = htmlspecialchars($Rows[$i]['Abstract']);
-
+            $pub_date = $pubDate= date("D, d M Y H:i:s T", strtotime($Rows[$i]['Submit']));;
 
             echo "<item>
     <title>$item_title</title>
     <link>$item_link</link>
     <description>$item_abstract</description>
+    <pubDate>$pub_date</pubDate>
 </item>
 ";
         }
