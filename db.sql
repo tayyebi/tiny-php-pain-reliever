@@ -482,3 +482,6 @@ ALTER TABLE `Posts` ADD `IsExternalWriter` BIT(1) NOT NULL DEFAULT b'0' AFTER `P
 ALTER TABLE `Roads` ADD `IsVisibleOnHomePage` BIT(1) NOT NULL DEFAULT b'0' AFTER `Abstract`;
 ALTER TABLE `Posts` ADD `IsVerified` BIT(1) NOT NULL DEFAULT b'0' AFTER `IsExternalWriter`;
 update Posts set `IsVerified` = 1
+
+
+ALTER TABLE `Supports` ADD `About` LONGTEXT NOT NULL AFTER `Url`;

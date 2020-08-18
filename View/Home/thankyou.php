@@ -6,6 +6,7 @@ foreach ($Data['Model'] as $item) {
 <div class="item background-dark color-white border-radius">
     <a class="" href="<?php echo $item['Url'] ?>">🔗</a>
     <h3><?php echo $item['Name'] ?></h3>
+    <p><?php echo $item['About'] ?></p>
 </div>
 <?php
 }
