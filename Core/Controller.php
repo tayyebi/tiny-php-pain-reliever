@@ -19,6 +19,17 @@ class Controller {
      */
     function __construct() {
 
+        // If php_auth_user is denied on server and
+        // RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+        // is enabled in .htaccess
+        // then manualy set the auth info
+        
+        if (isset($_SERVER['HTTP_AUTHORIZATION'])
+            and $_SERVER['HTTP_AUTHORIZATION'] != '')
+            list($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) = 
+                explode(':', base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+
+
         // If system was configured to disable statistics
         if (!_Statistics)
             return;

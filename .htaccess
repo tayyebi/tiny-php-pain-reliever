@@ -8,6 +8,9 @@
 # Enable URLs rewrite
 RewriteEngine On
 
+# Enable authentication
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
 # Former urls must be still available for search engines
 RewriteCond %{THE_REQUEST} \s/+view\.php\?id=([0-9]+)\s [NC]
 # Redirect with QueryStringDiscard Flag
