@@ -2,16 +2,6 @@
 
 class HomeController extends Controller {
 
-    function FakeGET($a = '', $b = '', $c= '', $d= '') {
-        var_dump($a);
-        echo '<br/>';
-        var_dump($b);
-        echo '<br/>';
-        var_dump($c);
-        echo '<br/>';
-        var_dump($d);
-    }
-
     function IndexGET($search_query = '') {
 
         $PostModel = $this->CallModel("Post");
