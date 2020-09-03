@@ -28,7 +28,7 @@
             گردآوری و اشتراک دانش و تجربه؛ و ایجاد انگیزه.</span>
         </div>
         <div class="searchbox-container">
-            <form class="searchbox" method="GET" action="index.php" >
+            <form class="searchbox" method="GET" action="<?php echo _Root . 'Home/Index' ?>" >
                 <input class="search-txt color-white border-radius background-gold" type="text" name="q" placeholder="جستجو...">
                 <button type="submit" class="border-rounded search-btn background-dark color-white" >
                     <i class="fa fa-search" aria-hidden="true"></i>

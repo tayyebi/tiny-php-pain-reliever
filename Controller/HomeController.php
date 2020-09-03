@@ -2,12 +2,12 @@
 
 class HomeController extends Controller {
 
-    function IndexGET($search_query = '') {
+    function IndexGET($q = '') {
 
         $PostModel = $this->CallModel("Post");
         // TODO: From, to, limitation
         $Posts = $PostModel->GetHome([
-            'q'=> $search_query
+            'q'=> $q
         ]);
         
         $PodcastModel = $this->CallModel("Podcast");

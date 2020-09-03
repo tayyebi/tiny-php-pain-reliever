@@ -47,11 +47,13 @@ class App {
         $Output = explode('/', $PathInfo);
 
         // Add other query strings to  the last parameter
-        $b = strpos($ActualLink, $PathInfo);
+        if ($PathInfo == '')
+            return $Output;
+
         $LeftOver = substr($ActualLink,
         strpos($ActualLink, $PathInfo) + strlen($PathInfo));
         if ($LeftOver != '')
-            array_push($Output, $LeftOver);
+            array_push($Output, urldecode($LeftOver));
 
         // return
         return $Output;
@@ -159,19 +161,18 @@ class App {
         {   
             $MethodDefinedParamters = $this->GetUserFunctionArgumentNames([$ClassObject, $ControllerMethod]);
             $sizeofPassedParams = sizeof($this->Params);
-            if (sizeof($MethodDefinedParamters) != $sizeofPassedParams)
-            {
 
-                // Use path_info instead of 'overloaded query string' parameters
-                //          Controller/Action/Param1Value/?Param2=Param2Value
-                //          index.php/Controller/Action/Param1Value/?Param2=Param2Value
-                //          index.php?/Controller/Action/Param1Value/?Param2=Param2Value
-                // In the three examples above, the Param2 is overloaded querystring
-                // Which it will be replaced by function paramter name for simpler
-                // programming of plugins and third-party software
+            // Use path_info instead of 'overloaded query string' parameters
+            //          Controller/Action/Param1Value/?Param2=Param2Value
+            //          index.php/Controller/Action/Param1Value/?Param2=Param2Value
+            //          index.php?/Controller/Action/Param1Value/?Param2=Param2Value
+            // In the three examples above, the Param2 is overloaded querystring
+            // Which it will be replaced by function paramter name for simpler
+            // programming of plugins and third-party software
 
-                // Check if there is a 'overloaded query string' included
-                // Logic: the last paramter must contain a question mark (?)
+            // Check if there is a 'overloaded query string' included
+            // Logic: the last paramter must contain a question mark (?)
+            if ($sizeofPassedParams > 0)
                 if (strpos($this->Params[$sizeofPassedParams - 1], '?') !== false)
                 {
 
@@ -265,7 +266,6 @@ class App {
                         }
                     }
                 }
-            }
 
             // Call the view
             call_user_func_array([$ClassObject, $ControllerMethod], $this->Params);
