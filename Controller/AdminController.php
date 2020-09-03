@@ -93,9 +93,16 @@ class AdminController extends Controller {
      * 
      * 
      */
-    function FilesGET() {
+    function FilesGET(/* $p = '', $dl = '', $view = '' */) {
         $this->CheckAuth(); // Check login
 
+        /*
+        $_GET['p'] = $p;
+        if ($view != '')
+            $_GET['view'] = $view;
+        if ($dl != '')
+            $_GET['dl'] = $dl;*/
+        
         define('FM_EMBED', true);
         define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
         require 'Libs/filemanager-master/filemanager.php';

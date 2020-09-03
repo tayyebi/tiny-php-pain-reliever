@@ -24,12 +24,15 @@ class App {
      */
     function  GetPathInfo(){
         
+        $ActualLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        // $ParsedUrl = parse_url($ActualLink);
+
         // Use path info if exists
         // index.php/value1/value2
         if (isset($_SERVER['PATH_INFO']))
-		$PathInfo = trim(
-		    $_SERVER['PATH_INFO']
-		    , '/');
+            $PathInfo = trim(
+                $_SERVER['PATH_INFO']
+                , '/');
         // Use query string if exists
         // index.php?/value1/value2
         else if (isset($_SERVER['QUERY_STRING']))
@@ -41,7 +44,17 @@ class App {
             return [];
         
         // convert to array and return
-        return explode('/', $PathInfo);
+        $Output = explode('/', $PathInfo);
+
+        // Add other query strings to  the last parameter
+        $b = strpos($ActualLink, $PathInfo);
+        $LeftOver = substr($ActualLink,
+        strpos($ActualLink, $PathInfo) + strlen($PathInfo));
+        if ($LeftOver != '')
+            array_push($Output, $LeftOver);
+
+        // return
+        return $Output;
     }
 
 
@@ -72,6 +85,26 @@ class App {
                 throw new Exception($Message);
                 die();
         }
+    }
+
+    /**
+     * GetUserFunctionArgumentNames
+     * 
+     * Gets attributes/paramters/arguments names
+     * of a function in runtime dynamically.
+     * 
+     * 
+     */
+    function GetUserFunctionArgumentNames($pair){
+        $ReflectClass = new ReflectionClass($pair[0]);
+        $ReflectMethod = $ReflectClass->getMethod($pair[1]);
+        $Paramters = $ReflectMethod->getParameters();
+        $ParamterNames = array();
+        foreach($Paramters as $Paramter)
+        {
+            array_push($ParamterNames, $Paramter->getName());
+        }
+        return $ParamterNames;
     }
 
     /**
@@ -122,11 +155,122 @@ class App {
         // Call the method if exists
         if (!method_exists($ClassObject, $ControllerMethod))
             $this->ThowError(404);
-        try {
+        try
+        {   
+            $MethodDefinedParamters = $this->GetUserFunctionArgumentNames([$ClassObject, $ControllerMethod]);
+            $sizeofPassedParams = sizeof($this->Params);
+            if (sizeof($MethodDefinedParamters) != $sizeofPassedParams)
+            {
+
+                // Use path_info instead of 'overloaded query string' parameters
+                //          Controller/Action/Param1Value/?Param2=Param2Value
+                //          index.php/Controller/Action/Param1Value/?Param2=Param2Value
+                //          index.php?/Controller/Action/Param1Value/?Param2=Param2Value
+                // In the three examples above, the Param2 is overloaded querystring
+                // Which it will be replaced by function paramter name for simpler
+                // programming of plugins and third-party software
+
+                // Check if there is a 'overloaded query string' included
+                // Logic: the last paramter must contain a question mark (?)
+                if (strpos($this->Params[$sizeofPassedParams - 1], '?') !== false)
+                {
+
+                    // Parse overloaded query strings
+                    $KeyValuePairs = explode( '&' , // Delimiter
+                        substr($this->Params[$sizeofPassedParams -1]   // string
+                            ,strpos(
+                                $this->Params[$sizeofPassedParams - 1]
+                                , '?'   // Begining of query string
+                                ) + 1   // start position
+                            )   // key pairs
+                    );  // key pairs array
+
+                    // Clear the last paramter value from overloaded
+                    // query strings with substring
+                    $this->Params[$sizeofPassedParams - 1] =
+                    substr($this->Params[$sizeofPassedParams - 1], 0,
+                    strpos($this->Params[$sizeofPassedParams - 1], '?'));
+                    // replace '/' with ''
+                    $this->Params[$sizeofPassedParams - 1] =
+                    str_replace('/', '', $this->Params[$sizeofPassedParams - 1]);
+
+                    $i = 0;
+                    foreach ($MethodDefinedParamters as $MethodDefinedParamter)
+                    {
+                        $i++; // loop counter
+                        // Skip previously defined values of
+                        // method paramters from passed parameters
+                        if ($i < $sizeofPassedParams)
+                        {
+                            // if (strpos($KeyValuePairs[$i], '=') === false)
+                            continue;
+                        }
+                        // then decied for other paramters
+                        // and set their values from query strings
+                        // NOTE: OVERLOADED QUERY STRING VALUES
+                        // WHICH ARE PASSED BEFORE AS PATH_INFO
+                        // WILL NOT BE REPLACED.
+                        
+                        $found = false;
+                        foreach ($KeyValuePairs as $KeyValue)
+                        {
+                            // If it's a valid keyval pair
+                            // Logic: string contains equal mark (=)
+                            if (strpos($KeyValue, '=') !== false)
+                            {
+                                if (explode('=', $KeyValue)[0] == $MethodDefinedParamter)
+                                {
+                                    $found = true;
+                                    // Add the value to paramters
+                                    $this->Params[$i-1] = explode('=', $KeyValue)[1];
+                                }
+                            }
+                        }
+                        if (!$found)
+                        {
+                            $this->Params[$i-1] = '';
+                        }
+                    }
+                    // If overloaded query string was passed
+                    // but not mentioned as a function argument
+                    // load it as $_GET.
+
+                    foreach ($KeyValuePairs as $KeyValue)
+                    {
+                        $found = false;
+                        foreach ($MethodDefinedParamters as $MethodDefinedParamter)
+                        {
+                            if (strpos($KeyValue, '=') !== false)
+                            {
+                                if (explode('=', $KeyValue)[0] == $MethodDefinedParamter)
+                                    $found = true;
+                            }
+                            else
+                            {
+                                if ($KeyValue == $MethodDefinedParamter)
+                                    $found = true;
+                            }
+
+                        }
+                        if (!$found)
+                        {
+                            if (strpos($KeyValue, '=') !== false)
+                            {
+                                $_GET[explode('=', $KeyValue)[0]] = explode('=', $KeyValue)[1];
+                            }
+                            else
+                            {
+                                $_GET[$KeyValue] = 'true';
+                            }
+                        }
+                    }
+                }
+            }
+
             // Call the view
             call_user_func_array([$ClassObject, $ControllerMethod], $this->Params);
-	}
-    catch (AuthException $exp ){ // On auth error
+        }
+        catch (AuthException $exp ){ // On auth error
             $this->ThowError(403);
         } catch (NotFoundException $exp ){ // on not found error
             $this->ThowError(404);
@@ -134,5 +278,4 @@ class App {
             $this->ThowError(401);
         }
     }
-
 }

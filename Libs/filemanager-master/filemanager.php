@@ -19,7 +19,7 @@ $use_highlightjs = true;
 $highlightjs_style = 'vs';
 
 // Default timezone for date() and time() - http://php.net/manual/en/timezones.php
-$default_timezone = 'Europe/Minsk'; // UTC+3
+$default_timezone = 'Asia/Tehran'; // UTC+3
 
 // Root path for file manager
 // $root_path = $_SERVER['DOCUMENT_ROOT'];
