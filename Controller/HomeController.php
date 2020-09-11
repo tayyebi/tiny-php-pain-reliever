@@ -88,9 +88,7 @@ echo '
         $this->Render('thankyou', $Data);
     }
 
-
-
-    function PositionsGET($search_query = '') {
+    function PositionsGET() {
 
         $Model = $this->CallModel("Position");
         $Supports = $Model->GetActive();
@@ -199,6 +197,19 @@ echo '
         $this->Render('Submit', $Data);
     }
 
+    function BlogGET()
+    {
+        $Model = $this->CallModel("Proclamation");
+        $Proclamations = $Model->GetBlog();
+
+        $Data = [
+            "Title" => _AppName . ' بلاگ',
+            "Model" => $Proclamations
+        ];
+        
+        $this->Render('Blog', $Data);
+
+    }
 
 
 }

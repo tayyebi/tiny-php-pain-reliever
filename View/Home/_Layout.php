@@ -68,6 +68,10 @@
                 <span class="background-dark color-white border-radius">خوراک</span>
                 <i class="fa fa-rss"></i>
             </a>
+            <a href="<?php echo _Root ?>Home/Blog"class="border-rounded icon blog background-dark color-white">
+                <span class="background-dark color-white border-radius">بلاگ</span>
+                <i class="fa fa-blog"></i>
+            </a>
         </div>
     </div>
     <!-- End of profile section -->

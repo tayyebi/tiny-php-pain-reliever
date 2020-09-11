@@ -485,3 +485,12 @@ update Posts set `IsVerified` = 1
 
 
 ALTER TABLE `Supports` ADD `About` LONGTEXT NOT NULL AFTER `Url`;
+
+
+CREATE TABLE `Proclamations` (
+ `Id` int NOT NULL AUTO_INCREMENT,
+ `Title` varchar(3000) NOT NULL,
+ `Submit` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ `Body` longtext NOT NULL,
+ PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1

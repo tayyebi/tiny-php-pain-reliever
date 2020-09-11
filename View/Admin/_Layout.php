@@ -127,6 +127,12 @@
                   Positions
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Proclamation">
+                  <span data-feather="file"></span>
+                  Proclamations
+                </a>
+              </li>
             </ul>
 
           </div>
