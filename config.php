@@ -17,8 +17,8 @@ define('_UploadDirectory', 'download/');
 
 // Database
 define('_DatabaseServer', "localhost");
-define('_DatabaseName', "sariab");
+define('_DatabaseName', "sariab_data");
 define('_DatabaseUsername', "root");
-define('_DatabasePassword', "123");
+define('_DatabasePassword', "");
 
 ?>
