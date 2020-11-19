@@ -37,7 +37,8 @@
         </div>
         <div class="contribute-links">
             <a class="profile-edit-btn background-dark color-white border-radius" href="<?php echo _Root ?>Home/Submit">ارسال مطلب</a>
-            <a class="profile-edit-btn background-dark color-white border-radius" href="<?php echo _Root ?>Home/Positions">همکاری با ما</a>
+            <a class="profile-edit-btn background-dark color-white border-radius" href="<?php echo _Root ?>Home/Positions">عضویت ساریاب</a>
+            <a class="profile-edit-btn background-gold color-dark border-radius shine" href="https://zarinp.al/@tayyebi">حمایت از ساریاب</a>
         </div>
         <div class="social-button">
             <a href="https://instagram.com/sariabbloggers" class="border-rounded icon insta background-dark color-white">

@@ -127,7 +127,7 @@ a:hover {
 /* contribute links bar*/
 
 .contribute-links {
-    padding: 5em;
+    padding: 2.5em;
 }
 
 
@@ -139,7 +139,7 @@ a:hover {
     position: relative;
     width: 45px;
     height: 45px;
-    margin: 2px 8px;
+    margin: 1px 4px;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.5s;
