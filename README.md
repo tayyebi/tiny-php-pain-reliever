@@ -117,7 +117,7 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [X] SEARCH AND CATEGORIES POSTS
 - [X] CREATE A TRACKING INFRASTRUCTURE
 - [X] CREATE AN INTERNAL STATISTICS INFRASTRUCTURE (LINKS VISIT COUNT, PAGES VISIT COUNT, NETWORK TRAFIC USAGE, BROWSERS STATISTICS, COUNTRIES STATISTICS, PAGES HEATMAP)
-- [ ] CREATE A DONATE PAGE
+- [ ] PAYMENT INFRASTRUCTURE
 - [ ] COOKIE BASED RECOMMENDATION
 - [ ] UPLOAD IMAGES FOR POSTS
 - [ ] UPLOAD IMAGES FOR ROADMAPS
@@ -148,7 +148,23 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [ ] Edit all Select * Queries
 - [ ] Debug and Track HTTP_CLIENT_IP
 - [ ] Captcha for public post submit Home/Submit
-- [ ] Rules
+- [X] Rules
+
+## Project TODO List V1.0.0.0
+
+- [ ] Previous and next posts navigating from Roadmap and simillar posts in alternative
+- [ ] Authentication with Gordafarid
+- [ ] Badge infrastructure
+- [ ] Badges vitrine
+- [ ] Profile page
+- [ ] Forms CRUD for admins
+- [ ] Forum start topic
+- [ ] Forum Topics Page
+- [ ] Forum topic details
+- [ ] Forum topics reply
+- [ ] Forum posts vote up/down
+- [ ] Gordafarid wordpress plugin for mag
+- [ ] Feeback (and links reporting) box ready on whole website
 
 # Developers
 <https://github.com/Pressz/Sariab-V2/graphs/contributors>
