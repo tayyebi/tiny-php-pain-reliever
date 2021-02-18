@@ -1,17 +1,66 @@
 <!-- Roadmaps -->
-<h1 class="h1" >همراه شما در <b>مسیر</b> آرزو‌ها</h1>
-<ul class="roads">
+<div class=" roads slideshow-container">
 <?php
-foreach ($Data['Models']['Roads'] as $item) {
+for ($i = 0 ; $i < count($Data['Models']['Roads']) ; $i ++ ) {
+$item = $Data['Models']['Roads'][$i]
 ?>
-<li class="background-gold border-radius">
-    <a href="<?php echo _Root . 'Home/Roadmap/' . $item['Id']?>"
-    ><?php echo $item['Title']?></a>
-</li>
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <a href="<?php echo _Root . 'Home/Roadmap/' . $item['Id']?>">
+        <div class="numbertext"><?php echo $i + 1 ?> از <?php echo count($Data['Models']['Roads']) ?></div>
+        <img src="<?php echo $item['ImageUrl'] ?>" style="width:100%">
+        <div class="text">
+            <?php echo $item['Title']?>
+        </div>
+    </a>
+   </div>
 <?php
 }
 ?>
-</ul>
+  <!-- Next and previous buttons -->
+  <span class="prev" onclick="plusSlides(-1)">&#10094;</span>
+  <span class="next" onclick="plusSlides(1)">&#10095;</span>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+<?php for ($i = 0 ; $i < count($Data['Models']['Roads']) ; $i ++ ) { ?>
+  <span class="dot" onclick="currentSlide(<?php echo $i + 1 ?>)"></span>
+<?php } ?>
+</div>
+
+<!-- JavaScript -->
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
 <!-- End of Roadmaps -->
 
 <!-- Podcast -->
@@ -20,25 +69,29 @@ foreach ($Data['Models']['Podcasts'] as $item) {
 ?>
 <h1 class="h1" ><b>بشنوید:</b> <?php echo $item['Title'] ?></h1>
 <div class="background-dark color-white podcast border-radius">
-<h2><?php echo $item['PublishDate'] ?></h2>
-<audio controls preload="metadata" >
-    <!-- <source src="myfile.ogg" type="audio/ogg"> -->
-    <source src="<?php echo $item['FileUrl'] ?>" type="audio/mpeg">
-    مرورگر شما از پخش کننده‌ی صدا پشتیبانی نمی‌کند/
-    <a href="<?php echo $item['FileUrl'] ?>">
-    دانلود
-    </a>
-</audio>
+    <audio controls preload="metadata" >
+        <!-- <source src="myfile.ogg" type="audio/ogg"> -->
+        <source src="<?php echo $item['FileUrl'] ?>" type="audio/mpeg">
+        مرورگر شما از پخش کننده‌ی صدا پشتیبانی نمی‌کند
+        <a href="<?php echo $item['FileUrl'] ?>">
+        دانلود
+        </a>
+    </audio>
+    <h2><?php echo $item['PublishDate'] ?></h2>
+    <span><a href="https://vrgl.ir/DwyG8" target="_blank">دنبال کردن پادکست در برنامه‌های مورد علاقه‌ی شما! (کلیک کنید)</a></span>
+</div>
 <?php
 }
 ?>
-</div>
 <!-- End of Podcast -->
 
 <!-- Hub -->
-<h1 class="h1" ><b>هاب</b> تازه‌ها؛ صفحه <?php echo $Data['PostsPage'] ?></h1>
-<a href="<?php echo _Root . 'Home/Index/*/' . ($Data['PostsPage'] + 1) ?>#Hub">صفحه بعد</a>
-<a href="<?php echo _Root . 'Home/Index/*/' . ($Data['PostsPage'] - 1) ?>#Hub">صفحه قبل</a>
+<h1 class="h1" >تازه‌ها؛ صفحه <?php echo $Data['PostsPage'] ?></h1>
+<div class="hub-controls">
+    <a href="<?php echo _Root . 'Home/Index/*/' . ($Data['PostsPage'] - 1) ?>#Hub">صفحه قبل</a>
+    | <a href="<?php echo _Root . 'Home/Index/*/' . ($Data['PostsPage'] + 1) ?>#Hub">صفحه بعد</a>
+    | <a href="<?php echo _Root ?>Home/RSS">خوراک</a>
+</div>
 <?php
 if (count($Data['Models']['Posts']) == 0) {
 ?>
@@ -54,12 +107,14 @@ else
     {
 ?>
     <li>
-        <a href="<?php echo _Root . 'Home/Redirect/' . $item['Id'] ?>">
+        <a href="<?php echo _Root . 'Home/Redirect/' . $item['Id'] ?>" class="color-dark">
             <h2><?php echo $item['Title'] ?></h2>
         </a>
         <p>
-            <?php echo $item['IsExternalWriter'] ? '<span title="نویسنده‌ی غیر رسمی">❗</span>' : $item['Publisher'] ?>
+            <?php echo $item['IsExternalWriter'] ? '<i class="fas fa-exclamation-circle tooltip"><span class="tooltiptext"> نویسنده غیر رسمی</span></i>' : $item['Publisher'] ?>
             | <?php echo time_elapsed_string($item['Submit']) ?>
+            | <?php echo parse_url($item['Canonical'], PHP_URL_HOST) ?>
+            | <a class="color-dark" href="<?php echo _Root . 'Home/View/' . $item['Id'] ?>">خلاصه</a>
         </p>
         <?php /*
         <p><?php

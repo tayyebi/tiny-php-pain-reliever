@@ -7,8 +7,8 @@ class HomeController extends Controller {
         if ($q == '*')
             $q = '';
 
-        if (!is_numeric($page))
-            $page = 1;
+        if (!is_numeric($page) || $page < 1)
+            $this->RedirectResponse(_Root . 'Home');
 
         $PostModel = $this->CallModel("Post");
         $Posts = $PostModel->GetHome(
@@ -40,11 +40,12 @@ class HomeController extends Controller {
     }
 
     function RssGET($search_query = '') {
+
         $Model = $this->CallModel("Post");
         // TODO: From, to, limitation
         $Rows = $Model->GetHome([
             'q'=> $search_query
-        ]);
+        ], 1);
 
         $Title = _AppName;
         $Link = _Root;
@@ -177,10 +178,10 @@ echo '
         $this->Render('Rules', $Data);
     }
 
-    function SubmitGET()
+    function SubmitGET($Auth = false)
     {
         $ExternalWriter = null;
-        $CheckAuth = $this->CheckAuth(false);
+        $CheckAuth = $this->CheckAuth($Auth);
         if ($CheckAuth
             and isset($CheckAuth['submit_post'])
             and $CheckAuth['submit_post']

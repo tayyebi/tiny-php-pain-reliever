@@ -494,3 +494,5 @@ CREATE TABLE `Proclamations` (
  `Body` longtext NOT NULL,
  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+ALTER TABLE `Roads` ADD `ImageUrl` VARCHAR(3000) NULL AFTER `IsVisibleOnHomePage`;

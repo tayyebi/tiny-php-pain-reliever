@@ -19,6 +19,8 @@
    <div class="form-group"><label for="Publisher">نشر دهنده</label><input class="form-control" type="text" name="Publisher" value="" ></div>
    <?php } ?>
    <input name="insert" type="submit" value="ارسال" class="background-gold">
+   <a href="<?php echo _Root . 'Home/Positions' ?>">نویسنده‌ی رسمی ساریاب شوید</a> |
+   <a href="<?php echo _Root . 'Home/Submit/true' ?>">نویسنده‌ی رسمی هستید؟</a>
 </form>
 
 <?php

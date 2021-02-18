@@ -65,13 +65,13 @@
                 <span class="background-dark color-white border-radius">قدردانی</span>
                 <i class="fa fa-heart"></i>
             </a>
-            <a href="<?php echo _Root ?>Home/RSS"class="border-rounded icon rss background-dark color-white">
-                <span class="background-dark color-white border-radius">خوراک</span>
-                <i class="fa fa-rss"></i>
-            </a>
             <a href="<?php echo _Root ?>Home/Blog"class="border-rounded icon blog background-dark color-white">
                 <span class="background-dark color-white border-radius">بلاگ</span>
                 <i class="fa fa-blog"></i>
+            </a>
+            <a href="https://virgool.io/sariab"class="border-rounded icon mag background-dark color-white">
+                <span class="background-dark color-white border-radius">مجله</span>
+                <i class="fa fa-book"></i>
             </a>
         </div>
     </div>
