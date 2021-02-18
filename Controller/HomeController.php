@@ -2,13 +2,19 @@
 
 class HomeController extends Controller {
 
-    function IndexGET($q = '') {
+    function IndexGET($q = '', $page = 1) {
+
+        if ($q == '*')
+            $q = '';
+
+        if (!is_numeric($page))
+            $page = 1;
 
         $PostModel = $this->CallModel("Post");
-        // TODO: From, to, limitation
-        $Posts = $PostModel->GetHome([
-            'q'=> $q
-        ]);
+        $Posts = $PostModel->GetHome(
+            ['q'=> $q],
+            $page
+        );
         
         $PodcastModel = $this->CallModel("Podcast");
         $Podcasts = $PodcastModel->GetHome();
@@ -26,7 +32,8 @@ class HomeController extends Controller {
                 'Podcasts'=> $Podcasts,
                 'Keywords' => $Keywords,
                 'Roads'=> $Roads,
-            ]
+            ],
+            'PostsPage' => $page
         ];
         
         $this->Render('Index', $Data);

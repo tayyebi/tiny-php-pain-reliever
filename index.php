@@ -20,9 +20,10 @@ include('Core/Exceptions.php');
 include('Core/Model.php');
 
 // Libs
-include('Libs/lib.php');
+include('Libs/string.php');
 include('Libs/fagd.php');
 include('Libs/apr1.php');
+include('Libs/time.php');
 
 // Controllers core
 include('Core/Controller.php');

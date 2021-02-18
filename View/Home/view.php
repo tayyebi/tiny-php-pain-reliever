@@ -41,7 +41,7 @@
         <?php if (isset($Data['RoadId'])) { ?>
         href="<?php echo _Root ?>Home/Roadmap/<?php echo $Data['RoadId'] ?>#post_<?php echo $Data['Model']['Id'] ?>"
         <?php } else { ?>
-        href="<?php echo _Root ?>Home/Index/#Posts"
+        href="<?php echo _Root ?>Home/Index/#Hub"
         <?php } ?>
         >✖
         </a>
