@@ -172,8 +172,17 @@ echo '
 
     function SubmitGET()
     {
+        $ExternalWriter = null;
+        $CheckAuth = $this->CheckAuth(false);
+        if ($CheckAuth
+            and isset($CheckAuth['submit_post'])
+            and $CheckAuth['submit_post']
+            ) // Check permission to send post as verified author
+            $ExternalWriter = $CheckAuth['human'];
+
         $Data = [
-            'Title' => 'ارسال محتوا برای ساریاب'
+            'Title' => 'ارسال محتوا برای ساریاب',
+            'ExternalWriter' => $ExternalWriter
         ];
 
         $this->Render('Submit', $Data);
@@ -183,11 +192,31 @@ echo '
     function SubmitPOST()
     {
         $Model = $this->CallModel('Post');
+
+        $IsExternalWriter = true;
+        $CheckAuth = $this->CheckAuth(false);
+        if (
+            $CheckAuth
+            and isset($CheckAuth['submit_post'])
+            and $CheckAuth['submit_post']
+        ) // Check permission to send post as verified author
+        {
+            $Publisher = '@' . $CheckAuth['human'];
+            $IsExternalWriter = false;
+        }
+        else
+        {
+            $_POST['Publisher'] = preg_replace('/[^A-Za-zابپتثجچحخدذرزسشصضطذعقفقکلمنوهی0-9_ ]/', '', $_POST['Publisher']);
+        }
+
+        
+
         $Model->SubmitPost([
             'Title' => $_POST['Title'],
-            'Publisher' => $_POST['Publisher'],
+            'Publisher' => $IsExternalWriter ? $_POST['Publisher'] : $Publisher,
             'Abstract' => $_POST['Abstract'],
             'Canonical' => $_POST['Canonical'],
+            'IsExternalWriter' => $IsExternalWriter
         ]);
 
         $Data = [

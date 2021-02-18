@@ -28,7 +28,7 @@ class Post extends Model{
     function SubmitPost($Values) {
         $Query = "INSERT INTO `Posts`
         (`Publisher`, `Title`, `Canonical`, `Abstract`, `IsExternalWriter`, `IsVerified`, `Submit`, `Meta`)
-        VALUES (:Publisher, :Title, :Canonical, :Abstract, b'1', b'0', NOW(), '' );
+        VALUES (:Publisher, :Title, :Canonical, :Abstract, :IsExternalWriter, b'0', NOW(), '' );
         ";
         $this->DoQuery($Query, $Values);
     }

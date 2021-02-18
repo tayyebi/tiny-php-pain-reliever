@@ -16,7 +16,8 @@ class AdminController extends Controller {
      */
     function IndexGET() {
 
-        $this->CheckAuth(); // Check login
+        if (!$this->CheckAuth()['dashboard']) // Check permission
+            throw new AuthException();
 
         $Data = [
             'Title' => 'پنل مدیر',
@@ -48,7 +49,8 @@ class AdminController extends Controller {
         // If specific user track was requested
         if (isset($CLIENT_TRACK))
         {
-            $this->CheckAuth(); // Check login
+            if (!$this->CheckAuth()['statistics']) // Check permission
+                throw new AuthException();
 
             // Get user story by cookie
             $Rows = $Model->UserStory([
@@ -94,7 +96,8 @@ class AdminController extends Controller {
      * 
      */
     function FilesGET() {
-        $this->CheckAuth(); // Check login
+        if (!$this->CheckAuth()['file_manager']) // Check permission
+            throw new AuthException();
         
         define('FM_EMBED', true);
         define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
@@ -109,7 +112,8 @@ class AdminController extends Controller {
      * 
      */
     function FilesPOST() {
-        $this->CheckAuth(); // Check login
+        if (!$this->CheckAuth()['file_manager']) // Check permission
+            throw new AuthException();
 
         define('FM_EMBED', true);
         define('FM_SELF_URL', _Root . 'Admin/Files/'); // must be set if URL to manager not equal PHP_SELF
@@ -126,7 +130,8 @@ class AdminController extends Controller {
      */
     function ItemsGET($table = "Post", $Id = null) {
 
-        $this->CheckAuth(); // Check login
+        if (!$this->CheckAuth()['items_'.strtolower($table)]) // Check permission
+            throw new AuthException();
 
         // ========== Ask database for data
         $Model = $this->CallModel($table);
@@ -274,7 +279,7 @@ class AdminController extends Controller {
             {
                 $form .= "<input name='update' type='submit' value='Update' class='btn btn-warning btn-sm m-4'>";
                 $form .= "<input name='delete' type='submit' value='Delete' class='btn btn-danger btn-sm m-4'>";
-                $form .= "<a href=\"admin.php?id=crud\" class='btn btn-default pink darken-1 btn-sm m-4'>Cancel</a>";
+                $form .= "<a href=\"../$table\" class='btn btn-default pink darken-1 btn-sm m-4'>Cancel</a>";
                 $form .= "</form>";                
                 $form .= "</div></div></div></div>";                
             }
@@ -304,7 +309,8 @@ class AdminController extends Controller {
      * 
      */
     function ItemsPOST($table = "Post", $Id = null) {
-        $this->CheckAuth(); // Check login
+        if (!$this->CheckAuth()['items_'.strtolower($table)]) // Check permission
+            throw new AuthException();
 
         // ========== Ask database for data
         $Model = $this->CallModel($table, false);
@@ -315,6 +321,7 @@ class AdminController extends Controller {
         {
             case "Post2":
             case "Post3":
+            case "Post4":
                 $table_id = "Id";
                 $table_plural = "Posts";
                 break;
@@ -498,7 +505,8 @@ class AdminController extends Controller {
      */
     function ServerGET() {
 
-        $this->CheckAuth(); // Check login
+        if (!$this->CheckAuth()['server_resources']) // Check permission
+            throw new AuthException();
 
         // Ask database for data
 

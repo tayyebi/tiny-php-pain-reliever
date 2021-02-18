@@ -254,7 +254,7 @@ class Controller {
      *
      * @return void
      */
-    function CheckAuth()
+    function CheckAuth($ThrowExceptionAndForceLogin = true)
     {
         // Read the passwords file
         $Lines = array();
@@ -274,7 +274,10 @@ class Controller {
         // Check if pasword is sent
         if (!isset($_SERVER['PHP_AUTH_USER'])) {
             a:
-            throw new UnauthException();
+            if ($ThrowExceptionAndForceLogin)
+                throw new UnauthException();
+            else
+                return false;
         } else {
             // Check passwords
             foreach ($Credits as $Credit)
@@ -289,12 +292,23 @@ class Controller {
 
                 // If not correct
                 if (!$check_result)
-                    throw new UnauthException();
+                    goto a;
 
-                // If correct
-                return true;
+                $csv = array_map("str_getcsv", file(".auth",FILE_SKIP_EMPTY_LINES));
+                $keys = array_shift($csv);
+                foreach ($csv as $i=>$row) {
+                    $csv[$i] = array_combine($keys, $row);
+                    if ($csv[$i]['human'] == $Credit[0])
+                    {
+                        // login correct and permissions found
+                        return $csv[$i];
+                    }
+                }
                 
+                // login was correct but no permission defined
+                return true;
             }
+
             // If failed
             goto a;
         }
