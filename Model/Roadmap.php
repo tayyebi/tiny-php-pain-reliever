@@ -2,6 +2,38 @@
 
 class Roadmap extends Model{
 
+    function GetLeadLagItemIds($Values)
+    {
+        $Query = 'SELECT \'Location\', \'PostId\'
+        
+        UNION
+
+        SELECT * FROM (SELECT \'Previous\', `PostId` FROM Roadmaps
+        WHERE RoadId = :RoadId
+        AND PostId <> :PostId
+        AND `Priority` < (
+            SELECT `Priority` FRom Roadmaps
+            WHERE RoadId = :RoadId
+            AND PostId = :PostId
+        )
+        ORDER BY `Priority` DESC LIMIT 1) SELECT1
+
+        UNION
+
+        SELECT * FROM (SELECT \'Next\', `PostId` FROM Roadmaps
+        WHERE RoadId = :RoadId
+        AND PostId <> :PostId
+        AND `Priority` > (
+            SELECT `Priority` FRom Roadmaps
+            WHERE RoadId = :RoadId
+            AND PostId = :PostId
+        )
+        ORDER BY `Priority` ASC LIMIT 1) SELECT2
+        ';
+
+        return $this->DoSelect($Query, $Values);
+    }
+
     function GetPostsByRoadId($Values) {
 
         $Query = 'SELECT

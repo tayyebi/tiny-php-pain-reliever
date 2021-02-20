@@ -135,6 +135,23 @@ echo '
             "RoadId" => $RoadId,
             "Model" => $Rows[0]
         ];
+
+        if ($RoadId != null)
+        {
+            $RoadMapModel = $this->CallModel('Roadmap');
+            $LeadLagItems = $RoadMapModel->GetLeadLagItemIds([
+                'RoadId' => $RoadId,
+                'PostId' => $Id
+            ]);
+            
+            foreach ($LeadLagItems as $LeadOrLag)
+            {
+                if ($LeadOrLag['Location'] == 'Next')
+                    $Data['Navigation']['Next'] = $LeadOrLag['PostId'];
+                else  if ($LeadOrLag['Location'] == 'Previous')
+                    $Data['Navigation']['Previous'] = $LeadOrLag['PostId'];
+            }
+        }
         
         $this->Render('view', $Data, true);
     }

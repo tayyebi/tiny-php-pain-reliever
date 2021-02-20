@@ -41,7 +41,7 @@
         <?php if (isset($Data['RoadId'])) { ?>
         href="<?php echo _Root ?>Home/Roadmap/<?php echo $Data['RoadId'] ?>#post_<?php echo $Data['Model']['Id'] ?>"
         <?php } else { ?>
-        href="<?php echo _Root ?>Home/Index/#Hub"
+        href="<?php echo _Root ?>Home/Index#Hub"
         <?php } ?>
         >✖
         </a>
@@ -58,10 +58,26 @@
         <p class="blog-post__text"><?php echo $Data['Model']['Abstract'] ?></p>
         <span><?php echo $Data['Model']['Publisher'] ?></span>
           <span><?php echo $Data['Model']['Submit'] ?></span>
+
+        <?php if (isset($Data['Navigation']['Previous'])) { ?>
+        <a class="border-radius background-gold color-dark button-medium"
+        href="<?php echo _Root . 'Home/View/' .  $Data['Navigation']['Previous'] . '/' . $Data['RoadId'] ?>">
+        قبلی
+        </a>
+        <?php } ?>
+
+
         <a class="border-radius background-gold color-dark button-medium" target="_blank"
         href="<?php echo _Root . 'Home/Redirect/' .  $Data['Model']['Id'] ?>">
         مطالعه پست
         </a>
+
+        <?php if (isset($Data['Navigation']['Next'])) { ?>
+        <a class="border-radius background-gold color-dark button-medium"
+        href="<?php echo _Root . 'Home/View/' .  $Data['Navigation']['Next'] . '/' . $Data['RoadId'] ?>">
+        بعدی
+        </a>
+        <?php } ?>
     </div>
     <!-- End Post Description -->
     <!-- End View Page Post -->
