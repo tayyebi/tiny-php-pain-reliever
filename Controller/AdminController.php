@@ -27,7 +27,87 @@ class AdminController extends Controller {
 
     }
 
+    /**
+     * TrustChainGET
+     *
+     * Trust Chain Manager
+     * 
+     * @return void
+     */
+    function TrustChainGET() {
 
+        $TrustChainModel= $this->CallModel("TrustChain");
+        $TrustChain = $TrustChainModel->GetItems();
+
+        $LagHash = 'IHN';
+        $Verified = true;
+        for ($i = 0 ; $i < count($TrustChain) ; $i ++)
+        {
+            if (!$Verified)
+            {
+                $TrustChain[$i]['Recalculated'] =    
+                $TrustChain[$i]['Verified'] =    
+                $TrustChain[$i]['Hash'] = 'err';
+
+                continue;
+            }
+
+            $TrustChain[$i]['Recalculated'] =
+                md5($LagHash.'#'.$TrustChain[$i]['Value']);
+
+            $LagHash = $TrustChain[$i]['Hash'];
+            $Verified = $TrustChain[$i]['Recalculated'] == $TrustChain[$i]['Hash'];
+
+            $TrustChain[$i]['Verified'] = $Verified ? 'true' : 'false';
+        }
+
+        // reverse the array
+        $TrustChain = array_reverse($TrustChain);
+
+        $Data = [
+            'Add' => false,
+            'Title' => 'زنجیره‌ی اعتماد',
+            'Model' => $TrustChain
+        ];
+
+        $this->Render('trustchain', $Data);
+    }
+    
+    /**
+     * TrustChainPOST
+     *
+     * Inserts new items in the block
+     * 
+     * @return void
+     */
+    function TrustChainPOST() {
+
+        if (!$this->CheckAuth()['trustchainadd']) // Check permission
+            throw new AuthException();
+
+        $TrustChainModel = $this->CallModel("TrustChain");
+
+        $LagHash = count($TrustChainModel->GetLastHash()) > 0 ? $TrustChainModel->GetLastHash()[0]['Hash'] : 'IHN'; // InHisName
+
+        $Value = $_POST['Value'];
+        $Value = StringFunctions::remove_all_non_alpha_numeric($Value);
+        $Value = date("Y-m-d H:i:s") . '> ' . $Value;
+
+        $Values = [
+            'Value' => $Value,
+            'Hash' => md5($LagHash.'#'.$Value)
+        ];
+
+        $TrustChain = $TrustChainModel->InsertItem($Values);
+        
+        $Data = [
+            'Add' => true,
+            'Title' => 'بلوک جدید اضافه شد',
+            'Model' => $TrustChain[1]
+        ];
+
+        $this->Render('trustchain', $Data);
+    }
 
 
     /**

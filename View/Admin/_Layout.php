@@ -48,6 +48,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="<?php echo _Root ?>Admin/TrustChain">
+                  <span data-feather="link"></span>
+                  Trust Chain
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Statistics">
                   <span data-feather="pie-chart"></span>
                   Statistics

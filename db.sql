@@ -496,3 +496,10 @@ CREATE TABLE `Proclamations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 ALTER TABLE `Roads` ADD `ImageUrl` VARCHAR(3000) NULL AFTER `IsVisibleOnHomePage`;
+
+CREATE TABLE `TrustChain` (
+ `Id` bigint unsigned NOT NULL AUTO_INCREMENT,
+ `Value` varchar(300) NOT NULL,
+ `Hash` varchar(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+ PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1

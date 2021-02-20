@@ -91,6 +91,7 @@ foreach ($Data['Models']['Podcasts'] as $item) {
     <a href="<?php echo _Root . 'Home/Index/*/' . ($Data['PostsPage'] - 1) ?>#Hub">صفحه قبل</a>
     | <a href="<?php echo _Root . 'Home/Index/*/' . ($Data['PostsPage'] + 1) ?>#Hub">صفحه بعد</a>
     | <a href="<?php echo _Root ?>Home/RSS">خوراک</a>
+    | <a class="profile-edit-btn background-dark color-white border-radius" href="<?php echo _Root ?>Home/Submit">ارسال مطلب</a>
 </div>
 <?php
 if (count($Data['Models']['Posts']) == 0) {
@@ -115,6 +116,9 @@ else
             | <?php echo time_elapsed_string($item['Submit']) ?>
             | <?php echo parse_url($item['Canonical'], PHP_URL_HOST) ?>
             | <a class="color-dark" href="<?php echo _Root . 'Home/View/' . $item['Id'] ?>">خلاصه</a>
+            <?php foreach (explode(',', $item['Meta']) as $tag) { ?>
+            | <a class="color-dark background-gold border-radius" href="<?php echo _Root . 'Home/Index/' . $tag ?>"><?php echo $tag ?></a>
+            <?php } ?>
         </p>
         <?php /*
         <p><?php

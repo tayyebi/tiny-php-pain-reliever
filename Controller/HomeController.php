@@ -214,7 +214,7 @@ echo '
         }
         else
         {
-            $_POST['Publisher'] = preg_replace('/[^A-Za-zابپتثجچحخدذرزسشصضطذعقفقکلمنوهی0-9_ ]/', '', $_POST['Publisher']);
+            $_POST['Publisher'] = StringFunctions::remove_all_non_alpha_numeric($_POST['Publisher']);
         }
 
         
