@@ -265,6 +265,72 @@ echo '
 
     }
 
+    function FeedbackGET($Type = '', $Details = '') {
+
+        if ($Type == 'Post' && $Details != '')
+        {
+            $PostModel = $this->CallModel("Post");
+
+            $Rows = $PostModel->GetVerifiedItemByIdentifier([
+                'Id' => $Details
+            ]);
+
+            if (count($Rows) > 0)
+            {
+                $Row = $Rows[0];
+
+                $PostTitle = $Row['Title'];
+
+                $Data = [
+                    'Title' => 'ثبت گزارش برای «' . $PostTitle . '»',
+                    'FeedbackTitle' => 'ثبت گزارش برای «' . $PostTitle . '»',
+                    'FeedbackMeta' => $Type.'#'.$Details,
+                    'FeedbackUrl' => _Root
+                ];
+            }
+
+            // If post was removed or was private
+            else
+            {
+                $Data = [
+                    'Title' => 'ثبت بازخورد در مورد پست حذف شده',
+                    'FeedbackTitle' => 'ثبت گزارش برای پست ناشناس',
+                    'FeedbackMeta' => $Type.'#'.$Details,
+                    'FeedbackUrl' => _Root
+                ];
+            }
+        }
+        else
+        {
+            $Data = [
+                'Title' => 'ثبت بازخورد جدید',
+                'FeedbackUrl' => _Root
+            ];
+        }
+
+        $this->Render('Feedback', $Data);
+    }
+
+    function FeedbackPOST() {
+
+        $Model = $this->CallModel("Feedback");
+
+        $Model->FeedbackInsert([
+            'Status' => $_POST['Status'],
+            'Contact' => $_POST['Contact'],
+            'Message' => $_POST['Message'],
+            'Url' => $_POST['Url'],
+            'Meta' => $_POST['Meta']
+        ]);
+
+        $Data = [
+            'Title' => 'بازخورد ثبت شد',
+            'Message' => 'ممنونیم!',
+            'FeedbackUrl' => $_POST['Url']
+        ];
+
+        $this->Render('Feedback', $Data);
+    }
 
 }
 

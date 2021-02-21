@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="<?php echo _Root ?>static/css/submit.css">
-
 <form
    class="submit-form"
    method="post">
@@ -22,22 +20,3 @@
    <a href="<?php echo _Root . 'Home/Positions' ?>">نویسنده‌ی رسمی ساریاب شوید</a> |
    <a href="<?php echo _Root . 'Home/Submit/true' ?>">نویسنده‌ی رسمی هستید؟</a>
 </form>
-
-<?php
-if (isset($Data['Message']) )
-{
-?>
-<div id="snackbar" class="show"><?php echo $Data['Message'] ?></div>
-<script>
-// Get the snackbar DIV
-var x = document.getElementById("snackbar");
-
-// Add the "show" class to DIV
-// x.className = "show";
-
-// After 3 seconds, remove the show class from DIV
-setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-</script>
-<?php
-}
-?>

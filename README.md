@@ -106,6 +106,9 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 1. Tell us your notes
 1. Your commits will be merged after review by developers of master branch
 
+## Bugs list
+- [ ] Search bug
+
 ## Project TODO list
 
 - [X] GUI AND DATABASE UPDATES BASED ON NEW WIREFRAME (DOWNLOAD [> WIREFRAME.PDF](docs/prototype/Wireframe.pdf))
@@ -117,16 +120,16 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [X] SEARCH AND CATEGORIES POSTS
 - [X] CREATE A TRACKING INFRASTRUCTURE
 - [X] CREATE AN INTERNAL STATISTICS INFRASTRUCTURE (LINKS VISIT COUNT, PAGES VISIT COUNT, NETWORK TRAFIC USAGE, BROWSERS STATISTICS, COUNTRIES STATISTICS, PAGES HEATMAP)
-- [ ] PAYMENT INFRASTRUCTURE
+- [X] PAYMENT INFRASTRUCTURE
 - [ ] COOKIE BASED RECOMMENDATION
 - [ ] UPLOAD IMAGES FOR POSTS
-- [ ] UPLOAD IMAGES FOR ROADMAPS
-- [ ] DRAG AND DROP POST DESIGN IN DIFFERENT SIZES AND DOWNLOADABLE OUTPUTS (FOR SOCIAL NETWORKS FEED, STORIES, ...)
+- [ ] TYPOGRAPHIC IMAGE GENERATOR FOR POSTS WITHOUT IMAGE
+- [X] UPLOAD IMAGES FOR ROADMAPS
 - [ ] ALLOW USERS TO BOOKMARK POSTS USING COOKIES
 - [x] FLASH CARD BEHAVIOR ON A HOMEPAGE POST HOVER
 - [ ] POP-UP WINDOW ON HOMEPAGE POST CLICK ('PARTIAL VIEW' OF 'VIEW PAGE')
 - [X] CREATE A ROADMAP FEATURE WHICH ALLOWS PEOPLE TO FOLLOW POSTS FOR A GOAL
-- [ ] LAZY LOAD THE CONTENT ON FIRST PAGE
+- [X] LAZY LOAD THE CONTENT ON FIRST PAGE
 - [ ] PAGINATION ON ADMIN PANEL DATA TABLES
 - [X] FILE UPLOADER
 - [X] RSS
@@ -149,6 +152,8 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [ ] Debug and Track HTTP_CLIENT_IP
 - [ ] Captcha for public post submit Home/Submit
 - [X] Rules
+- [X] Feeback (and links reporting) box ready on whole website
+- [ ] LINK *VIEW* PAGE FEEDBACK
 
 ## Project TODO List V1.0.0.0
 
@@ -164,7 +169,6 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [ ] Forum topics reply
 - [ ] Forum posts vote up/down
 - [ ] Gordafarid wordpress plugin for mag
-- [ ] Feeback (and links reporting) box ready on whole website
 
 # Developers
 <https://github.com/Pressz/Sariab-V2/graphs/contributors>

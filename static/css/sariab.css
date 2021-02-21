@@ -91,6 +91,60 @@
 }
 
 
+/* Form */
+
+
+/* Form */
+
+
+.submit-form {
+    width: 85%;
+    max-width: 600px;
+    padding: 30px 40px;
+    border-radius: 8px;
+    text-align: center;
+    margin: auto;
+}
+
+.submit-form h1 {
+    margin: 0 auto;
+}
+
+.submit-form {
+    border: 1px solid gray;
+}
+
+.submit-form label {
+    display: block;
+    text-align: right;
+    color: #333;
+    margin-top: 6px;
+    font-size: 1.5em;
+}
+
+.submit-form input,
+.submit-form textarea {
+    width: 100%;
+    border: 1px solid gray;
+    font-size: 1.2em;
+    margin-top: 6px;
+    padding: .5em;
+}
+
+.submit-btn {
+    display: block;
+    padding: 12px 0;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 100%;
+    font-size: 1.5em;
+}
+
+.radio-group label, .radio-group input{
+    display: inline-block;
+    text-align: center;
+    font-size: 30px;
+}
 
 
 /* Scrolbar */
@@ -114,14 +168,6 @@
     background-color: #FFF;
     background-image: -webkit-gradient(linear, 40% 0%, 75% 84%, from(#4D9C41), to(#19911D), color-stop(.6, #54DE5D))
 }
-
-
-
-
-
-
-
-
 
 
 /* Shine */

@@ -21,14 +21,14 @@
     <meta property="og:url" content="<?php echo _Root ?>">
     <meta property="og:title" content="<?php echo strip_tags($Data['Model']['Title']) ?>">
     <meta property="og:description" content="<?php echo strip_tags($Data['Model']['Abstract']) ?>">
-    <meta property="og:image" content="http://sariab.ir/image-generator.php?id=<?php echo $Data['Model']['Id'] ?>">
+    <!-- <meta property="og:image" content="http://sariab.ir/image-generator.php?id=<?php echo $Data['Model']['Id'] ?>"> -->
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="<?php echo _Root ?>">
     <meta property="twitter:title" content="<?php echo strip_tags($Data['Model']['Title']) ?>">
     <meta property="twitter:description" content="<?php echo strip_tags($Data['Model']['Abstract']) ?>">
-    <meta property="twitter:image" content="http://sariab.ir/image-generator.php?id=<?php echo $Data['Model']['Id'] ?>">
+    <!-- <meta property="twitter:image" content="http://sariab.ir/image-generator.php?id=<?php echo $Data['Model']['Id'] ?>"> -->
 
 </head>
 <body>
@@ -70,6 +70,11 @@
         <a class="border-radius background-gold color-dark button-medium" target="_blank"
         href="<?php echo _Root . 'Home/Redirect/' .  $Data['Model']['Id'] ?>">
         مطالعه پست
+        </a>
+
+        <a class="border-radius background-gold color-dark button-medium" target="_blank"
+        href="<?php echo _Root . 'Home/Feedback/Post/' .  $Data['Model']['Id'] ?>">
+        گزارش خرابی لینک / محتوای مجرمانه / تغییر محتویات لینک
         </a>
 
         <?php if (isset($Data['Navigation']['Next'])) { ?>

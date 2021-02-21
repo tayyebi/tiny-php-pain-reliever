@@ -8,7 +8,7 @@ add:
 // End of Segmentation
 ?>
 <h1>افزودن بلوک جدید</h1>
-<form class="submit-form" method="post">
+<form method="post">
    <div class="form-group"><label for="Value">مقدار</label><input class="form-control" type="text" name="Value" value="" ></div>
    <input name="insert" type="submit" value="ارسال" class="btn btn-default background-gold">
 </form>

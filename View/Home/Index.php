@@ -108,12 +108,13 @@ else
     {
 ?>
     <li>
-        <a href="<?php echo _Root . 'Home/Redirect/' . $item['Id'] ?>" class="color-dark">
+        <a href="<?php echo _Root . 'Home/Redirect/' . $item['Id'] ?>" class="color-dark" target="_blank">
             <h2><?php echo $item['Title'] ?></h2>
         </a>
         <p>
             <?php echo $item['IsExternalWriter'] ? '<i class="fas fa-exclamation-circle tooltip"><span class="tooltiptext"> نویسنده غیر رسمی</span></i>' : $item['Publisher'] ?>
             | <?php echo time_elapsed_string($item['Submit']) ?>
+            | <a class="color-dark" href="<?php echo _Root . 'Home/Feedback/Post/' . $item['Id'] ?>">گزارش لینک</a>
             | <?php echo parse_url($item['Canonical'], PHP_URL_HOST) ?>
             | <a class="color-dark" href="<?php echo _Root . 'Home/View/' . $item['Id'] ?>">خلاصه</a>
             <?php foreach (explode(',', $item['Meta']) as $tag) { ?>

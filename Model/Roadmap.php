@@ -11,10 +11,15 @@ class Roadmap extends Model{
         SELECT * FROM (SELECT \'Previous\', `PostId` FROM Roadmaps
         WHERE RoadId = :RoadId
         AND PostId <> :PostId
-        AND `Priority` < (
-            SELECT `Priority` FRom Roadmaps
-            WHERE RoadId = :RoadId
-            AND PostId = :PostId
+        AND
+        (
+            `Priority` < ( SELECT `Priority` From Roadmaps WHERE RoadId = :RoadId AND PostId = :PostId )
+            OR
+            (
+                `Priority` = ( SELECT `Priority` From Roadmaps WHERE RoadId = :RoadId AND PostId = :PostId )
+                AND
+                PostId < PostId
+            )
         )
         ORDER BY `Priority` DESC LIMIT 1) SELECT1
 
@@ -23,10 +28,15 @@ class Roadmap extends Model{
         SELECT * FROM (SELECT \'Next\', `PostId` FROM Roadmaps
         WHERE RoadId = :RoadId
         AND PostId <> :PostId
-        AND `Priority` > (
-            SELECT `Priority` FRom Roadmaps
-            WHERE RoadId = :RoadId
-            AND PostId = :PostId
+        AND
+        (
+            `Priority` > ( SELECT `Priority` From Roadmaps WHERE RoadId = :RoadId AND PostId = :PostId )
+            OR
+            (
+                `Priority` = ( SELECT `Priority` From Roadmaps WHERE RoadId = :RoadId AND PostId = :PostId )
+                AND
+                PostId > PostId
+            )
         )
         ORDER BY `Priority` ASC LIMIT 1) SELECT2
         ';

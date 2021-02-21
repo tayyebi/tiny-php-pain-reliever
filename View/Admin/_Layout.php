@@ -105,6 +105,12 @@
                   Posts (External Writer, Unverified)
                 </a>
               </li>
+              <li>
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Feedback">
+                  <span data-feather="mail"></span>
+                  Feedbacks
+                </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Roadmap">
                   <span data-feather="file"></span>

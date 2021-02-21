@@ -24,7 +24,7 @@ class StringFunctions {
     static function remove_all_non_alpha_numeric($input)
     {
         return
-        preg_replace('/[^A-Za-zابپتثجچحخدذرزسشصضطذعقفقکلمنوهی0-9_ ۱۲۳۴۵۶۷۸۹۰]/', '', $input);
+        preg_replace('/[^A-Za-zآابپتثجچحخدذرزژسشصضطظعقفقکلمنوهی0-9_ ۱۲۳۴۵۶۷۸۹]/', '', $input);
     }
 }
 ?>
