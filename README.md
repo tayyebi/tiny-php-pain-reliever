@@ -154,6 +154,7 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 - [X] Rules
 - [X] Feeback (and links reporting) box ready on whole website
 - [ ] LINK *VIEW* PAGE FEEDBACK
+- [ ] LEADERBOARD BASED ON `PUBLISHERS` STARTING WITH `@`
 
 ## Project TODO List V1.0.0.0
 
