@@ -2,13 +2,19 @@
 
 class HomeController extends Controller {
 
-    function IndexGET($q = '') {
+    function IndexGET($q = '', $page = 1) {
+
+        if ($q == '*')
+            $q = '';
+
+        if (!is_numeric($page) || $page < 1)
+            $this->RedirectResponse(_Root . 'Home');
 
         $PostModel = $this->CallModel("Post");
-        // TODO: From, to, limitation
-        $Posts = $PostModel->GetHome([
-            'q'=> $q
-        ]);
+        $Posts = $PostModel->GetHome(
+            ['q'=> $q],
+            $page
+        );
         
         $PodcastModel = $this->CallModel("Podcast");
         $Podcasts = $PodcastModel->GetHome();
@@ -26,18 +32,20 @@ class HomeController extends Controller {
                 'Podcasts'=> $Podcasts,
                 'Keywords' => $Keywords,
                 'Roads'=> $Roads,
-            ]
+            ],
+            'PostsPage' => $page
         ];
         
         $this->Render('Index', $Data);
     }
 
     function RssGET($search_query = '') {
+
         $Model = $this->CallModel("Post");
         // TODO: From, to, limitation
         $Rows = $Model->GetHome([
             'q'=> $search_query
-        ]);
+        ], 1);
 
         $Title = _AppName;
         $Link = _Root;
@@ -127,6 +135,23 @@ echo '
             "RoadId" => $RoadId,
             "Model" => $Rows[0]
         ];
+
+        if ($RoadId != null)
+        {
+            $RoadMapModel = $this->CallModel('Roadmap');
+            $LeadLagItems = $RoadMapModel->GetLeadLagItemIds([
+                'RoadId' => $RoadId,
+                'PostId' => $Id
+            ]);
+            
+            foreach ($LeadLagItems as $LeadOrLag)
+            {
+                if ($LeadOrLag['Location'] == 'Next')
+                    $Data['Navigation']['Next'] = $LeadOrLag['PostId'];
+                else  if ($LeadOrLag['Location'] == 'Previous')
+                    $Data['Navigation']['Previous'] = $LeadOrLag['PostId'];
+            }
+        }
         
         $this->Render('view', $Data, true);
     }
@@ -170,10 +195,19 @@ echo '
         $this->Render('Rules', $Data);
     }
 
-    function SubmitGET()
+    function SubmitGET($Auth = false)
     {
+        $ExternalWriter = null;
+        $CheckAuth = $this->CheckAuth($Auth);
+        if ($CheckAuth
+            and isset($CheckAuth['submit_post'])
+            and $CheckAuth['submit_post']
+            ) // Check permission to send post as verified author
+            $ExternalWriter = $CheckAuth['human'];
+
         $Data = [
-            'Title' => 'ارسال محتوا برای ساریاب'
+            'Title' => 'ارسال محتوا برای ساریاب',
+            'ExternalWriter' => $ExternalWriter
         ];
 
         $this->Render('Submit', $Data);
@@ -183,11 +217,31 @@ echo '
     function SubmitPOST()
     {
         $Model = $this->CallModel('Post');
+
+        $IsExternalWriter = true;
+        $CheckAuth = $this->CheckAuth(false);
+        if (
+            $CheckAuth
+            and isset($CheckAuth['submit_post'])
+            and $CheckAuth['submit_post']
+        ) // Check permission to send post as verified author
+        {
+            $Publisher = '@' . $CheckAuth['human'];
+            $IsExternalWriter = false;
+        }
+        else
+        {
+            $_POST['Publisher'] = StringFunctions::remove_all_non_alpha_numeric($_POST['Publisher']);
+        }
+
+        
+
         $Model->SubmitPost([
             'Title' => $_POST['Title'],
-            'Publisher' => $_POST['Publisher'],
+            'Publisher' => $IsExternalWriter ? $_POST['Publisher'] : $Publisher,
             'Abstract' => $_POST['Abstract'],
             'Canonical' => $_POST['Canonical'],
+            'IsExternalWriter' => $IsExternalWriter
         ]);
 
         $Data = [
@@ -211,6 +265,72 @@ echo '
 
     }
 
+    function FeedbackGET($Type = '', $Details = '') {
+
+        if ($Type == 'Post' && $Details != '')
+        {
+            $PostModel = $this->CallModel("Post");
+
+            $Rows = $PostModel->GetVerifiedItemByIdentifier([
+                'Id' => $Details
+            ]);
+
+            if (count($Rows) > 0)
+            {
+                $Row = $Rows[0];
+
+                $PostTitle = $Row['Title'];
+
+                $Data = [
+                    'Title' => 'ثبت گزارش برای «' . $PostTitle . '»',
+                    'FeedbackTitle' => 'ثبت گزارش برای «' . $PostTitle . '»',
+                    'FeedbackMeta' => $Type.'#'.$Details,
+                    'FeedbackUrl' => _Root
+                ];
+            }
+
+            // If post was removed or was private
+            else
+            {
+                $Data = [
+                    'Title' => 'ثبت بازخورد در مورد پست حذف شده',
+                    'FeedbackTitle' => 'ثبت گزارش برای پست ناشناس',
+                    'FeedbackMeta' => $Type.'#'.$Details,
+                    'FeedbackUrl' => _Root
+                ];
+            }
+        }
+        else
+        {
+            $Data = [
+                'Title' => 'ثبت بازخورد جدید',
+                'FeedbackUrl' => _Root
+            ];
+        }
+
+        $this->Render('Feedback', $Data);
+    }
+
+    function FeedbackPOST() {
+
+        $Model = $this->CallModel("Feedback");
+
+        $Model->FeedbackInsert([
+            'Status' => $_POST['Status'],
+            'Contact' => $_POST['Contact'],
+            'Message' => $_POST['Message'],
+            'Url' => $_POST['Url'],
+            'Meta' => $_POST['Meta']
+        ]);
+
+        $Data = [
+            'Title' => 'بازخورد ثبت شد',
+            'Message' => 'ممنونیم!',
+            'FeedbackUrl' => $_POST['Url']
+        ];
+
+        $this->Render('Feedback', $Data);
+    }
 
 }
 

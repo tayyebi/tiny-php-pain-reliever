@@ -494,3 +494,16 @@ CREATE TABLE `Proclamations` (
  `Body` longtext NOT NULL,
  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+ALTER TABLE `Roads` ADD `ImageUrl` VARCHAR(3000) NULL AFTER `IsVisibleOnHomePage`;
+
+CREATE TABLE `TrustChain` (
+ `Id` bigint unsigned NOT NULL AUTO_INCREMENT,
+ `Value` varchar(300) NOT NULL,
+ `Hash` varchar(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+ PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
+
+CREATE TABLE `Feedbacks` ( `Id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `Url` VARCHAR(3000) NOT NULL , `Message` VARCHAR(3000) NULL , `Contact` VARCHAR(300) NULL , `Meta` VARCHAR(300) NULL , `Status` VARCHAR(50) NULL , PRIMARY KEY (`Id`)) ENGINE = InnoDB;
+ALTER TABLE `Feedbacks` ADD `Review` VARCHAR(3000) NOT NULL AFTER `Status`;
+ALTER TABLE `Feedbacks` CHANGE `Review` `Review` VARCHAR(3000) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'Not reviewed';

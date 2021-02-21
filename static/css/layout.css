@@ -50,6 +50,7 @@ a:hover {
     border: none;
     padding: 0;
     cursor: pointer;
+    z-index: 1;
 }
 
 .visually-hidden {
@@ -250,7 +251,7 @@ a:hover {
     padding: 0 32px;
     transition: 400ms;
     text-align: center;
-    z-index: 10;
+    z-index: 100;
 }
 
 .cookie-p {
@@ -270,4 +271,75 @@ a:hover {
     margin-bottom: 14px;
     border-radius: 8px;
     cursor: pointer;
+}
+
+
+/* Toast */
+
+/* https://www.w3schools.com/howto/howto_js_snackbar.asp */
+
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333; 
+    color: #fff;
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 101;
+    left: 50%;
+    bottom: 30px;
+}
+
+.toast.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+/* Floating button */
+
+/* https://codepen.io/Akrinu10/pen/vQJMVB */
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:15px;
+}
+
+/* Feedback */
+.feedback {
+    margin-top: 3em;
+    display: none;
 }

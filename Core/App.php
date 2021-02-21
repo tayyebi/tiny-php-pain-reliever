@@ -25,6 +25,7 @@ class App {
     function  GetPathInfo(){
         
         $ActualLink = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        define('_RequestUri', $ActualLink);
         // $ParsedUrl = parse_url($ActualLink);
 
         // Use path info if exists

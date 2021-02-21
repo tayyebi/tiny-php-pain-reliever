@@ -1,20 +1,23 @@
 <?php
 
 class Post extends Model{
-    function GetHome($Values) {
+    function GetHome($Values, $page) {
+        $MaxItems = 30;
+        $Offset = ($page - 1) * $MaxItems;
+
         $Query = "SELECT *
         FROM `Posts`
         WHERE
         (`Title` LIKE CONCAT('%', :q, '%')
         OR `Meta` LIKE CONCAT('%', :q, '%')
         OR :q LIKE '')
-        AND `IsExternalWriter` = 0
         AND `IsVerified` = 1
         ORDER BY `Submit` DESC
-        LIMIT 150";
+        LIMIT $Offset,$MaxItems";
 
         return $this->DoSelect($Query, $Values);
     }
+    
     function GetVerifiedItemByIdentifier($Values) {
         $Query = "SELECT *
         FROM `Posts`
@@ -28,7 +31,7 @@ class Post extends Model{
     function SubmitPost($Values) {
         $Query = "INSERT INTO `Posts`
         (`Publisher`, `Title`, `Canonical`, `Abstract`, `IsExternalWriter`, `IsVerified`, `Submit`, `Meta`)
-        VALUES (:Publisher, :Title, :Canonical, :Abstract, b'1', b'0', NOW(), '' );
+        VALUES (:Publisher, :Title, :Canonical, :Abstract, :IsExternalWriter, b'0', NOW(), '' );
         ";
         $this->DoQuery($Query, $Values);
     }

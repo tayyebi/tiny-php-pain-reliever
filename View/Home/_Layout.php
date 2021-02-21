@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?php echo _Root ?>static/css/layout.css">
     <link rel="stylesheet" href="<?php echo _Root ?>static/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.css">
-  
+    
 </head>
 <body>
 <header class="container background-white color-dark">
@@ -36,7 +36,6 @@
             </form>
         </div>
         <div class="contribute-links">
-            <a class="profile-edit-btn background-dark color-white border-radius" href="<?php echo _Root ?>Home/Submit">ارسال مطلب</a>
             <a class="profile-edit-btn background-dark color-white border-radius" href="<?php echo _Root ?>Home/Positions">عضویت ساریاب</a>
             <a class="profile-edit-btn background-gold color-dark border-radius shine" href="https://zarinp.al/@tayyebi">حمایت از ساریاب</a>
         </div>
@@ -65,13 +64,13 @@
                 <span class="background-dark color-white border-radius">قدردانی</span>
                 <i class="fa fa-heart"></i>
             </a>
-            <a href="<?php echo _Root ?>Home/RSS"class="border-rounded icon rss background-dark color-white">
-                <span class="background-dark color-white border-radius">خوراک</span>
-                <i class="fa fa-rss"></i>
-            </a>
             <a href="<?php echo _Root ?>Home/Blog"class="border-rounded icon blog background-dark color-white">
                 <span class="background-dark color-white border-radius">بلاگ</span>
                 <i class="fa fa-blog"></i>
+            </a>
+            <a href="https://virgool.io/sariab"class="border-rounded icon mag background-dark color-white">
+                <span class="background-dark color-white border-radius">مجله</span>
+                <i class="fa fa-book"></i>
             </a>
         </div>
     </div>
@@ -79,40 +78,61 @@
 </header>
 
 <main class="container background-white color-dark">
-<!--VIEW_CONTENT-->
-<div class="cookie-container background-dark color-white">
-<p class="cookie-p">
-we care about your data, and we'd use cookies only to improve your experience</br>
-ما همچنین از کوکی‌ها برای بهبود کیفیت خدمات استفاده می‌کنیم
-</p>
-    <button class="cookie-btn background-gold">
-        قوانین را قبول دارم
-    </button>
-    <a class="cookie-btn background-gold color-dark" target="_blank" href="<?php _Root ?>Home/Rules">مرور قوانین</a>
-</div>
+
+
+    <?php if (isset($Data['Message']) ) { ?>
+    <!-- Message -->
+    <div id="snackbar" class="toast show"><?php echo $Data['Message'] ?></div>
+    <!-- Message End -->
+    <?php } ?>
+
+    <!--VIEW_CONTENT-->
+        
+    <!-- Feedback -->
+    <a  onclick="showFeedback()" href="#Feedback" class="shine float background-dark color-white"><i class="fa fa-comments font-xxlarge my-float"></i></a>
+    <form
+        class="feedback submit-form"
+        id="Feedback" method="post"
+        action="<?php echo _Root . 'Home/Feedback' ?>">
+        <h1>بازخورد</h1>
+        <p>
+            همچنین ما خوشحال می‌شیم اگه بتوانیم به شما کمکی بکنیم. راحت باشید :)
+        </p>
+
+        <div class="form-group radio-group">
+            <input type="radio" id="happy" name="Status" value="happy" checked>
+            <label for="happy">😀</label>
+            <input type="radio" id="sad" name="Status" value="sad">
+            <label for="sad">☹️</label>
+        </div>
+        <div class="form-group"><label for="Contact">آیا لازم است با شما تماس بگیریم؟ (دلخواه)</label><input class="form-control" type="text" name="Contact" placeholder="تلفن / موبایل / ایمیل / نام کاربری" value="" ></div>
+        <div class="form-group"><label for="Message">پیام شما (دلخواه)</label><textarea class="form-control html-editor" type="text" name="Message" ></textarea></div>
+
+        <input name="Meta" type="hidden" value="<?php echo isset($Data['FeedbackMeta']) ? $Data['FeedbackMeta'] : ''; ?>" />
+        <input name="Url" type="hidden" value="<?php echo _RequestUri ?>" />
+
+        <input name="insert" type="submit" value="ارسال" class="background-gold">
+        <a href="<?php echo _Root . 'Home/Positions' ?>">می‌خواهید شما هم بخشی از قصه‌ی ساریاب باشید؟</a> |
+        <a href="https://zarinp.al/@tayyebi">می‌خواهید از ساریاب حمایت کنید؟</a>
+
+    </form>
+    <!-- Feedback End -->
+
+    <!-- Cookie -->
+    <div class="cookie-container background-dark color-white">
+        <p class="cookie-p">
+        we care about your data, and we'd use cookies only to improve your experience</br>
+        ما همچنین از کوکی‌ها برای بهبود کیفیت خدمات استفاده می‌کنیم
+        </p>
+        <button class="cookie-btn background-gold">
+            قوانین را قبول دارم
+        </button>
+        <a class="cookie-btn background-gold color-dark" target="_blank" href="<?php _Root ?>Home/Rules">مرور قوانین</a>
+    </div>
+    <!-- Cookie End -->
 </main>
 
-<script>
-// PWA
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('<?php echo _Root ?>static/js/service-worker.js').then(function(reg){
-    }).catch(function(err) {
-    console.log("Failed to register service-worker.js: ", err)
-    });
-}
-//Cookies Use 
-const cookieContainer =document.querySelector(".cookie-container");
-const cookieButton=document.querySelector("button.cookie-btn");
-cookieButton.addEventListener("click",()=>{
-    cookieContainer.classList.remove("active");
-    localStorage.setItem("cookieBannerDisplaye","true")
-})
-setTimeout(() => {
-    if(!localStorage.getItem("cookieBannerDisplaye"))
-         cookieContainer.classList.add("active")
-    },1000);
-    //End Cookies Use
-</script>
+<script src="<?php echo _Root . 'static/js/layout.js' ?>"></script>
 
 </body>
 </html>

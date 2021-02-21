@@ -48,6 +48,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="<?php echo _Root ?>Admin/TrustChain">
+                  <span data-feather="link"></span>
+                  Trust Chain
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Statistics">
                   <span data-feather="pie-chart"></span>
                   Statistics
@@ -78,17 +84,31 @@
               <li class="nav-item">
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Post">
                   <span data-feather="file"></span>
-                  Posts
+                  Posts (Authors, Verified)
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Post2">
                   <span data-feather="file"></span>
-                  Posts (External Writer)
+                  Posts (External Writers, Verified)
                 </a>
+              </li>
+              <li>
                 <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Post3">
                   <span data-feather="file"></span>
-                  Posts (Unverified)
+                  Posts (Authors, Unverified)
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Post4">
+                  <span data-feather="file"></span>
+                  Posts (External Writer, Unverified)
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" href="<?php echo _Root ?>Admin/Items/Feedback">
+                  <span data-feather="mail"></span>
+                  Feedbacks
                 </a>
               </li>
               <li class="nav-item">

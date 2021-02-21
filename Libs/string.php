@@ -19,5 +19,12 @@ class StringFunctions {
         mt_rand( 0, 0x3fff ) | 0x8000,
         mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ));
     }
+
+    // Function to remove all symbols from text
+    static function remove_all_non_alpha_numeric($input)
+    {
+        return
+        preg_replace('/[^A-Za-zآابپتثجچحخدذرزژسشصضطظعقفقکلمنوهی0-9_ ۱۲۳۴۵۶۷۸۹]/', '', $input);
+    }
 }
 ?>
