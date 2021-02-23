@@ -108,6 +108,13 @@ htpasswd -c /var/www/html/Sariab-V2/.htpasswd tayyebi
 
 ## Bugs list
 - [ ] Search bug
+- [ ] Mobile-first UI responsive design
+
+## Android App
+- [ ] READ ALL URLS FROM CLIPBOARD AND LIST THEM. ALLOW USER TO DELETE
+- [ ] CACHE RSS REQUESTS ON DATA ACCESS LAYERS
+- [ ] SHARE URLS TO SARIAB FROM 'SAHRE TO' MENU
+- [ ] FEED READER FOR WEBSITE FEED
 
 ## Project TODO list
 
