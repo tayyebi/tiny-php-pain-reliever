@@ -17,7 +17,7 @@ class TrustChain extends Model{
     }
     function InsertItem($Values) {
 
-        $this::$Connection->beginTransaction();
+        $this->GetConnection()->beginTransaction();
 
         try {
             $InsertQuery = 'INSERT INTO `TrustChain`
@@ -28,14 +28,14 @@ class TrustChain extends Model{
 
             $this->DoQuery($InsertQuery, $Values);
             
-            $result = [true, $this::$Connection->lastInsertId()];
+            $result = [true, $this->GetConnection()->lastInsertId()];
 
-            $this::$Connection->commit();
+            $this->GetConnection()->commit();
             
             return $result;
 
         } catch(PDOExecption $e) {
-            $this::$Connection->rollback();
+            $this->GetConnection()->rollback();
             return [false, $e->getMessage()];
         }
 

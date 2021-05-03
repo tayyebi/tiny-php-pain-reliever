@@ -7,7 +7,17 @@
  */
 class Model{
 
-    public static $Connection = '';
+    protected static $Connection = '';
+
+    /**
+     * GetConnection
+     *
+     * Getter for $Connection
+     * 
+     */
+    public function GetConnection() {
+        return $this::$Connection;
+    }
 
     /**
      * __toString

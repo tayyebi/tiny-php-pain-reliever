@@ -394,7 +394,7 @@ class AdminController extends Controller {
 
         // ========== Ask database for data
         $Model = $this->CallModel($table, false);
-        $conn = $Model::$Connection;
+        $conn = $Model->GetConnection();
 
         // Plural table names
         switch ($table)

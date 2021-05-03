@@ -71,6 +71,12 @@ class App {
     public function ThowError($HttpStatusCode, $Message = '') {
         switch ($HttpStatusCode)
         {
+            // TODO: Use enums.
+            case 400:
+                header('WWW-Authenticate: Basic realm="My Realm"');
+                header('HTTP/1.0 400 Bad Request');
+                include('static/errors/HTTP400.html');
+                exit;
             case 401:
                 header('WWW-Authenticate: Basic realm="My Realm"');
                 header('HTTP/1.0 401 Unauthorized');
@@ -271,7 +277,9 @@ class App {
             // Call the view
             call_user_func_array([$ClassObject, $ControllerMethod], $this->Params);
         }
-        catch (AuthException $exp ){ // On auth error
+        catch (BadRequestException $exp ){ // On auth error
+            $this->ThowError(400);
+        } catch (AuthException $exp ){ // On auth error
             $this->ThowError(403);
         } catch (NotFoundException $exp ){ // on not found error
             $this->ThowError(404);

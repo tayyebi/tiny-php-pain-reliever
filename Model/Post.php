@@ -1,6 +1,16 @@
 <?php
 
 class Post extends Model{
+    
+    public string $Title;
+    protected string $Meta;
+    protected string $Publisher;
+    protected string $IsVerified;
+    protected string $IsExternalWriter;
+    public string $Canonical;
+    public string $Abstract;
+
+
     function GetHome($Values, $page) {
         $MaxItems = 30;
         $Offset = ($page - 1) * $MaxItems;
@@ -31,7 +41,7 @@ class Post extends Model{
     function SubmitPost($Values) {
         $Query = "INSERT INTO `Posts`
         (`Publisher`, `Title`, `Canonical`, `Abstract`, `IsExternalWriter`, `IsVerified`, `Submit`, `Meta`)
-        VALUES (:Publisher, :Title, :Canonical, :Abstract, :IsExternalWriter, b'0', NOW(), '' );
+        VALUES (:Publisher, :Title, :Canonical, :Abstract, :IsExternalWriter, b'0', NOW(), '');
         ";
         $this->DoQuery($Query, $Values);
     }
